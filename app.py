@@ -291,7 +291,9 @@ if(st.session_state.simulation_finished):
         #
         # Surrogate Model Summary
         #
-        # Pseudocode
+
+        st.markdown("## SHAP Analysis of Surrogate Models for Objectives")
+
         Y_cost = []  # objective 1
         Y_power = [] # objective 2
 
