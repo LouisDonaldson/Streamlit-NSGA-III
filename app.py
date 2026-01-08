@@ -1,6 +1,4 @@
 import streamlit as st
-import threading
-import time
 import matplotlib.pyplot as plt
 import numpy as np
 from pymoo.indicators.hv import HV
