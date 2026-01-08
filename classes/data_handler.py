@@ -19,18 +19,18 @@ class DataHandler:
     def load_distance_matrix(self, _json = json):
         print(os.getcwd())
 
-        f = open("../data/DistanceMatrix.json")
+        f = open("data/DistanceMatrix.json")
         turbine_distance_matrix = json.loads(f.read())
         return turbine_distance_matrix
     
     def load_buoy_data(self, _json = json):
-        f = open('../data/buoy.json')
+        f = open('data/buoy.json')
         buoy_data = json.loads(f.read())
         return buoy_data
     
     def load_turbine_power_curve(self):
         # Power curve of energy produced from turbine
-        f = open('../data/teeside_turbine_power_curve.csv')
+        f = open('data/teeside_turbine_power_curve.csv')
         data = f.read()
         split = data.splitlines()
         power_curve = {}
@@ -44,7 +44,7 @@ class DataHandler:
     
     def load_distance_from_port(self):
         # Distance from port data
-        f = open('../data/turbine_distance_from_port.csv')
+        f = open('data/turbine_distance_from_port.csv')
         data = f.read()
         split = data.splitlines()
 
@@ -61,7 +61,7 @@ class DataHandler:
         return distance_from_port
 
     def load_mast_data(self):
-        mast_df = pd.read_csv("../data/new_mast.csv")
+        mast_df = pd.read_csv("data/new_mast.csv")
         # mast_df["AN1_50S_WS_Avg"]
 
         return mast_df
