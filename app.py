@@ -1,0 +1,401 @@
+import streamlit as st
+import threading
+import time
+import matplotlib.pyplot as plt
+import numpy as np
+from pymoo.indicators.hv import HV
+import pandas as pd
+import altair as alt
+import xgboost as xgb
+import shap as shap
+import seaborn as sns
+
+from classes.nsga_iii import NSGAIII_Interface
+
+if "running" not in st.session_state:
+    st.session_state.running = False
+
+if "show_parameters" not in st.session_state:
+    st.session_state.show_parameters = True
+   
+if "run" not in st.session_state:
+    st.session_state.run = False
+
+if "simulation_finished" not in st.session_state:
+    st.session_state.simulation_finished = False
+
+if "create_data_stream" not in st.session_state:
+    st.session_state.create_data_stream = True 
+
+plt.style.use("default")
+
+altair_style = {
+    "figure.figsize": (10, 6),
+    "axes.facecolor": "white",
+    "axes.edgecolor": "#E0E0E0",
+    "axes.linewidth": 1,
+    "axes.grid": True,
+    "grid.color": "#E6E6E6",
+    "grid.linewidth": 1,
+    "grid.alpha": 0.8,
+    "axes.spines.top": False,
+    "axes.spines.right": False,
+    "axes.spines.left": False,
+    "axes.spines.bottom": False,
+    "font.size": 13,
+    "axes.titlesize": 18,
+    "axes.labelsize": 15,
+    "xtick.color": "#555",
+    "ytick.color": "#555",
+    "xtick.major.size": 0,
+    "ytick.major.size": 0,
+    "legend.frameon": False,
+    "scatter.marker": "o",
+}
+
+plt.rcParams.update(altair_style)
+
+class DataStream:
+    def __init__(self):
+        self.data = []
+        self.new_data = False
+    
+    def AddData(self, message):
+        self.data.append(message)
+        self.new_data = True
+
+    def GetData(self, final=False):
+        if self.new_data:
+            self.new_data = False
+            return_data = self.data
+            self.data = []
+            return return_data
+        return None
+
+st.session_state.data_stream = DataStream()
+def start_simulation(nsga_params, stream):
+    nsga_interface = NSGAIII_Interface(nsga_params, _stream=stream, st=st)
+    
+    st.session_state.running = True
+
+    sim_data = nsga_interface.run()
+
+    st.session_state.running = False
+    st.session_state.simulation_finished = True
+
+    return sim_data
+
+
+st.badge("Under Construction", color="red")
+# Title
+st.title("NSGA-III Offshore Wind Farm Scheduling Optimisation Simulation")
+st.markdown("This application allows you to configure and run a simulation for optimising offshore wind farm scheduling for maintenance operations using the NSGA-III algorithm.")
+st.markdown("For in-depth information on how to understand the graphs and the technical information relating to the models, please visit the link below.")
+st.link_button("Further Information and Documentation", "https://mammoth-cough-70c.notion.site/OSW-NSGA-III-Environment-2-0-2df063e6bdf280dcb0e9f2410734c92a")
+
+
+st.divider()
+
+# Configuration box
+# If simulation not started, show configuration box
+if st.session_state.show_parameters == True:
+    st.header("Simulation Configuration")
+
+    # Input fields
+    max_generations = st.number_input("Maximum Generations", min_value=1, value=10)
+    population_size = st.number_input("Population Size", min_value=1, value=20)
+    days = st.number_input("Days", min_value=1, value=7)
+
+    # Pareto fronts with validation
+    pareto_fronts = st.number_input("Pareto Fronts to Show", min_value=1, value=10)
+    if pareto_fronts > max_generations:
+        st.warning("Pareto fronts must be less than the number of generations.")
+
+    params = {
+        "generations": max_generations,
+        "population_size": population_size,
+        "days": days,
+        "paretos_to_display": pareto_fronts
+        }
+
+    if st.button("Start Simulation"):
+        ## parameters are valid
+        # running simulation
+        st.session_state.show_parameters = False
+        st.session_state.run = True
+        st.session_state.nsga_params = params
+        st.rerun()
+
+
+    st.divider()
+
+
+if st.session_state.get("run", True):
+    st.success("Simulation started.")
+    st.session_state.simulation_finished = False
+
+    st.session_state.run = False
+    st.session_state.result = start_simulation(
+        st.session_state.nsga_params,
+        st.session_state.data_stream
+    )
+    
+    st.session_state.simulation_finished = True
+    st.rerun()
+
+if(st.session_state.simulation_finished):
+    # simulation finished. Show results below
+    st.success("Simulation completed.")
+    # results can be accessed through 'st.session_state.result'
+    st.header("Results Visualization")
+
+    def Plot_Pareto_Final():
+        #
+        # Pareto Front of Final Population
+        #
+        plt.clf() 
+        st.markdown("### Pareto Front of Final Population")
+        # Flip power generation back to positive
+        true_power = -st.session_state.result.F[:, 1]
+
+        # Sort indices by ascending power
+        sorted_indices = np.argsort(true_power)
+
+        # Get sorted schedules and objectives
+        sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
+        sorted_objectives = st.session_state.result.F[sorted_indices]
+
+
+        # Visualize the Pareto front
+        plt.figure(figsize=(10, 6))
+        plt.scatter(sorted_objectives[:, 0], true_power[sorted_indices], c='blue', label="Pareto Front")
+
+        # Annotate each point with its sorted index
+        for i, idx in enumerate(sorted_indices):
+            x = st.session_state.result.F[idx, 0]              # Cost
+            y = -st.session_state.result.F[idx, 1]             # Power generation
+            plt.text(x, y, str(i + 1), fontsize=10, ha='center', va='bottom')
+
+        plt.xlabel("Cost")
+        plt.ylabel("Power Generation")
+        plt.title("Pareto Front with Sorted Indices")
+        plt.grid(True)
+        plt.legend()
+
+        st.pyplot(plt)
+        st.divider()
+
+    def Plot_Pareto_Generations():
+        #
+        # Pareto Front of Generations
+        #
+        plt.clf() 
+        st.markdown("### Pareto Front Evolution Across Generations")
+        all_x = []
+        all_y = []
+        all_gen = []
+
+        num_to_show = 5
+
+        for gen, entry in enumerate(st.session_state.result.history):
+            if(gen % (len(st.session_state.result.history) // num_to_show) != 0):
+                continue
+            F = entry.pop.get("F")
+            for cost, power in F:
+                all_x.append(cost)
+                all_y.append(-power)  
+                all_gen.append(gen)   
+
+        all_x = np.array(all_x)
+        all_y = np.array(all_y)
+        all_gen = np.array(all_gen)
+
+        plt.figure(figsize=(10, 6))
+        sc = plt.scatter(all_x, all_y, c=all_gen, cmap='viridis', s=40, edgecolor='k')
+
+        cbar = plt.colorbar(sc)
+        cbar.set_label('Generation Index')
+
+        plt.xlabel('Cost (£)')
+        plt.ylabel('Power Generated (mWh)')
+        plt.title('Pareto Front Evolution Across Generations')
+        plt.grid(True)
+        plt.tight_layout()
+
+        st.pyplot(plt)
+        st.divider()
+
+    def Plot_Cost_Convergence():
+        #
+        # Convergence of Cost
+        # 
+        plt.clf() 
+
+        st.markdown("### Convergence of Cost")
+
+
+        # Track the minimum cost over generations
+        cost_history = [np.min(entry.pop.get("F")[:, 0]) for entry in st.session_state.result.history]
+        plt.plot(cost_history, label="Min Cost")
+        plt.xlabel("Generation")
+        plt.ylabel("Cost")
+        plt.title("Convergence of Cost")
+        plt.grid(True)
+        plt.legend()
+    
+        st.pyplot(plt)
+        st.divider()
+
+    def Plot_Power_Convergence():
+        #
+        # Convergence of Power Generated
+        # 
+
+        st.markdown("### Convergence of Power Generated")
+
+        plt.clf() 
+        y_history = [-np.max(entry.pop.get("F")[:, 1]) for entry in st.session_state.result.history]
+        plt.plot(y_history)
+        plt.xlabel("Generation")
+        plt.ylabel("Power Generated (mWh)")
+        plt.title("Convergence of Power Generated")
+        plt.grid(True)
+        plt.legend()
+
+        st.pyplot(plt)
+        st.divider()
+
+        ###############################################################################
+
+    def Plot_Hypervolume_Convergence():
+        #
+        # Convergence Via Hypervolume
+        #
+
+        st.markdown("### Convergence via Hypervolume")
+        plt.clf() 
+        ref_point = np.array([1e6, 1e6])  # Set based on your objective scales
+        hv = HV(ref_point=ref_point)
+
+        hv_history = [hv.do(entry.pop.get("F")) for entry in st.session_state.result.history]
+        plt.plot(hv_history, label="Hypervolume")
+        plt.xlabel("Generation")
+        plt.ylabel("Hypervolume")
+        plt.title("Convergence via Hypervolume")
+        plt.grid(True)
+        plt.legend()
+
+        st.pyplot(plt)
+        st.divider()
+        ################################################################################
+
+    def SurrogateModels_WithSHAP():
+        #
+        # Surrogate Model Summary
+        #
+        # Pseudocode
+        Y_cost = []  # objective 1
+        Y_power = [] # objective 2
+
+
+        X = np.vstack(st.session_state.result.X)
+        # print(X)
+        F_all = np.vstack(st.session_state.result.F)
+        Y_cost = F_all[:, 0]
+        Y_power = F_all[:, 1]
+
+        
+
+        model_cost = xgb.XGBRegressor().fit(X, Y_cost)
+        model_power = xgb.XGBRegressor().fit(X, Y_power)
+
+        
+
+
+        explainer_cost = shap.Explainer(model_cost, feature_perturbation="interventional")
+        shap_values_cost = explainer_cost(X, check_additivity=False)
+
+        explainer_power = shap.Explainer(model_power, feature_perturbation="interventional")
+        shap_values_power = explainer_power(X, check_additivity=False)
+
+        feature_names = [f"x{i}" for i in range(len(X[1]))]
+        # print(len(feature_names))
+        # print(len(X))
+
+        st.markdown("### SHAP Summary Plot for Cost Objective")
+        fig, ax = plt.subplots()
+        shap.summary_plot(shap_values_cost, X, feature_names=feature_names, show=False)
+
+        st.pyplot(fig)
+        st.divider()
+
+        st.markdown("### SHAP Summary Plot for Power Generation Objective")
+
+        fig2, ax2 = plt.subplots()
+        shap.summary_plot(shap_values_power, X, feature_names=feature_names, show=False)
+        st.pyplot(fig2)
+        st.divider()
+
+        ################################################################################
+
+        st.markdown("### SHAP Importance Heatmap for Cost Objective")
+
+        # Use TreeExplainer for XGBoost models
+        # Cost model
+        explainer = shap.TreeExplainer(model_cost, feature_perturbation="interventional")
+        shap_values = explainer.shap_values(X, check_additivity=False)   # X is your flattened schedule dataset
+
+        mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
+
+        heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
+
+        # import matplotlib.pyplot as plt
+
+        plt.figure(figsize=(12, 6))
+        sns.heatmap(heatmap_data, cmap="viridis")
+        plt.xlabel("Action slot")
+        plt.ylabel("Day")
+        plt.title("SHAP Importance Heatmap")
+        plt.show()
+
+        sns.heatmap(heatmap_data, cmap="coolwarm")
+        ax.grid(False)
+        plt.title("SHAP Importance Heatmap for Cost Objective")
+        st.pyplot(plt)
+        st.divider()
+
+        # sample_shap = shap_values[i].reshape((st.session_state.nsga_params['days'], 3))
+        # sns.heatmap(sample_shap, cmap="coolwarm")
+
+
+        ################################################################################
+
+        st.markdown("### SHAP Importance Heatmap for Power Generation Objective")
+
+        explainer = shap.TreeExplainer(model_power)
+        shap_values = explainer.shap_values(X)   # X is your flattened schedule dataset
+
+        mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
+
+        heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
+
+        plt.figure(figsize=(12, 6))
+        sns.heatmap(heatmap_data, cmap="viridis")
+        plt.xlabel("Action slot")
+        plt.ylabel("Day")
+        plt.title("SHAP Importance Heatmap")
+        plt.show()
+
+        sns.heatmap(heatmap_data, cmap="coolwarm")
+        ax.grid(False)
+        plt.title("SHAP Importance Heatmap for Power Generation Objective")
+        st.pyplot(plt)
+        st.divider()
+
+    Plot_Pareto_Final()
+    Plot_Pareto_Generations()
+    Plot_Cost_Convergence()
+    Plot_Power_Convergence()
+    Plot_Hypervolume_Convergence()
+    SurrogateModels_WithSHAP()
+            
