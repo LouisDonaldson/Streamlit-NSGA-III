@@ -8,3 +8,4 @@ altair
 xgboost
 shap
 seaborn
+plotly
