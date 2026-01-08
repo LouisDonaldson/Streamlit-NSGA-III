@@ -6,3 +6,4 @@ altair
 xgboost
 shap
 seaborn
+pymoo
