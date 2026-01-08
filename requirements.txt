@@ -1,5 +1,4 @@
 streamlit
-threading
 time
 matplotlib.pyplot
 numpy
