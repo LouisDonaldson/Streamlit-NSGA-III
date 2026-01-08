@@ -7,6 +7,7 @@ import altair as alt
 import xgboost as xgb
 import shap as shap
 import seaborn as sns
+import plotly.express as px
 
 from classes.nsga_iii import NSGAIII_Interface
 
@@ -392,10 +393,198 @@ if(st.session_state.simulation_finished):
         st.pyplot(plt)
         st.divider()
 
+    def ShowSchedules():
+        # Converts the schedules into a more readable format
+        def interpret_component(component_id):
+            if component_id == 1:
+                return "nacelle"
+            elif component_id == 2:
+                return "blades"
+            elif component_id == 3:
+                return "tower"
+            elif component_id == 4:
+                return "generator"
+            elif component_id == 5:
+                return "gearbox"
+            elif component_id == 6:
+                return "control_system"
+            else:
+                raise Exception("Invalid component ID")
+            
+        def interpret_action(action):
+            return_to_port = False
+            do_nothing = False
+            perform_maintenance = False
+            maintenance_action = {"return_to_port": return_to_port, 
+                                    "do_nothing": do_nothing, 
+                                    "perform_maintenance": perform_maintenance,
+                                    "maintenance_details": None}
+            if action == 0:
+                maintenance_action["return_to_port"] = True
+                # return "Return to port"
+            elif action == 1:
+                maintenance_action["do_nothing"] = True
+                # return "Do nothing"
+            else:
+                components_per_turbine = 6
+                total_turbines = 27
+                max_action = 2 + components_per_turbine * total_turbines - 1
+
+                if action < 2 or action > max_action:
+                    raise Exception("Invalid action: out of bounds")
+                    return "Invalid action: out of bounds"
+
+                # Offset from first repair action
+                maintenance_action["perform_maintenance"] = True
+                offset = action - 2
+                turbine_id = offset // components_per_turbine + 1
+                component_id = offset % components_per_turbine + 1
+                component = interpret_component(component_id)
+                maintenance_action["maintenance_details"] = {"turbine_id": turbine_id, "component": component}
+
+
+            return maintenance_action
+
+        def ConvertScheduleToReadableFormat(schedule):
+            readable_schedule = []
+            for day in schedule:
+                day_actions = []
+                for action in day:
+                    day_actions.append(interpret_action(action))
+                readable_schedule.append(day_actions)
+            return readable_schedule
+
+        def TurnScheduleToIntActions(schedule):
+            int_schedule = []
+            for day in schedule:
+                day_actions = []
+                for action in day:
+                    day_actions.append(int(action))
+                int_schedule.append(day_actions)
+            return int_schedule
+        
+        st.markdown("## Schedules from Final Population")
+        # Flip power generation back to positive
+        true_power = -st.session_state.result.F[:, 1]
+
+        # Sort indices by ascending power
+        sorted_indices = np.argsort(true_power)
+
+        sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
+
+        readable_schedules = [ConvertScheduleToReadableFormat(TurnScheduleToIntActions(schedule)) for schedule in sorted_schedules]
+
+        st.session_state.schedule_index = st.selectbox(
+            "Choose a schedule to display",
+            options=list(range(len(sorted_schedules))),
+            format_func=lambda i: f"Schedule {i+1}"
+        )
+        
+        if st.session_state.get("schedule_index", None) is not None:
+
+            schedule_to_show = readable_schedules[st.session_state.schedule_index]
+            st.markdown(f"### Schedule {st.session_state.schedule_index + 1} (Day View)")
+
+            # Build a Gantt-friendly table
+            for day_idx, day in enumerate(schedule_to_show):
+                with st.expander(f"Day {day_idx + 1}"):
+                    for action_idx, action in enumerate(day):
+                        if action["return_to_port"]:
+                            st.markdown(f"{action_idx} - 🔁 Return to port")
+                            continue
+                        elif action["do_nothing"]:
+                            st.markdown(f"{action_idx} - ⏸ Do nothing")
+                        elif action["perform_maintenance"]:
+                            d = action["maintenance_details"]
+                            st.markdown(f"{action_idx} - 🛠 Turbine {d['turbine_id']} — {d['component']}")
+
+            st.markdown(f"### Schedule {st.session_state.schedule_index + 1} (Gantt View)")
+
+            from datetime import datetime, timedelta
+
+        if st.session_state.get("schedule_index", None) is not None:
+
+            schedule_to_show = readable_schedules[st.session_state.schedule_index]
+
+            gantt_rows = []
+
+            # Base date for Day 1
+            base_date = datetime(2026, 1, 1)
+
+            # Define the 3 action slot times
+            slot_times = {
+                0: timedelta(hours=9),   # 9am
+                1: timedelta(hours=12),  # 12pm
+                2: timedelta(hours=15),  # 3pm
+            }
+
+            for day_idx, day in enumerate(schedule_to_show):
+                day_date = base_date + timedelta(days=day_idx)
+
+                for slot_idx, action in enumerate(day):
+
+                    # Only plot maintenance actions
+                    if action["perform_maintenance"]:
+                        d = action["maintenance_details"]
+                        turbine = f"Turbine {d['turbine_id']}"
+                        component = d["component"]
+
+                        start = day_date + slot_times[slot_idx]
+                        finish = start + timedelta(hours=3)  # Assume each maintenance takes 3 hours
+
+                        gantt_rows.append({
+                            "Turbine": turbine,
+                            "Component": component,
+                            "Start": start,
+                            "Finish": finish,
+                            "Day": f"Day {day_idx + 1}"
+                        })
+
+            df = pd.DataFrame(gantt_rows)
+
+            # fig = px.timeline(
+            #     df,
+            #     x_start="Start",
+            #     x_end="Finish",
+            #     y="Turbine",
+            #     color="Component",
+            #     hover_data=["Day"],
+            #     title="Maintenance Timeline by Turbine",
+            # )
+
+            # Sort turbines numerically
+            df["Turbine_num"] = df["Turbine"].str.extract(r'(\d+)').astype(int)
+            df = df.sort_values("Turbine_num")
+
+            fig = px.timeline(
+                df,
+                x_start="Start",
+                x_end="Finish",
+                y="Turbine",
+                color="Component",
+                hover_data=["Day"],
+                title="Maintenance Timeline by Turbine",
+            )
+
+            fig.update_yaxes(autorange="reversed")  # Gantt convention
+            fig.update_layout(height=600, xaxis_title="Time")
+
+
+            fig.update_yaxes(autorange="reversed")  # Plotly Gantt convention
+            fig.update_layout(height=600, xaxis_title="Time")
+
+            st.plotly_chart(fig, use_container_width=True)
+
+        st.divider()
+
+
+
     Plot_Pareto_Final()
     Plot_Pareto_Generations()
+    ShowSchedules()
     Plot_Cost_Convergence()
     Plot_Power_Convergence()
     Plot_Hypervolume_Convergence()
     SurrogateModels_WithSHAP()
             
+
