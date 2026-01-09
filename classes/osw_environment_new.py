@@ -1,6 +1,9 @@
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import random
+from datetime import datetime
+import streamlit as st
+
 
 from classes.turbine_model import Turbine, Component, Farm 
 
@@ -83,7 +86,6 @@ class Environment:
         self.current_distance_travelled = 0
         
         return self.current_state
-
 
     def decay_turbine_health(self, lb = 1, ub = 3):
         # Randomly decay the turbine 1 - 3
@@ -179,9 +181,7 @@ class Environment:
 
         return maintenance_action
         
-
-
-    def step(self, action, current_step, env):
+    def step(self, action, current_step, env, episode):
         #print(self.get_turbine_health_cumulative())
 
         intepreted_action = self.interpret_action(action)
@@ -241,7 +241,7 @@ class Environment:
         # if next move is the step limit and is not going back to port, then the agent is overworked
        
          
-        reward += self.calculate_reward(maintenance_type, health_increase, self.current_distance_travelled, intepreted_action, hours_skipped, current_step, env)
+        reward += self.calculate_reward(maintenance_type, health_increase, self.current_distance_travelled, intepreted_action, hours_skipped, current_step, env, episode)
     
         if(overworked == True):
             done = True
@@ -275,8 +275,11 @@ class Environment:
     
         ##cumulative = cumulative / len(self.turbine_health)
         return cumulative
+    
+    def get_average_hs_at_episode(self, data, day_number):
+        return data[day_number]["Hs"]
 
-    def calculate_reward(self, maintenance_type, health_increase, distance_travelled, action, time_skipped, current_step, env):
+    def calculate_reward(self, maintenance_type, health_increase, distance_travelled, action, time_skipped, current_step, env, episode):
         # reward is calculated based on the cumulative turbine health / the distance travelled
 
         reward = 0
@@ -298,7 +301,7 @@ class Environment:
         for x in range(0, self.num_turbines):
             if(x == turbine_maintained):
                 continue
-            turbine_power_generated = self.data_handler.FindPowerGenerated(current_step, time_skipped)
+            turbine_power_generated = self.data_handler.FindPowerGenerated(episode, time_skipped)
             percentage_degradation = self.turbine_health[x] / 100
             power_gained += turbine_power_generated * percentage_degradation
 
@@ -313,7 +316,7 @@ class Environment:
         self.cost.append(distance_travelled)
 
         # cost calculated here in £
-        cost = self.data_handler.CalculateCostOfFuel(float(self.buoy_data[current_step]["Hs"]), distance_travelled)
+        cost = self.data_handler.CalculateCostOfFuel(float(self.get_average_hs_at_episode(self.buoy_data, episode)), distance_travelled)
 
         if(action["perform_maintenance"]):
             turbine = [_turbine for _turbine in self.turbines.turbines if _turbine.num + 1 == action["maintenance_details"]["turbine_id"]]
@@ -341,7 +344,7 @@ class Environment:
         reward = (alpha * power_gained) - (beta * power_lost) - (gamma * cost) + (delta * health_increase)
         #reward = (alpha * power_gained) - (gamma * cost)
 
-        if(float(self.buoy_data[current_step]["Hs"]) > 1.5):
+        if(float(self.get_average_hs_at_episode(self.buoy_data, episode)) > 1.5):
             reward = -reward
 
         return reward 

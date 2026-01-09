@@ -2,6 +2,7 @@ import json as json
 import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import os
+import streamlit as st
 
 class DataHandler:
     def __init__(self):
@@ -24,7 +25,9 @@ class DataHandler:
         return turbine_distance_matrix
     
     def load_buoy_data(self, _json = json):
-        f = open('data/buoy.json')
+        # f = open('data/buoy.json')
+        f = open('data/daily_averages.json')
+
         buoy_data = json.loads(f.read())
         return buoy_data
     

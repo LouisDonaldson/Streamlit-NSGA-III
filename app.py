@@ -8,6 +8,7 @@ import xgboost as xgb
 import shap as shap
 import seaborn as sns
 import plotly.express as px
+import plotly.graph_objects as go
 
 from classes.nsga_iii import NSGAIII_Interface
 
@@ -53,6 +54,9 @@ altair_style = {
 }
 
 plt.rcParams.update(altair_style)
+
+st.sidebar.number_input("Age")
+
 
 class DataStream:
     def __init__(self):
@@ -210,7 +214,7 @@ if(st.session_state.simulation_finished):
         all_gen = np.array(all_gen)
 
         plt.figure(figsize=(10, 6))
-        sc = plt.scatter(all_x, all_y, c=all_gen, cmap='viridis', s=40, edgecolor='k')
+        sc = plt.scatter(all_x, all_y, c=all_gen, cmap='viridis', s=40,)
 
         cbar = plt.colorbar(sc)
         cbar.set_label('Generation Index')
@@ -502,6 +506,8 @@ if(st.session_state.simulation_finished):
 
             from datetime import datetime, timedelta
 
+
+        # Gantt chart generation
         if st.session_state.get("schedule_index", None) is not None:
 
             schedule_to_show = readable_schedules[st.session_state.schedule_index]
@@ -526,7 +532,7 @@ if(st.session_state.simulation_finished):
                     # Only plot maintenance actions
                     if action["perform_maintenance"]:
                         d = action["maintenance_details"]
-                        turbine = f"Turbine {d['turbine_id']}"
+                        turbine = f"T{d['turbine_id']}"
                         component = d["component"]
 
                         start = day_date + slot_times[slot_idx]
@@ -566,12 +572,54 @@ if(st.session_state.simulation_finished):
                 title="Maintenance Timeline by Turbine",
             )
 
+            fig.update_layout(
+                legend=dict(
+                    orientation="h",
+                    yanchor="top",
+                    y=-0.2,        # move legend below the chart
+                    xanchor="center",
+                    x=0.5
+                ),
+                margin=dict(b=80)  # add bottom margin so legend fits
+            )
+
+
+
             fig.update_yaxes(autorange="reversed")  # Gantt convention
             fig.update_layout(height=600, xaxis_title="Time")
 
 
             fig.update_yaxes(autorange="reversed")  # Plotly Gantt convention
             fig.update_layout(height=600, xaxis_title="Time")
+
+            # ---------------------------
+            # ADD SHADED BACKGROUND PER DAY
+            # ---------------------------
+            wave_df = pd.read_csv("data/daily_averages.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
+            wave_df["Hs"] = wave_df["Hs"].astype(float)
+            wave_heights = wave_df["Hs"].tolist()
+            max_wave = max(wave_heights)
+
+            for day_idx, wave in enumerate(wave_heights):
+                if(day_idx >= st.session_state.nsga_params['days']):
+                    break
+                # Compute the day's start and end timestamps
+                day_start = base_date + timedelta(days=day_idx)
+                day_end = day_start + timedelta(days=1)
+
+                # Normalise wave height to opacity (0.1–0.4 looks good)
+                opacity = 0.1 + 0.3 * (wave / max_wave)
+
+                fig.add_shape(
+                    type="rect",
+                    x0=day_start,
+                    x1=day_end,
+                    y0=-0.5,
+                    y1=df["Turbine"].nunique() - 0.5,
+                    fillcolor=f"rgba(30, 144, 255, {opacity})",  # DodgerBlue tint
+                    line_width=0,
+                    layer="below"
+                    )
 
             st.plotly_chart(fig, use_container_width=True)
 

@@ -82,7 +82,7 @@ class EnvironmentHandler:
                 #print(f"Action: {action}, Step: {current_s}")
                 # print(f"Chosen action: {action}")
                 
-                new_state, reward, done, hours_skipped, type = self.env.step(action, current_s, self)
+                new_state, reward, done, hours_skipped, type = self.env.step(action, current_s, self, episode)
 
                 self.reward["Overall"] = self.reward["Overall"] + reward
 
