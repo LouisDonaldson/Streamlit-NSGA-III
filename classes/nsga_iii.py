@@ -50,7 +50,7 @@ class Callback(Callback):
         best_f1 = f_vals[:, 0].min()
         x_list = algorithm.pop.get("X")
 
-        self.st.session_state.current_log = f"**| {algorithm.termination.perc * 100}% complete | Generation: {gen} | Eps: {algorithm.output.eps.value} |**"
+        self.st.session_state.current_log = f"| {algorithm.termination.perc * 100}% complete | Generation: {gen} | Eps: {algorithm.output.eps.value} |"
         self.st.code(self.st.session_state.current_log, language="markdown")
         # self.st.rerun()
 
@@ -73,8 +73,9 @@ class Callback(Callback):
 
 
 class WindFarmScheduling(ElementwiseProblem, _data_handler):
-    def __init__(self, number_of_days, _stream=None):
+    def __init__(self, number_of_days, start_day, _stream=None):
         self.number_of_days = number_of_days
+        self.start_day = start_day
         self.data_handler = _data_handler()
         self.data_handler.BeginImport()
         self.stream = _stream
@@ -93,9 +94,9 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         )
 
     def _evaluate(self, x, out, *args, **kwargs):
-        env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, Environment=Environment, _stream = self.stream)
+        env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, _start_day=self.start_day, Environment=Environment, _stream = self.stream)
 
-        env.RunSim(episodes=self.number_of_days, verbose=False)
+        env.RunSim(episodes=self.number_of_days, _start_day=self.start_day, verbose=False)
         # print(f"{env.reward}")
         env.reward["Power_Generated"]
         env.reward["Cost"]
@@ -108,6 +109,7 @@ class NSGAIII_Interface:
     def __init__(self, nsga_params, _stream=None, st=st):
         self.generations = int(nsga_params['generations'])
         self.population_size = int(nsga_params['population_size'])
+        self.start_day = int(nsga_params['start_day'])
         self.st = st
         self.result = None
         self.num_days = int(nsga_params['days'])
@@ -124,7 +126,7 @@ class NSGAIII_Interface:
         n_max_evals=self.generations * self.population_size
         )
 
-        problem = WindFarmScheduling(self.num_days, self.stream)
+        problem = WindFarmScheduling(self.num_days, start_day=self.start_day, _stream=self.stream)
 
         print("Starting optimization with NSGA-III...")
 

@@ -3,7 +3,7 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 
 
 class EnvironmentHandler:
-    def __init__(self, schedule_to_simulate, data_handler, Environment, number_of_days, _stream=None):  # Constructor
+    def __init__(self, schedule_to_simulate, data_handler, Environment, number_of_days, _start_day, _stream=None):  # Constructor
         self.schedule = np.round(schedule_to_simulate).astype(int)
         self.number_of_days = number_of_days
         self.stream = _stream
@@ -14,7 +14,7 @@ class EnvironmentHandler:
         hours = 5
 
         self.encoded_schedule = self.schedule
-        self.env = Environment(days, hours, data_handler, _stream = _stream)
+        self.env = Environment(days, hours, data_handler, _stream = _stream, _start_day = _start_day)
         self.day = 0
         self.time = 0
         self.action_string = ""
@@ -55,7 +55,7 @@ class EnvironmentHandler:
         return next_action
 
     
-    def RunSim(self, episodes, steps = 5, verbose = False):
+    def RunSim(self, episodes, _start_day, steps = 5, verbose = False):
         counter = 1
 
         if(verbose):
@@ -82,7 +82,7 @@ class EnvironmentHandler:
                 #print(f"Action: {action}, Step: {current_s}")
                 # print(f"Chosen action: {action}")
                 
-                new_state, reward, done, hours_skipped, type = self.env.step(action, current_s, self, episode)
+                new_state, reward, done, hours_skipped, type = self.env.step(action, current_s, self, episode, )
 
                 self.reward["Overall"] = self.reward["Overall"] + reward
 

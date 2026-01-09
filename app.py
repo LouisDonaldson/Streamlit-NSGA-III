@@ -55,9 +55,6 @@ altair_style = {
 
 plt.rcParams.update(altair_style)
 
-st.sidebar.number_input("Age")
-
-
 class DataStream:
     def __init__(self):
         self.data = []
@@ -107,18 +104,40 @@ if st.session_state.show_parameters == True:
     # Input fields
     max_generations = st.number_input("Maximum Generations", min_value=1, value=10)
     population_size = st.number_input("Population Size", min_value=1, value=20)
+    
     days = st.number_input("Days", min_value=1, value=7)
 
-    # Pareto fronts with validation
-    pareto_fronts = st.number_input("Pareto Fronts to Show", min_value=1, value=10)
-    if pareto_fronts > max_generations:
-        st.warning("Pareto fronts must be less than the number of generations.")
+    # Visualise wave height average and choose which weather window will be chosen.
+    wave_df = pd.read_csv("data/daily_averages.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
+    wave_df["Hs"] = wave_df["Hs"].astype(float)
+    start_day = st.slider("Select start day", 0, 365, 0)
+    window = days  # e.g., 7‑day execution window
+    wave_df["highlight"] = wave_df["day_number"].between(start_day, start_day + window)
+    chart = (
+        alt.Chart(wave_df)
+        .mark_bar()
+        .encode(
+            x=alt.X("day_number:O", title="Day of Year"),
+            y=alt.Y("Hs:Q", title="Avg Wave Height (m)"),
+            color=alt.condition(
+                "datum.highlight == true",
+                alt.value("#ff7f0e"),   # highlighted bars
+                alt.value("#1f77b4")    # normal bars
+            ),
+            tooltip=["day_number", "Hs"]
+        )
+    )
+
+    st.altair_chart(chart, use_container_width=True)
+
+
+    st.write(f"Maximum number of evaluations will be: ```{max_generations * population_size}```")
 
     params = {
         "generations": max_generations,
         "population_size": population_size,
         "days": days,
-        "paretos_to_display": pareto_fronts
+        "start_day": start_day,
         }
 
     if st.button("Start Simulation"):
@@ -548,16 +567,6 @@ if(st.session_state.simulation_finished):
 
             df = pd.DataFrame(gantt_rows)
 
-            # fig = px.timeline(
-            #     df,
-            #     x_start="Start",
-            #     x_end="Finish",
-            #     y="Turbine",
-            #     color="Component",
-            #     hover_data=["Day"],
-            #     title="Maintenance Timeline by Turbine",
-            # )
-
             # Sort turbines numerically
             df["Turbine_num"] = df["Turbine"].str.extract(r'(\d+)').astype(int)
             df = df.sort_values("Turbine_num")
@@ -597,31 +606,106 @@ if(st.session_state.simulation_finished):
             # ---------------------------
             wave_df = pd.read_csv("data/daily_averages.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
             wave_df["Hs"] = wave_df["Hs"].astype(float)
-            wave_heights = wave_df["Hs"].tolist()
-            max_wave = max(wave_heights)
+            
+            wave_heights = (
+                wave_df.loc[
+                    wave_df["day_number"].between(st.session_state.nsga_params['start_day'], st.session_state.nsga_params['start_day'] + st.session_state.nsga_params['days'] ),
+                    "Hs"
+                ].tolist()
+            )
+
+            wave_heights_df = pd.DataFrame({
+                "day_number": range(len(wave_heights)),
+                "Hs": wave_heights
+            })
+
+            chart = (
+                alt.Chart(wave_heights_df)
+                .mark_bar()
+                .mark_bar(color="#ff7f0e")
+                .encode(
+                    x=alt.X("day_number:O", title="Day in schedule"),
+                    y=alt.Y("Hs:Q", title="Wave Height (m)"),
+                    tooltip=["day_number", "Hs"]
+                )
+            )
+
+            st.write("#### Wave Heights During Scheduled Days")
+            st.altair_chart(chart, use_container_width=True)
+
+
+
+            max_wave = 1.5
 
             for day_idx, wave in enumerate(wave_heights):
-                if(day_idx >= st.session_state.nsga_params['days']):
+                if day_idx >= st.session_state.nsga_params['days']:
                     break
-                # Compute the day's start and end timestamps
+
                 day_start = base_date + timedelta(days=day_idx)
                 day_end = day_start + timedelta(days=1)
 
-                # Normalise wave height to opacity (0.1–0.4 looks good)
-                opacity = 0.1 + 0.3 * (wave / max_wave)
+                t = min(wave / max_wave, 1.0)
+                r = int((1 - t) * 80  + t * 255)
+                g = int((1 - t) * 200 + t * 80)
+                b = int((1 - t) * 120 + t * 80)
 
-                fig.add_shape(
-                    type="rect",
+                # if wave > max_wave:
+                #     r, g, b = 255, 80, 80
+                # else:
+                #     r, g, b = 80, 200, 120
+
+                fig.add_vrect(
                     x0=day_start,
                     x1=day_end,
-                    y0=-0.5,
-                    y1=df["Turbine"].nunique() - 0.5,
-                    fillcolor=f"rgba(30, 144, 255, {opacity})",  # DodgerBlue tint
-                    line_width=0,
-                    layer="below"
-                    )
+                    fillcolor=f"rgb({r}, {g}, {b})",
+                    opacity=0.75,
+                    layer="below",
+                    line_width=0
+                )
+
+
+
+
+
 
             st.plotly_chart(fig, use_container_width=True)
+
+            st.markdown("""
+                ### 🌊 Wave Height Gradient Legend
+
+                <div style="margin-top: 10px;">
+
+                <!-- Gradient bar -->
+                <div style="
+                    height: 20px;
+                    width: 300px;
+                    background: linear-gradient(to right,
+                        rgb(80, 200, 120),
+                        rgb(200, 200, 80),
+                        rgb(255, 80, 80)
+                    );
+                    border-radius: 6px;
+                    margin-bottom: 6px;
+                "></div>
+
+                <!-- Labels -->
+                <div style="display: flex; justify-content: space-between; width: 300px;">
+                    <span>0.0 m</span>
+                    <span>~0.75 m</span>
+                    <span>1.5 m+</span>
+                </div>
+
+                </div>
+
+                <br>
+
+                #### Interpretation
+                - **Green** → calm, safe wave conditions  
+                - **Yellow** → moderate wave height  
+                - **Red** → unsafe (Hs ≥ 1.5 m)  
+                - Colours are interpolated smoothly based on daily Hs  
+                """, unsafe_allow_html=True)
+
 
         st.divider()
 
@@ -634,5 +718,3 @@ if(st.session_state.simulation_finished):
     Plot_Power_Convergence()
     Plot_Hypervolume_Convergence()
     SurrogateModels_WithSHAP()
-            
-

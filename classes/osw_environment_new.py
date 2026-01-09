@@ -8,7 +8,8 @@ import streamlit as st
 from classes.turbine_model import Turbine, Component, Farm 
 
 class Environment:
-    def __init__(self, step_limit, days_limit, data_handler, _stream=None):
+    def __init__(self, step_limit, days_limit, data_handler, _start_day, _stream=None):
+        self.start_day = _start_day
         self.stream = _stream
         self.data_handler = data_handler
         self.num_turbines = 27 #  this can go up to 27 turbines (Teeside farm layout)
@@ -277,7 +278,12 @@ class Environment:
         return cumulative
     
     def get_average_hs_at_episode(self, data, day_number):
-        return data[day_number]["Hs"]
+        offset = self.start_day + day_number
+        
+        if offset >= len(data):
+            offset = offset - len(data)
+
+        return data[offset]["Hs"]
 
     def calculate_reward(self, maintenance_type, health_increase, distance_travelled, action, time_skipped, current_step, env, episode):
         # reward is calculated based on the cumulative turbine health / the distance travelled
