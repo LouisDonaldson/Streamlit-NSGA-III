@@ -72,10 +72,23 @@ class DataHandler:
     def FindPowerGenerated(self, step, time): # calculates power generated in kW/H
         if(time == 0):
             time = 1
+
+        lowest_wind = 3.5
+        highest_wind = 25.5
             
         average_wind = self.mast_df["AN1_50S_WS_Avg"][step] # this needs changing in the future
 
         average_wind = round(average_wind*2)/2
+        # st.write(str(average_wind))
+
+        # if wind is lower or higher than the power curve limits
+        if average_wind < lowest_wind:
+            power_gen = self.power_curve[str(lowest_wind)]
+            return (int(power_gen) * time)
+        elif average_wind > highest_wind:
+            power_gen = self.power_curve[str(highest_wind)]
+            return (int(power_gen) * time)
+
         power_gen = self.power_curve[str(average_wind)]
         
         return (int(power_gen) * time)
