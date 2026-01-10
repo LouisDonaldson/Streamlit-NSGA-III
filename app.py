@@ -327,102 +327,108 @@ if(st.session_state.simulation_finished):
 
         st.markdown("## SHAP Analysis of Surrogate Models for Objectives")
 
-        Y_cost = []  # objective 1
-        Y_power = [] # objective 2
+        if "shap_computed" not in st.session_state:
+            if st.button("Compute SHAP Values"):
+                st.session_state.shap_computed = True
+                st.rerun()
+            st.warning("Computing the SHAP values can take a few minutes depending on the dataset size. Please click the button to start the computation.")
+        else:
+            Y_cost = []  # objective 1
+            Y_power = [] # objective 2
 
 
-        X = np.vstack(st.session_state.result.X)
-        # print(X)
-        F_all = np.vstack(st.session_state.result.F)
-        Y_cost = F_all[:, 0]
-        Y_power = F_all[:, 1]
+            X = np.vstack(st.session_state.result.X)
+            # print(X)
+            F_all = np.vstack(st.session_state.result.F)
+            Y_cost = F_all[:, 0]
+            Y_power = F_all[:, 1]
 
-        
+            
 
-        model_cost = xgb.XGBRegressor().fit(X, Y_cost)
-        model_power = xgb.XGBRegressor().fit(X, Y_power)
+            st.session_state.shap_model_cost = xgb.XGBRegressor().fit(X, Y_cost)
+            st.session_state.shap_model_power = xgb.XGBRegressor().fit(X, Y_power)
 
-        
-
-
-        explainer_cost = shap.Explainer(model_cost, feature_perturbation="interventional")
-        shap_values_cost = explainer_cost(X, check_additivity=False)
-
-        explainer_power = shap.Explainer(model_power, feature_perturbation="interventional")
-        shap_values_power = explainer_power(X, check_additivity=False)
-
-        feature_names = [f"x{i}" for i in range(len(X[1]))]
-        # print(len(feature_names))
-        # print(len(X))
-
-        st.markdown("### SHAP Summary Plot for Cost Objective")
-        fig, ax = plt.subplots()
-        shap.summary_plot(shap_values_cost, X, feature_names=feature_names, show=False)
-
-        st.pyplot(fig)
-        st.divider()
-
-        st.markdown("### SHAP Summary Plot for Power Generation Objective")
-
-        fig2, ax2 = plt.subplots()
-        shap.summary_plot(shap_values_power, X, feature_names=feature_names, show=False)
-        st.pyplot(fig2)
-        st.divider()
-
-        ################################################################################
-
-        st.markdown("### SHAP Importance Heatmap for Cost Objective")
-
-        # Use TreeExplainer for XGBoost models
-        # Cost model
-        explainer = shap.TreeExplainer(model_cost, feature_perturbation="interventional")
-        shap_values = explainer.shap_values(X, check_additivity=False)   # X is your flattened schedule dataset
-
-        mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
-
-        heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
-
-        # import matplotlib.pyplot as plt
-
-        plt.figure(figsize=(12, 6))
-        sns.heatmap(heatmap_data, cmap="viridis")
-        plt.xlabel("Action slot")
-        plt.ylabel("Day")
-        plt.title("SHAP Importance Heatmap")
-        plt.show()
-
-        sns.heatmap(heatmap_data, cmap="coolwarm")
-        ax.grid(False)
-        plt.title("SHAP Importance Heatmap for Cost Objective")
-        st.pyplot(plt)
-        st.divider()
-
-        # sample_shap = shap_values[i].reshape((st.session_state.nsga_params['days'], 3))
-        # sns.heatmap(sample_shap, cmap="coolwarm")
+            
 
 
-        ################################################################################
+            explainer_cost = shap.Explainer(st.session_state.shap_model_cost, feature_perturbation="interventional")
+            shap_values_cost = explainer_cost(X, check_additivity=False)
 
-        st.markdown("### SHAP Importance Heatmap for Power Generation Objective")
+            explainer_power = shap.Explainer(st.session_state.shap_model_power, feature_perturbation="interventional")
+            shap_values_power = explainer_power(X, check_additivity=False)
 
-        explainer = shap.TreeExplainer(model_power)
-        shap_values = explainer.shap_values(X)   # X is your flattened schedule dataset
+            feature_names = [f"x{i}" for i in range(len(X[1]))]
+            # print(len(feature_names))
+            # print(len(X))
 
-        mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
+            st.markdown("### SHAP Summary Plot for Cost Objective")
+            fig, ax = plt.subplots()
+            shap.summary_plot(shap_values_cost, X, feature_names=feature_names, show=False)
 
-        heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
+            st.pyplot(fig)
+            st.divider()
 
-        plt.figure(figsize=(12, 6))
-        sns.heatmap(heatmap_data, cmap="viridis")
-        plt.xlabel("Action slot")
-        plt.ylabel("Day")
-        plt.title("SHAP Importance Heatmap")
-        plt.show()
+            st.markdown("### SHAP Summary Plot for Power Generation Objective")
 
-        sns.heatmap(heatmap_data, cmap="coolwarm")
-        ax.grid(False)
-        plt.title("SHAP Importance Heatmap for Power Generation Objective")
-        st.pyplot(plt)
+            fig2, ax2 = plt.subplots()
+            shap.summary_plot(shap_values_power, X, feature_names=feature_names, show=False)
+            st.pyplot(fig2)
+            st.divider()
+
+            ################################################################################
+
+            st.markdown("### SHAP Importance Heatmap for Cost Objective")
+
+            # Use TreeExplainer for XGBoost models
+            # Cost model
+            explainer = shap.TreeExplainer(st.session_state.shap_model_cost, feature_perturbation="interventional")
+            shap_values = explainer.shap_values(X, check_additivity=False)   # X is your flattened schedule dataset
+
+            mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
+
+            heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
+
+            # import matplotlib.pyplot as plt
+
+            plt.figure(figsize=(12, 6))
+            sns.heatmap(heatmap_data, cmap="viridis")
+            plt.xlabel("Action slot")
+            plt.ylabel("Day")
+            plt.title("SHAP Importance Heatmap")
+            plt.show()
+
+            sns.heatmap(heatmap_data, cmap="coolwarm")
+            ax.grid(False)
+            plt.title("SHAP Importance Heatmap for Cost Objective")
+            st.pyplot(plt)
+            st.divider()
+
+            # sample_shap = shap_values[i].reshape((st.session_state.nsga_params['days'], 3))
+            # sns.heatmap(sample_shap, cmap="coolwarm")
+
+
+            ################################################################################
+
+            st.markdown("### SHAP Importance Heatmap for Power Generation Objective")
+
+            explainer = shap.TreeExplainer(st.session_state.shap_model_power)
+            shap_values = explainer.shap_values(X)   # X is your flattened schedule dataset
+
+            mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
+
+            heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
+
+            plt.figure(figsize=(12, 6))
+            sns.heatmap(heatmap_data, cmap="viridis")
+            plt.xlabel("Action slot")
+            plt.ylabel("Day")
+            plt.title("SHAP Importance Heatmap")
+            plt.show()
+
+            sns.heatmap(heatmap_data, cmap="coolwarm")
+            ax.grid(False)
+            plt.title("SHAP Importance Heatmap for Power Generation Objective")
+            st.pyplot(plt)
         st.divider()
 
     def ShowSchedules():
@@ -728,70 +734,73 @@ if(st.session_state.simulation_finished):
 
 
 ## Chatbot Sidebar
+def GPT_Handler():
 
-# --- Session State Setup ---
-if "api_key" not in st.session_state:
-    st.session_state.api_key = None
+    # --- Session State Setup ---
+    if "api_key" not in st.session_state:
+        st.session_state.api_key = None
 
-if "messages" not in st.session_state:
-    st.session_state.messages = []
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
 
-# --- Sidebar UI ---
-with st.sidebar:
-    st.title("💬 GPT Chatbot")
+    # --- Sidebar UI ---
+    with st.sidebar:
+        st.title("💬 GPT Chatbot")
 
-    # Step 1: Ask for API key if missing
-    if not st.session_state.api_key:
-        api_key_input = st.text_input(
-            "Enter your API key",
-            type="password",
-            placeholder="sk-...",
-        )
+        # Step 1: Ask for API key if missing
+        if not st.session_state.api_key:
+            api_key_input = st.text_input(
+                "Enter your API key",
+                type="password",
+                placeholder="sk-...",
+            )
 
-        if api_key_input:
-            st.session_state.api_key = api_key_input
+            if api_key_input:
+                st.session_state.api_key = api_key_input
+                st.rerun()
+
+            st.stop()  # Prevents chatbot from rendering until key is set
+
+        # Step 2: Show chat once API key exists
+        st.success("API key loaded")
+
+        if "gpt_data_initialised" in st.session_state:
+            if st.session_state.gpt_data_initialised:
+                st.info("GPT initialised with simulation data.") 
+
+        if "gpt_session" not in st.session_state:
+            st.session_state.gpt_session = GPTSession(api_key=st.session_state.api_key)
+        # Display chat history
+        for msg in st.session_state.gpt_session.messages[1:]:
+            role = "assistant" if msg["role"] == "assistant" else "user"
+            with st.chat_message(role):
+                st.write(msg["content"])
+                st.divider()
+
+        # User input
+        user_input = st.chat_input("Ask me something...")
+        if st.session_state.simulation_finished:
+            if "gpt_data_initialised" not in st.session_state:
+                if st.button("Initialise GPT with simulation data"):
+                    summary_text = f"Your job is to be an assistant to the person who will be sending the following messages in regards to understanding the data provided shortly, which was produced from a model. The short summary of how the model works: 'The simulation has completed with {len(st.session_state.result.F)} solutions in the final population. The objectives were cost and power generation over a period of {st.session_state.nsga_params['days']} days starting from day {st.session_state.nsga_params['start_day']} of the year. The Pareto front shows the trade-off between minimizing cost and maximizing power generation. The surrogate models were built using XGBoost and analyzed with SHAP to understand feature importance. Key insights include how different maintenance schedules impact both objectives.' The following is all of the data relating to the optimisation: '{json.dumps(st.session_state.nsga_data, indent=2)}' If you understand this, please can you reply with just 'I am up to date on the data. How can I help? :)'" 
+                    # st.write(summary_text)
+                    st.session_state.gpt_session.chat(summary_text)
+                    st.session_state.gpt_data_initialised = True
+                    st.rerun()
+                    
+
+        if user_input:
+            # # Save user message
+            st.session_state.gpt_session.chat(user_input)
+
+            # st.session_state.messages.append({"role": "user", "content": user_input})
+
+            # # Replace this with your real GPT call using st.session_state.api_key
+            # assistant_reply = f"(Pretend GPT) You said: {user_input}"
+
+            # # Save assistant reply
+            # st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
+
             st.rerun()
 
-        st.stop()  # Prevents chatbot from rendering until key is set
-
-    # Step 2: Show chat once API key exists
-    st.success("API key loaded")
-
-    if "gpt_data_initialised" in st.session_state:
-        if st.session_state.gpt_data_initialised:
-            st.info("GPT initialised with simulation data.") 
-
-    if "gpt_session" not in st.session_state:
-        st.session_state.gpt_session = GPTSession(api_key=st.session_state.api_key)
-    # Display chat history
-    for msg in st.session_state.gpt_session.messages[1:]:
-        role = "assistant" if msg["role"] == "assistant" else "user"
-        with st.chat_message(role):
-            st.write(msg["content"])
-            st.divider()
-
-    # User input
-    user_input = st.chat_input("Ask me something...")
-    if st.session_state.simulation_finished:
-        if "gpt_data_initialised" not in st.session_state:
-            if st.button("Initialise GPT with simulation data"):
-                summary_text = f"Your job is to be an assistant to the person who will be sending the following messages in regards to understanding the data provided shortly, which was produced from a model. The short summary of how the model works: 'The simulation has completed with {len(st.session_state.result.F)} solutions in the final population. The objectives were cost and power generation over a period of {st.session_state.nsga_params['days']} days starting from day {st.session_state.nsga_params['start_day']} of the year. The Pareto front shows the trade-off between minimizing cost and maximizing power generation. The surrogate models were built using XGBoost and analyzed with SHAP to understand feature importance. Key insights include how different maintenance schedules impact both objectives.' The following is all of the data relating to the optimisation: '{json.dumps(st.session_state.nsga_data, indent=2)}' If you understand this, please can you reply with just 'I am up to date on the data. How can I help? :)'" 
-                # st.write(summary_text)
-                st.session_state.gpt_session.chat(summary_text)
-                st.session_state.gpt_data_initialised = True
-                st.rerun()
-                
-
-    if user_input:
-        # # Save user message
-        st.session_state.gpt_session.chat(user_input)
-
-        # st.session_state.messages.append({"role": "user", "content": user_input})
-
-        # # Replace this with your real GPT call using st.session_state.api_key
-        # assistant_reply = f"(Pretend GPT) You said: {user_input}"
-
-        # # Save assistant reply
-        # st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
-
-        st.rerun()
+GPT_Handler()
