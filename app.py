@@ -78,7 +78,7 @@ class DataStream:
 
 st.session_state.data_stream = DataStream()
 def start_simulation(nsga_params, stream):
-    nsga_interface = NSGAIII_Interface(nsga_params, _stream=st.session_state.data_stream, st=st)
+    nsga_interface = NSGAIII_Interface(nsga_params, _stream=stream, st=st)
     
     st.session_state.running = True
 
@@ -351,11 +351,11 @@ if(st.session_state.simulation_finished):
             
 
 
-            explainer_cost = shap.Explainer(st.session_state.shap_model_cost, feature_perturbation="interventional")
-            shap_values_cost = explainer_cost(X, check_additivity=False)
+            st.session_state.explainer_cost = shap.Explainer(st.session_state.shap_model_cost, feature_perturbation="interventional")
+            shap_values_cost = st.session_state.explainer_cost(X, check_additivity=False)
 
-            explainer_power = shap.Explainer(st.session_state.shap_model_power, feature_perturbation="interventional")
-            shap_values_power = explainer_power(X, check_additivity=False)
+            st.session_state.explainer_power = shap.Explainer(st.session_state.shap_model_power, feature_perturbation="interventional")
+            shap_values_power = st.session_state.explainer_power(X, check_additivity=False)
 
             feature_names = [f"x{i}" for i in range(len(X[1]))]
             # print(len(feature_names))
@@ -505,10 +505,15 @@ if(st.session_state.simulation_finished):
         # Flip power generation back to positive
         true_power = -st.session_state.result.F[:, 1]
 
+
         # Sort indices by ascending power
         sorted_indices = np.argsort(true_power)
 
         sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
+        sorted_objectives = pd.DataFrame([st.session_state.result.F[i] for i in sorted_indices], columns=["Cost", "Power"])
+
+        sorted_objectives["Power"] = sorted_objectives["Power"].abs()
+        sorted_objectives["Schedule"] = sorted_indices
 
         readable_schedules = [ConvertScheduleToReadableFormat(TurnScheduleToIntActions(schedule)) for schedule in sorted_schedules]
 
@@ -521,22 +526,37 @@ if(st.session_state.simulation_finished):
         if st.session_state.get("schedule_index", None) is not None:
 
             schedule_to_show = readable_schedules[st.session_state.schedule_index]
-            st.markdown(f"### Schedule {st.session_state.schedule_index + 1} (Day View)")
+            st.markdown(f"### Schedule {st.session_state.schedule_index + 1}")
+            
+            cost = sorted_objectives.iloc[st.session_state.schedule_index]['Cost']
+            power = sorted_objectives.iloc[st.session_state.schedule_index]['Power']
 
+            col1, col2 = st.columns(2)
+
+            with col1:
+                st.metric(label="💰 Cost of performing maintenance", value=f"£{cost:,.2f}")
+
+            with col2:
+                st.metric(label="⚡ Power Generated", value=f"{power:,.2f} MWh")
+
+
+            # st.markdown(f"Cost: £{sorted_objectives.iloc[st.session_state.schedule_index]['Cost']:.2f}")
+            # st.markdown(f"Power Generated: {sorted_objectives.iloc[st.session_state.schedule_index]['Power']:.2f} mWh")
+
+            st.write(f"#### Day View")
             # Build a Gantt-friendly table
-            for day_idx, day in enumerate(schedule_to_show):
-                with st.expander(f"Day {day_idx + 1}"):
-                    for action_idx, action in enumerate(day):
-                        if action["return_to_port"]:
-                            st.markdown(f"{action_idx} - 🔁 Return to port")
-                            continue
-                        elif action["do_nothing"]:
-                            st.markdown(f"{action_idx} - ⏸ Do nothing")
-                        elif action["perform_maintenance"]:
-                            d = action["maintenance_details"]
-                            st.markdown(f"{action_idx} - 🛠 Turbine {d['turbine_id']} — {d['component']}")
-
-            st.markdown(f"### Schedule {st.session_state.schedule_index + 1} (Gantt View)")
+            with st.expander("Daily Actions"):
+                for day_idx, day in enumerate(schedule_to_show):
+                    with st.expander(f"Day {day_idx + 1}"):
+                        for action_idx, action in enumerate(day):
+                            if action["return_to_port"]:
+                                st.markdown(f"{action_idx} - 🔁 Return to port")
+                                continue
+                            elif action["do_nothing"]:
+                                st.markdown(f"{action_idx} - ⏸ Do nothing")
+                            elif action["perform_maintenance"]:
+                                d = action["maintenance_details"]
+                                st.markdown(f"{action_idx} - 🛠 Turbine {d['turbine_id']} — {d['component']}")
 
             from datetime import datetime, timedelta
 
@@ -544,182 +564,184 @@ if(st.session_state.simulation_finished):
         # Gantt chart generation
         if st.session_state.get("schedule_index", None) is not None:
 
-            schedule_to_show = readable_schedules[st.session_state.schedule_index]
+            st.markdown(f"#### Gantt View")
+            with st.expander("Gantt-Chart"):
+                schedule_to_show = readable_schedules[st.session_state.schedule_index]
 
-            gantt_rows = []
+                gantt_rows = []
 
-            # Base date for Day 1
-            base_date = datetime(2026, 1, 1)
+                # Base date for Day 1
+                base_date = datetime(2026, 1, 1)
 
-            # Define the 3 action slot times
-            slot_times = {
-                0: timedelta(hours=9),   # 9am
-                1: timedelta(hours=12),  # 12pm
-                2: timedelta(hours=15),  # 3pm
-            }
+                # Define the 3 action slot times
+                slot_times = {
+                    0: timedelta(hours=9),   # 9am
+                    1: timedelta(hours=12),  # 12pm
+                    2: timedelta(hours=15),  # 3pm
+                }
 
-            for day_idx, day in enumerate(schedule_to_show):
-                day_date = base_date + timedelta(days=day_idx)
+                for day_idx, day in enumerate(schedule_to_show):
+                    day_date = base_date + timedelta(days=day_idx)
 
-                for slot_idx, action in enumerate(day):
+                    for slot_idx, action in enumerate(day):
 
-                    # Only plot maintenance actions
-                    if action["perform_maintenance"]:
-                        d = action["maintenance_details"]
-                        turbine = f"T{d['turbine_id']}"
-                        component = d["component"]
+                        # Only plot maintenance actions
+                        if action["perform_maintenance"]:
+                            d = action["maintenance_details"]
+                            turbine = f"T{d['turbine_id']}"
+                            component = d["component"]
 
-                        start = day_date + slot_times[slot_idx]
-                        finish = start + timedelta(hours=3)  # Assume each maintenance takes 3 hours
+                            start = day_date + slot_times[slot_idx]
+                            finish = start + timedelta(hours=3)  # Assume each maintenance takes 3 hours
 
-                        gantt_rows.append({
-                            "Turbine": turbine,
-                            "Component": component,
-                            "Start": start,
-                            "Finish": finish,
-                            "Day": f"Day {day_idx + 1}"
-                        })
+                            gantt_rows.append({
+                                "Turbine": turbine,
+                                "Component": component,
+                                "Start": start,
+                                "Finish": finish,
+                                "Day": f"Day {day_idx + 1}"
+                            })
 
-            df = pd.DataFrame(gantt_rows)
+                df = pd.DataFrame(gantt_rows)
 
-            # Sort turbines numerically
-            df["Turbine_num"] = df["Turbine"].str.extract(r'(\d+)').astype(int)
-            df = df.sort_values("Turbine_num")
+                # Sort turbines numerically
+                df["Turbine_num"] = df["Turbine"].str.extract(r'(\d+)').astype(int)
+                df = df.sort_values("Turbine_num")
 
-            fig = px.timeline(
-                df,
-                x_start="Start",
-                x_end="Finish",
-                y="Turbine",
-                color="Component",
-                hover_data=["Day"],
-                title="Maintenance Timeline by Turbine",
-            )
-
-            fig.update_layout(
-                legend=dict(
-                    orientation="h",
-                    yanchor="top",
-                    y=-0.2,        # move legend below the chart
-                    xanchor="center",
-                    x=0.5
-                ),
-                margin=dict(b=80)  # add bottom margin so legend fits
-            )
-
-
-
-            fig.update_yaxes(autorange="reversed")  # Gantt convention
-            fig.update_layout(height=600, xaxis_title="Time")
-
-
-            fig.update_yaxes(autorange="reversed")  # Plotly Gantt convention
-            fig.update_layout(height=600, xaxis_title="Time")
-
-            # ---------------------------
-            # ADD SHADED BACKGROUND PER DAY
-            # ---------------------------
-            wave_df = pd.read_csv("data/daily_averages.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
-            wave_df["Hs"] = wave_df["Hs"].astype(float)
-            
-            wave_heights = (
-                wave_df.loc[
-                    wave_df["day_number"].between(st.session_state.nsga_params['start_day'], st.session_state.nsga_params['start_day'] + st.session_state.nsga_params['days'] ),
-                    "Hs"
-                ].tolist()
-            )
-
-            wave_heights_df = pd.DataFrame({
-                "day_number": range(len(wave_heights)),
-                "Hs": wave_heights
-            })
-
-            chart = (
-                alt.Chart(wave_heights_df)
-                .mark_bar()
-                .mark_bar(color="#ff7f0e")
-                .encode(
-                    x=alt.X("day_number:O", title="Day in schedule"),
-                    y=alt.Y("Hs:Q", title="Wave Height (m)"),
-                    tooltip=["day_number", "Hs"]
+                fig = px.timeline(
+                    df,
+                    x_start="Start",
+                    x_end="Finish",
+                    y="Turbine",
+                    color="Component",
+                    hover_data=["Day"],
+                    title="Maintenance Timeline by Turbine",
                 )
-            )
 
-            st.write("#### Wave Heights During Scheduled Days")
-            st.altair_chart(chart, use_container_width=True)
-
-
-
-            max_wave = 1.5
-
-            for day_idx, wave in enumerate(wave_heights):
-                if day_idx >= st.session_state.nsga_params['days']:
-                    break
-
-                day_start = base_date + timedelta(days=day_idx)
-                day_end = day_start + timedelta(days=1)
-
-                t = min(wave / max_wave, 1.0)
-                r = int((1 - t) * 80  + t * 255)
-                g = int((1 - t) * 200 + t * 80)
-                b = int((1 - t) * 120 + t * 80)
-
-                # if wave > max_wave:
-                #     r, g, b = 255, 80, 80
-                # else:
-                #     r, g, b = 80, 200, 120
-
-                fig.add_vrect(
-                    x0=day_start,
-                    x1=day_end,
-                    fillcolor=f"rgb({r}, {g}, {b})",
-                    opacity=0.75,
-                    layer="below",
-                    line_width=0
+                fig.update_layout(
+                    legend=dict(
+                        orientation="h",
+                        yanchor="top",
+                        y=-0.2,        # move legend below the chart
+                        xanchor="center",
+                        x=0.5
+                    ),
+                    margin=dict(b=80)  # add bottom margin so legend fits
                 )
 
 
 
+                fig.update_yaxes(autorange="reversed")  # Gantt convention
+                fig.update_layout(height=600, xaxis_title="Time")
+
+
+                fig.update_yaxes(autorange="reversed")  # Plotly Gantt convention
+                fig.update_layout(height=600, xaxis_title="Time")
+
+                # ---------------------------
+                # ADD SHADED BACKGROUND PER DAY
+                # ---------------------------
+                wave_df = pd.read_csv("data/daily_averages.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
+                wave_df["Hs"] = wave_df["Hs"].astype(float)
+                
+                wave_heights = (
+                    wave_df.loc[
+                        wave_df["day_number"].between(st.session_state.nsga_params['start_day'], st.session_state.nsga_params['start_day'] + st.session_state.nsga_params['days'] ),
+                        "Hs"
+                    ].tolist()
+                )
+
+                wave_heights_df = pd.DataFrame({
+                    "day_number": range(len(wave_heights)),
+                    "Hs": wave_heights
+                })
+
+                chart = (
+                    alt.Chart(wave_heights_df)
+                    .mark_bar()
+                    .mark_bar(color="#ff7f0e")
+                    .encode(
+                        x=alt.X("day_number:O", title="Day in schedule"),
+                        y=alt.Y("Hs:Q", title="Wave Height (m)"),
+                        tooltip=["day_number", "Hs"]
+                    )
+                )
+
+                st.write("#### Wave Heights During Scheduled Days")
+                st.altair_chart(chart, use_container_width=True)
 
 
 
-            st.plotly_chart(fig, use_container_width=True)
+                max_wave = 1.5
 
-            st.markdown("""
-                ### 🌊 Wave Height Gradient Legend
+                for day_idx, wave in enumerate(wave_heights):
+                    if day_idx >= st.session_state.nsga_params['days']:
+                        break
 
-                <div style="margin-top: 10px;">
+                    day_start = base_date + timedelta(days=day_idx)
+                    day_end = day_start + timedelta(days=1)
 
-                <!-- Gradient bar -->
-                <div style="
-                    height: 20px;
-                    width: 300px;
-                    background: linear-gradient(to right,
-                        rgb(80, 200, 120),
-                        rgb(200, 200, 80),
-                        rgb(255, 80, 80)
-                    );
-                    border-radius: 6px;
-                    margin-bottom: 6px;
-                "></div>
+                    t = min(wave / max_wave, 1.0)
+                    r = int((1 - t) * 80  + t * 255)
+                    g = int((1 - t) * 200 + t * 80)
+                    b = int((1 - t) * 120 + t * 80)
 
-                <!-- Labels -->
-                <div style="display: flex; justify-content: space-between; width: 300px;">
-                    <span>0.0 m</span>
-                    <span>~0.75 m</span>
-                    <span>1.5 m+</span>
-                </div>
+                    # if wave > max_wave:
+                    #     r, g, b = 255, 80, 80
+                    # else:
+                    #     r, g, b = 80, 200, 120
 
-                </div>
+                    fig.add_vrect(
+                        x0=day_start,
+                        x1=day_end,
+                        fillcolor=f"rgb({r}, {g}, {b})",
+                        opacity=0.75,
+                        layer="below",
+                        line_width=0
+                    )
 
-                <br>
 
-                #### Interpretation
-                - **Green** → calm, safe wave conditions  
-                - **Yellow** → moderate wave height  
-                - **Red** → unsafe (Hs ≥ 1.5 m)  
-                - Colours are interpolated smoothly based on daily Hs  
-                """, unsafe_allow_html=True)
+
+
+
+
+                st.plotly_chart(fig, use_container_width=True)
+
+                st.markdown("""
+                    ### 🌊 Wave Height Gradient Legend
+
+                    <div style="margin-top: 10px;">
+
+                    <!-- Gradient bar -->
+                    <div style="
+                        height: 20px;
+                        width: 300px;
+                        background: linear-gradient(to right,
+                            rgb(80, 200, 120),
+                            rgb(200, 200, 80),
+                            rgb(255, 80, 80)
+                        );
+                        border-radius: 6px;
+                        margin-bottom: 6px;
+                    "></div>
+
+                    <!-- Labels -->
+                    <div style="display: flex; justify-content: space-between; width: 300px;">
+                        <span>0.0 m</span>
+                        <span>~0.75 m</span>
+                        <span>1.5 m+</span>
+                    </div>
+
+                    </div>
+
+                    <br>
+
+                    #### Interpretation
+                    - **Green** → calm, safe wave conditions  
+                    - **Yellow** → moderate wave height  
+                    - **Red** → unsafe (Hs ≥ 1.5 m)  
+                    - Colours are interpolated smoothly based on daily Hs  
+                    """, unsafe_allow_html=True)
 
 
         st.divider()
@@ -731,6 +753,7 @@ if(st.session_state.simulation_finished):
     Plot_Power_Convergence()
     Plot_Hypervolume_Convergence()
     SurrogateModels_WithSHAP()
+
 
 
 ## Chatbot Sidebar

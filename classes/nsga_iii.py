@@ -30,7 +30,7 @@ from classes.environment_handler import EnvironmentHandler
 
 
 class Callback(Callback):
-    def __init__(self, threshold=0.1, stream=[], termination_condition = {}, st=st):
+    def __init__(self, threshold=0.1, stream=None, termination_condition = {}, st=st):
         super().__init__()
         self.st = st
         self.termination_condition = termination_condition
@@ -52,6 +52,7 @@ class Callback(Callback):
 
         self.st.session_state.current_log = f"| {algorithm.termination.perc * 100}% complete | Generation: {gen} | Eps: {algorithm.output.eps.value} |"
         self.st.code(self.st.session_state.current_log, language="markdown")
+        
         # self.st.rerun()
 
         data_to_add = {"generation": gen,
