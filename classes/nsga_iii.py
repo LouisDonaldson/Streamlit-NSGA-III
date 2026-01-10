@@ -65,6 +65,8 @@ class Callback(Callback):
                         "schedule_actions": [[int(val) for val in row] for row in x_list]
                         }
 
+        st.session_state.nsga_data.append(data_to_add)
+
         self.stream.AddData(data_to_add)
         
         # Manual escape clause
