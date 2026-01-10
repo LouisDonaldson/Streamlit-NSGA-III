@@ -743,6 +743,17 @@ def GPT_Handler():
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
+    st.markdown("""
+        <style>
+            [data-testid="stSidebar"] {
+                width: clamp(260px, 25vw, 380px) !important;
+            }
+            [data-testid="stSidebar"] > div:first-child {
+                width: clamp(260px, 25vw, 380px) !important;
+            }
+        </style>
+        """, unsafe_allow_html=True)
+
     # --- Sidebar UI ---
     with st.sidebar:
         st.title("💬 GPT Chatbot")
