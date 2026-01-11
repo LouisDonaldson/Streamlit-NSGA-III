@@ -31,9 +31,9 @@ class GPTSession:
         response = requests.post(self.base_url, headers=self.headers, json=payload)
         
         if(response.status_code != 200):
+            print(response.text)
             reply = {
             "response": f"Error: {response.status_code} - {response.text}",
-            "usage": data['usage']['total_tokens'],
             "status_code": response.status_code
         }
         else:

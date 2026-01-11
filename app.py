@@ -16,6 +16,12 @@ from datetime import datetime, timedelta
 from classes.nsga_iii import NSGAIII_Interface
 from classes.llm_interface import GPTSession
 
+st.set_page_config(
+    page_title="NSGA3 OSWOP Dashboard",
+    page_icon="🌊"
+)
+
+
 if "running" not in st.session_state:
     st.session_state.running = False
 
