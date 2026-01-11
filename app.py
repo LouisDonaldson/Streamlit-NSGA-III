@@ -101,7 +101,7 @@ def start_simulation(nsga_params, stream):
 
 
 st.badge("Under Construction", color="red")
-st.warning("This application is still under development. Some features may not work as expected.")
+st.warning("This application is still under development. Some features may not work as expected. This is a very computationally expensive application - A high number of evaluations may crash the application due to cloud service RAM limitations.")
 # Title
 st.title("NSGA3 OSWOP Dashboard")
 st.subheader("NSGA-III Offshore Wind Farm Scheduling Optimisation Simulation Dashboard")
@@ -195,7 +195,6 @@ if(st.session_state.simulation_finished):
         # Pareto Front of Final Population
         #
         plt.clf() 
-        st.markdown("### Pareto Front of Final Population")
         
         # Flip power generation back to positive
         true_power = -st.session_state.result.F[:, 1]
@@ -207,8 +206,6 @@ if(st.session_state.simulation_finished):
         sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
         sorted_objectives = st.session_state.result.F[sorted_indices]
         
-
-
 
         # Visualize the Pareto front
         plt.figure(figsize=(10, 6))
@@ -227,14 +224,12 @@ if(st.session_state.simulation_finished):
         plt.legend()
 
         st.pyplot(plt)
-        st.divider()
 
     def Plot_Pareto_Generations():
         #
         # Pareto Front of Generations
         #
         plt.clf() 
-        st.markdown("### Pareto Front Evolution Across Generations")
         all_x = []
         all_y = []
         all_gen = []
@@ -267,18 +262,12 @@ if(st.session_state.simulation_finished):
         plt.tight_layout()
 
         st.pyplot(plt)
-        st.divider()
 
     def Plot_Cost_Convergence():
         #
         # Convergence of Cost
         # 
-        plt.clf() 
-
-        st.markdown("## Convergence Visualisation")
-        st.markdown('''Convergence graphs show how the NSGA optimisation model 
-                    improves its solutions over time.''')
-
+        plt.clf()
 
         st.markdown("### Convergence of Cost")
 
@@ -293,7 +282,6 @@ if(st.session_state.simulation_finished):
         plt.legend()
     
         st.pyplot(plt)
-        st.divider()
 
     def Plot_Power_Convergence():
         #
@@ -312,7 +300,6 @@ if(st.session_state.simulation_finished):
         plt.legend()
 
         st.pyplot(plt)
-        st.divider()
 
         ###############################################################################
 
@@ -340,7 +327,6 @@ if(st.session_state.simulation_finished):
         plt.legend()
 
         st.pyplot(plt)
-        st.divider()
         ################################################################################
 
     def Plot_GD_Convergence():
@@ -409,15 +395,17 @@ if(st.session_state.simulation_finished):
 
         st.plotly_chart(fig, use_container_width=True)
         plt.clf()
-        st.divider()
  
-
     def SurrogateModels_WithSHAP():
         #
         # Surrogate Model Summary
         #
 
         st.markdown("## SHAP Analysis of Surrogate Models for Objectives")
+        st.markdown('''SHAP (SHapley Additive exPlanations) is a method of creating explainability 
+                    of machine-learning predictions. Is uses ideas from game theory to 
+                    assign each feature in a model a 'fair share' of responsibility for a model's output. 
+                    It shows how each feature contributes to a prediction, positively or negatively and by how much.''')
 
         if "shap_computed" not in st.session_state:
             if st.button("Compute SHAP Values"):
@@ -428,20 +416,14 @@ if(st.session_state.simulation_finished):
             Y_cost = []  # objective 1
             Y_power = [] # objective 2
 
-
             X = np.vstack(st.session_state.result.X)
             # print(X)
             F_all = np.vstack(st.session_state.result.F)
             Y_cost = F_all[:, 0]
             Y_power = F_all[:, 1]
 
-            
-
             st.session_state.shap_model_cost = xgb.XGBRegressor().fit(X, Y_cost)
             st.session_state.shap_model_power = xgb.XGBRegressor().fit(X, Y_power)
-
-            
-
 
             st.session_state.explainer_cost = shap.Explainer(st.session_state.shap_model_cost, feature_perturbation="interventional")
             shap_values_cost = st.session_state.explainer_cost(X, check_additivity=False)
@@ -454,6 +436,9 @@ if(st.session_state.simulation_finished):
             # print(len(X))
 
             st.markdown("### SHAP Summary Plot for Cost Objective")
+            st.markdown('''SHAP summary graphs like seen in the image below are a 
+                        breakdown of the X (action in a schedule) and it's impact on 
+                        influencing the model in terms of cost.''')
             fig, ax = plt.subplots()
             shap.summary_plot(shap_values_cost, X, feature_names=feature_names, show=False)
 
@@ -470,6 +455,8 @@ if(st.session_state.simulation_finished):
             ################################################################################
 
             st.markdown("### SHAP Importance Heatmap for Cost Objective")
+            st.markdown('''These heatmaps shows how the model has interpreted the importance 
+                        of each action slot across the 7 day schedule.''')
 
             # Use TreeExplainer for XGBoost models
             # Cost model
@@ -593,7 +580,7 @@ if(st.session_state.simulation_finished):
                 int_schedule.append(day_actions)
             return int_schedule
         
-        st.markdown("## Schedules from Final Population")
+        st.markdown("#### Schedules from Final Population")
         col_strike, col_market = st.columns(2)
         with col_strike:
             strike_price = st.number_input("CfD Strike Price (£/MWh)", min_value=1, value=80)
@@ -612,7 +599,7 @@ if(st.session_state.simulation_finished):
         sorted_objectives = pd.DataFrame([st.session_state.result.F[i] for i in sorted_indices], columns=["Cost", "Power"])
 
         sorted_objectives["Power"] = sorted_objectives["Power"].abs()
-        sorted_objectives["Schedule"] = sorted_objectives.index + 1
+        sorted_objectives["Schedule"] = sorted_objectives.index
 
         # st.write(sorted_objectives)
 
@@ -960,15 +947,59 @@ if(st.session_state.simulation_finished):
             
         schedule_details()
 
-        st.divider()
 
-    Plot_Pareto_Final()
-    Plot_Pareto_Generations()
-    ShowSchedules()
-    Plot_Cost_Convergence()
-    Plot_Power_Convergence()
-    Plot_Hypervolume_Convergence()
-    Plot_GD_Convergence()
+    ## plot pareto
+    st.markdown("### Pareto Front of Final Population")
+    if "plot_pareto" in st.session_state:
+        Plot_Pareto_Final()
+        st.divider()
+    else:
+        if st.button("Plot Final Pareto Front Graph"):
+            st.session_state.plot_pareto = True
+            st.rerun()
+
+    ## plot pareto generations
+    st.markdown("### Pareto Front Evolution Across Generations")
+    if "plot_pareto_generations" in st.session_state:
+        Plot_Pareto_Generations()
+        st.divider()
+    else:
+        if st.button("Plot Pareto Front Evolutions Across Generations"):
+            st.session_state.plot_pareto_generations = True
+            st.rerun()
+    
+    ## show schedules
+    st.markdown('''### Schedule Details''')
+    if "show_schedules" in st.session_state:
+        ShowSchedules()
+        st.divider()
+    else:
+        if st.button("See Schedule Details"):
+            st.session_state.show_schedules = True
+            st.rerun()
+    
+    ## Plot convergences
+    st.markdown("### Convergence Visualisation")
+    st.markdown('''Convergence graphs show how the NSGA optimisation model 
+                    improves its solutions over time.''')
+    if "plot_objective_convergence" in st.session_state:
+        Plot_Cost_Convergence()
+        Plot_Power_Convergence()
+        st.divider()
+    else:
+        if st.button("Plot Objective Convergences"):
+            st.session_state.plot_objective_convergence = True
+            st.rerun()
+
+    if "plot_additional_convergence" in st.session_state:
+        Plot_Hypervolume_Convergence()
+        Plot_GD_Convergence()
+        st.divider()
+    else:
+        if st.button("Plot Technical Convergences"):
+            st.session_state.plot_additional_convergence = True
+            st.rerun()
+    
     SurrogateModels_WithSHAP()
 
 
