@@ -11,6 +11,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 import json
 from datetime import datetime, timedelta
+from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
+
 
 
 from classes.nsga_iii import NSGAIII_Interface
@@ -273,6 +275,11 @@ if(st.session_state.simulation_finished):
         # 
         plt.clf() 
 
+        st.markdown("## Convergence Visualisation")
+        st.markdown('''Convergence graphs show how the NSGA optimisation model 
+                    improves its solutions over time.''')
+
+
         st.markdown("### Convergence of Cost")
 
 
@@ -315,6 +322,11 @@ if(st.session_state.simulation_finished):
         #
 
         st.markdown("### Convergence via Hypervolume")
+
+        st.markdown('''Hypervolume convergence graphs are an informative way to understand 
+                    how the model is progressing. It is the volume of objective space 
+                    dominated by the current Pareto Front, which is measured relative to a reference point''')
+
         plt.clf() 
         ref_point = np.array([1e6, 1e6])  # Set based on your objective scales
         hv = HV(ref_point=ref_point)
@@ -330,6 +342,75 @@ if(st.session_state.simulation_finished):
         st.pyplot(plt)
         st.divider()
         ################################################################################
+
+    def Plot_GD_Convergence():
+        st.markdown('''### Convergence via Generational Distance''')
+
+        st.markdown('''Generational distance (GD) convergence shows a direct, quantitative 
+                    visualisation of how close the algorithm is getting to the best known Pareto 
+                    Front over time. It's a clear way to discover whether or not the model is actually 
+                    converging towards high quality trade-offs.
+                    As the GD gets smaller, it shows how close the current Pareto sets are in terms to the reference front.''')
+
+        all_f = []
+
+        for algo in st.session_state.result.history:
+            F = algo.pop.get("F")   # shape (n_pop, n_obj)
+            all_f.append(F)
+
+        # Stack into one big array
+        all_f = np.vstack(all_f)
+
+        nds = NonDominatedSorting()
+        I = nds.do(all_f, only_non_dominated_front=True)
+        ref_front = all_f[I]
+
+        mins = ref_front.min(axis=0)
+        maxs = ref_front.max(axis=0)
+
+        def normalise(F):
+            return (F - mins) / (maxs - mins + 1e-12)
+
+        def compute_gd(front_gen, ref_front):
+            diff = front_gen[:, None, :] - ref_front[None, :, :]
+            dist = np.linalg.norm(diff, axis=2)
+            min_dist = dist.min(axis=1)
+            return min_dist.mean()
+
+        gd_history = []
+
+        ref_norm = normalise(ref_front)
+
+        # IMPORTANT: recompute fronts per generation
+        fronts = []
+        for algo in st.session_state.result.history:
+            F = algo.pop.get("F")
+            I = nds.do(F, only_non_dominated_front=True)
+            fronts.append(F[I])
+
+        for F in fronts:
+            F_norm = normalise(F)
+            gd = compute_gd(F_norm, ref_norm)
+            gd_history.append(gd)
+
+        fig = go.Figure()
+        fig.add_trace(go.Scatter(
+            x=list(range(len(gd_history))),
+            y=gd_history,
+            mode="lines+markers",
+            name="GD"
+        ))
+
+        fig.update_layout(
+            title="Generational Distance Convergence",
+            xaxis_title="Generation",
+            yaxis_title="GD (lower is better)"
+        )
+
+        st.plotly_chart(fig, use_container_width=True)
+        plt.clf()
+        st.divider()
+ 
 
     def SurrogateModels_WithSHAP():
         #
@@ -887,6 +968,7 @@ if(st.session_state.simulation_finished):
     Plot_Cost_Convergence()
     Plot_Power_Convergence()
     Plot_Hypervolume_Convergence()
+    Plot_GD_Convergence()
     SurrogateModels_WithSHAP()
 
 
