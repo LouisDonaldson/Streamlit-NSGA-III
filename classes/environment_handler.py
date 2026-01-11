@@ -30,9 +30,7 @@ class EnvironmentHandler:
     
     def FormatSchedule(self, schedule):
         return schedule.reshape(-1, 3)
-
-            
-    
+ 
     def GetAction(self, current_state, episode):
         #print(self.day)
         #print(self.time)
@@ -53,9 +51,8 @@ class EnvironmentHandler:
         
         
         return next_action
-
-    
-    def RunSim(self, episodes, _start_day, steps = 5, verbose = False):
+ 
+    def RunSim(self, episodes=7, steps = 5, verbose = False):
         counter = 1
 
         if(verbose):
@@ -96,10 +93,13 @@ class EnvironmentHandler:
                 step_it = counter
 
                 if(verbose):
-                    print(f"New state: {state}. Action taken: {action}. \nReward: {reward}. Cum reward: {cum_reward}. \nHours skipped: {hours_skipped}. Done: {done}\n")
+                    print(f"New state: {state}. Action taken: {action}. \nReward: {reward}. Cum reward: {cum_reward}. \nHours skipped: {hours_skipped}. Done: {done}\n\n")
+
+                if verbose:
+                    print(self.reward["Cost"])
 
                 # If return to port is the new state, skip the rest of the actions in the queue for the day
-                if(state == 0):
+                if(state == 0 and action == 0):
                     break
 
                 # if done, finish episode
@@ -112,11 +112,17 @@ class EnvironmentHandler:
                     s += hours_skipped
                     current_s = current_s + hours_skipped
                 
+                
             counter += 1
 
             self.csv += f"{counter}, {episode}, {s}, {episodes_states}, {episodes_actions}, {(self.reward["Cost"])}, {self.reward["Power_Generated"]}, {(self.reward["Overall"])} \n"
             #print(counter)
 
+        # if(self.reward['Cost'] == 0):
+        #     print()
+        #     raise EnvironmentError("Cost was")
+
+        self.env.hard_reset()
         if(verbose):
             print(f"Episode reward: {cum_reward}\n")
             

@@ -64,19 +64,19 @@ class DataHandler:
         return distance_from_port
 
     def load_mast_data(self):
-        mast_df = pd.read_csv("data/new_mast.csv")
+        mast_df = pd.read_csv("data/mast_averages.csv")
         # mast_df["AN1_50S_WS_Avg"]
 
         return mast_df
 
-    def FindPowerGenerated(self, step, time): # calculates power generated in kW/H
+    def FindPowerGenerated(self, episode, time): # calculates power generated in kW/H
         if(time == 0):
             time = 1
 
         lowest_wind = 3.5
         highest_wind = 25.5
             
-        average_wind = self.mast_df["AN1_50S_WS_Avg"][step] # this needs changing in the future
+        average_wind = self.mast_df["AN1_50S_WS_Avg"][episode] # this needs changing in the future
 
         average_wind = round(average_wind*2)/2
         # st.write(str(average_wind))
@@ -93,9 +93,6 @@ class DataHandler:
         
         return (int(power_gen) * time)
 
-
-        power_generated = FindPowerGenerated(1, 2) # step (day, number of hours)
-        print(power_generated)
         # for testing purposes. [0]-[6] will be used of the wind data
 
     def CalculateCostOfFuel(self, wave_height, distance_travelled):

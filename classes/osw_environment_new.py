@@ -41,7 +41,6 @@ class Environment:
         self.turbine_health_threshhold = 25
 
         self.turbines = Farm(self.num_turbines, self.turbine_health_decrease_list)
-
         self.csv = ""
 
         #print( self.turbine_health_decrease_list)
@@ -165,11 +164,10 @@ class Environment:
         else:
             components_per_turbine = 6
             total_turbines = self.num_turbines
-            max_action = 2 + components_per_turbine * total_turbines - 1
+            max_action = 2 + components_per_turbine * total_turbines
 
-            if action < 2 or action > max_action:
+            if action < 1 or action > max_action:
                 raise Exception("Invalid action: out of bounds")
-                return "Invalid action: out of bounds"
 
             # Offset from first repair action
             maintenance_action["perform_maintenance"] = True
@@ -178,7 +176,6 @@ class Environment:
             component_id = offset % components_per_turbine + 1
             component = self.interpret_component(component_id)
             maintenance_action["maintenance_details"] = {"turbine_id": turbine_id, "component": component}
-
 
         return maintenance_action
         
@@ -234,8 +231,10 @@ class Environment:
                 # overworked = True
             
         elif(intepreted_action["do_nothing"]):
-            # doing nothing
+            # doing nothing            
             new_state = current_state
+            if(current_step < (self.step_limit - 3)):
+                hours_skipped = 2
             if(current_step == self.step_limit):
                 overworked = True
 
@@ -284,6 +283,7 @@ class Environment:
             offset = offset - len(data)
 
         return data[offset]["Hs"]
+    
 
     def calculate_reward(self, maintenance_type, health_increase, distance_travelled, action, time_skipped, current_step, env, episode):
         # reward is calculated based on the cumulative turbine health / the distance travelled
@@ -298,7 +298,7 @@ class Environment:
         if(action["do_nothing"] == False and action["return_to_port"] == False):
             turbine_maintained = action["maintenance_details"]["turbine_id"] - 1 # -1 for 0 index
             _percentage_degradation = self.turbine_health[turbine_maintained] / 100
-            power_lost = (self.data_handler.FindPowerGenerated(current_step, time_skipped)) * _percentage_degradation
+            power_lost = (self.data_handler.FindPowerGenerated(episode, time_skipped)) * _percentage_degradation
         # else:
             # raise EnvironmentError("No maintenance action taken. Slipped through logic.")
         #((FindPowerGenerated(current_step, time_skipped)) * self.num_turbines * (average_turbine_health / 100))
@@ -344,8 +344,19 @@ class Environment:
         gamma = 1.5 # cost # negative
         delta = 1 # health increase # positive
 
-        env.reward["Cost"] += gamma * cost
-        env.reward["Power_Generated"] += alpha * power_gained
+        if action["perform_maintenance"] and cost == 0:
+            raise EnvironmentError("Something is not right here")
+
+        env.reward["Cost"] += cost
+        env.reward["Power_Generated"] += power_gained / 1000 # kW - mW
+
+        if "do_nothing" in st.session_state:
+            if st.session_state.do_nothing and action["perform_maintenance"]:
+                if cost == 0:
+                    print(action)
+                    print(maintenance_type)
+                    print(cost)
+                    print()
 
         reward = (alpha * power_gained) - (beta * power_lost) - (gamma * cost) + (delta * health_increase)
         #reward = (alpha * power_gained) - (gamma * cost)
@@ -356,10 +367,10 @@ class Environment:
         return reward 
     # calculate reward based on the amount of energy that the turbine will have not made based on the weather data.
 
-    def get_suggested_action(self, current_step):
-        lowest_health_turbine = self.turbine_health.index(min(self.turbine_health))
-        #print(lowest_health_turbine)
-        # [turbine index + 1] = action
-        suggested_action = lowest_health_turbine + 1
-        new_state, reward, done, hours_skipped, type = self.step(suggested_action, current_step)
-        return suggested_action, reward
+    # def get_suggested_action(self, current_step):
+    #     lowest_health_turbine = self.turbine_health.index(min(self.turbine_health))
+    #     #print(lowest_health_turbine)
+    #     # [turbine index + 1] = action
+    #     suggested_action = lowest_health_turbine + 1
+    #     new_state, reward, done, hours_skipped, type = self.step(suggested_action, current_step)
+    #     return suggested_action, reward
