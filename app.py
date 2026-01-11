@@ -996,6 +996,7 @@ if(st.session_state.simulation_finished):
         Plot_GD_Convergence()
         st.divider()
     else:
+        st.error("Be aware, plotting the technical convergence graphs can crash the application. Only run when app hosted locally.")
         if st.button("Plot Technical Convergences"):
             st.session_state.plot_additional_convergence = True
             st.rerun()
