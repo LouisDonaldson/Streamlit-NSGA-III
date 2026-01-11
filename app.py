@@ -873,7 +873,9 @@ if(st.session_state.simulation_finished):
                     schedule_day_view_block()
                     gantt_chart_view_block()
 
-        schedule_comparison()
+        if len(sorted_schedules) > 1:
+            schedule_comparison()
+            
         schedule_details()
 
         st.divider()
