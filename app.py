@@ -204,6 +204,8 @@ if(st.session_state.simulation_finished):
         # Get sorted schedules and objectives
         sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
         sorted_objectives = st.session_state.result.F[sorted_indices]
+        
+
 
 
         # Visualize the Pareto front
@@ -216,8 +218,8 @@ if(st.session_state.simulation_finished):
             y = -st.session_state.result.F[idx, 1]             # Power generation
             plt.text(x, y, str(i + 1), fontsize=10, ha='center', va='bottom')
 
-        plt.xlabel("Cost")
-        plt.ylabel("Power Generation")
+        plt.xlabel("Cost (£)")
+        plt.ylabel("Power Generation (mW/h)")
         plt.title("Pareto Front with Sorted Indices")
         plt.grid(True)
         plt.legend()
@@ -529,8 +531,7 @@ if(st.session_state.simulation_finished):
         sorted_objectives = pd.DataFrame([st.session_state.result.F[i] for i in sorted_indices], columns=["Cost", "Power"])
 
         sorted_objectives["Power"] = sorted_objectives["Power"].abs()
-        sorted_objectives["Schedule"] = sorted_objectives.index
-
+        sorted_objectives["Schedule"] = sorted_objectives.index + 1
 
         # st.write(sorted_objectives)
 
