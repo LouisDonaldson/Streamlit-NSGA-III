@@ -152,7 +152,7 @@ if st.session_state.show_parameters == True:
 
     st.write(f"Maximum number of evaluations will be: ```{max_generations * population_size}```")
 
-    st.session_state.auto_plot = st.checkbox("Auto-run visualisation after optimisation finishes")
+    st.session_state.auto_plot = st.checkbox("Auto-run visualisation after optimisation finishes", value=True)
 
     params = {
         "generations": max_generations,

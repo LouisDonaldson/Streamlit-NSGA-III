@@ -111,8 +111,6 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
 
         # Constraint
         g = sum(env.wave_height_violations)
-        if g > 0:
-            st.write(g)
 
         # Out to NSGA
         out["F"] = [env.reward["Cost"], -(env.reward["Power_Generated"])] 
