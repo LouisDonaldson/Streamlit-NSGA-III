@@ -993,10 +993,10 @@ if(st.session_state.simulation_finished):
 
     if "plot_additional_convergence" in st.session_state:
         Plot_Hypervolume_Convergence()
-        Plot_GD_Convergence()
+        # Plot_GD_Convergence()
         st.divider()
     else:
-        st.error("Be aware, plotting the technical convergence graphs can crash the application. Only run when app hosted locally.")
+        # st.error("Be aware, plotting the technical convergence graphs can crash the application. Only run when app hosted locally.")
         if st.button("Plot Technical Convergences"):
             st.session_state.plot_additional_convergence = True
             st.rerun()
