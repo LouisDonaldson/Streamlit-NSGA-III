@@ -743,20 +743,29 @@ if(st.session_state.simulation_finished):
                     
                     def schedule_day_view_block():
 
+                        def action_idx_to_time(action_idx):
+                            time_map = {
+                                0: "09:00–12:00",
+                                1: "12:00–15:00",
+                                2: "15:00–18:00"
+                            }
+                            return time_map.get(action_idx, "Unknown time slot")
+
+
                         st.write(f"#### Day View")
                         # Build a Gantt-friendly table
                         with st.expander("Daily Actions"):
                             for day_idx, day in enumerate(schedule_to_show):
-                                with st.expander(f"Day {day_idx + 1}"):
+                                with st.expander(f"Day {day_idx + 1}", expanded=True):
                                     for action_idx, action in enumerate(day):
                                         if action["return_to_port"]:
-                                            st.markdown(f"{action_idx} - 🔁 Return to port")
+                                            st.markdown(f"🔁 Return to port")
                                             break
                                         elif action["do_nothing"]:
-                                            st.markdown(f"{action_idx} - ⏸ Do nothing")
+                                            st.markdown(f"{action_idx_to_time(action_idx)} - ⏸ Do nothing")
                                         elif action["perform_maintenance"]:
                                             d = action["maintenance_details"]
-                                            st.markdown(f"{action_idx} - 🛠 Turbine {d['turbine_id']} — {d['component']}")
+                                            st.markdown(f"{action_idx_to_time(action_idx)} - 🛠 Turbine {d['turbine_id']} — {d['component']}")
 
                     def gantt_chart_view_block():
                     # Gantt chart generation
