@@ -152,6 +152,8 @@ if st.session_state.show_parameters == True:
 
     st.write(f"Maximum number of evaluations will be: ```{max_generations * population_size}```")
 
+    st.session_state.auto_plot = st.checkbox("Auto-run visualisation after optimisation finishes")
+
     params = {
         "generations": max_generations,
         "population_size": population_size,
@@ -964,7 +966,7 @@ if(st.session_state.simulation_finished):
 
     ## plot pareto
     st.markdown("### Pareto Front of Final Population")
-    if "plot_pareto" in st.session_state:
+    if "plot_pareto" in st.session_state or st.session_state.auto_plot:
         Plot_Pareto_Final()
         st.divider()
     else:
@@ -974,7 +976,7 @@ if(st.session_state.simulation_finished):
 
     ## plot pareto generations
     st.markdown("### Pareto Front Evolution Across Generations")
-    if "plot_pareto_generations" in st.session_state:
+    if "plot_pareto_generations" in st.session_state or st.session_state.auto_plot:
         Plot_Pareto_Generations()
         st.divider()
     else:
@@ -984,7 +986,7 @@ if(st.session_state.simulation_finished):
     
     ## show schedules
     st.markdown('''### Schedule Details''')
-    if "show_schedules" in st.session_state:
+    if "show_schedules" in st.session_state or st.session_state.auto_plot:
         ShowSchedules()
         st.divider()
     else:
@@ -996,7 +998,7 @@ if(st.session_state.simulation_finished):
     st.markdown("### Convergence Visualisation")
     st.markdown('''Convergence graphs show how the NSGA optimisation model 
                     improves its solutions over time.''')
-    if "plot_objective_convergence" in st.session_state:
+    if "plot_objective_convergence" in st.session_state or st.session_state.auto_plot:
         Plot_Cost_Convergence()
         Plot_Power_Convergence()
         st.divider()
