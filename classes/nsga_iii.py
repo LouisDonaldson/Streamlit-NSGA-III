@@ -89,7 +89,7 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         super().__init__(
             n_var=number_of_days*3,          # Number of decision variables
             n_obj=2,          # Number of objectives
-            n_ieq_constr=0,   # Number of inequality constraints
+            n_ieq_constr=1,   # Number of inequality constraints
             # xl = np.array(lower),  # Lower bounds
             # xu = np.array(upper),  # Upper bounds
             xl = np.zeros(self.number_of_days*3, dtype=int),  # Lower bounds
@@ -101,12 +101,23 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, _start_day=self.start_day, Environment=Environment, _stream = self.stream)
 
         env.RunSim(episodes=self.number_of_days, verbose=self.verbose)
-        # print(f"{env.reward}")
+
+        # Objectives
         env.reward["Power_Generated"]
         env.reward["Cost"]
+
+        # Overall reward, not used
         env.reward["Overall"]
 
-        out["F"] = [env.reward["Cost"], -env.reward["Power_Generated"]]
+        # Constraint
+        g = sum(env.wave_height_violations)
+        if g > 0:
+            st.write(g)
+
+        # Out to NSGA
+        out["F"] = [env.reward["Cost"], -(env.reward["Power_Generated"])] 
+        out["G"] = [g]
+
 
 
 class NSGAIII_Interface:
@@ -145,15 +156,16 @@ class NSGAIII_Interface:
                         verbose=True,
                         save_history=True)
         
-        data_to_add = {
-                    "completed": True,
-                    "schedule_actions": [[int(val) for val in row] for row in result.X.tolist()],
-                    "current_dominating_sets":result.F.tolist()
-
-                    }
-        
-        self.stream.AddData(data_to_add)            
         return result
+        # st.write(result.X.tolist())
+        # data_to_add = {
+        #             "completed": True,
+        #             "schedule_actions": [[int(val) for val in row] for row in result.X.tolist()],
+        #             "current_dominating_sets":result.F.tolist()
+        #             }
+        
+        # self.stream.AddData(data_to_add)            
+        
     
     
 

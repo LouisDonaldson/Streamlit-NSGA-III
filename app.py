@@ -107,7 +107,7 @@ st.title("NSGA3 OSWOP Dashboard")
 st.subheader("NSGA-III Offshore Wind Farm Scheduling Optimisation Simulation Dashboard")
 
 st.markdown("This application allows you to configure and run a simulation for optimising offshore wind farm scheduling for maintenance operations using the NSGA-III algorithm.")
-st.markdown("There is also a Chatbot on the sidebar which allows for you to ask questions regarding the data produced by the model. To know more about this, please see the sidebar.")
+st.markdown("There is also a Chatbot functionality to gain further insights into the results. Please see sidebar for more information (top left corner).")
 st.markdown("For in-depth information on how to understand the graphs and the technical information relating to the models, please visit the link below.")
 st.link_button("Further Information and documentation", "https://mammoth-cough-70c.notion.site/OSW-NSGA-III-Environment-2-0-2df063e6bdf280dcb0e9f2410734c92a")
 
@@ -120,8 +120,9 @@ if st.session_state.show_parameters == True:
     st.header("Simulation Configuration")
 
     # Input fields
-    max_generations = st.number_input("Maximum Generations", min_value=1, value=10)
-    population_size = st.number_input("Population Size", min_value=1, value=20)
+    st.markdown("The default parameters currently set are for fast results.")
+    max_generations = st.number_input("Maximum Generations", min_value=1, value=100)
+    population_size = st.number_input("Population Size", min_value=1, value=40)
     
     days = st.number_input("Days", min_value=1, value=7, max_value=365)
 
@@ -180,6 +181,7 @@ if st.session_state.get("run", True):
         st.session_state.nsga_params,
         st.session_state.data_stream
     )
+
     
     st.session_state.simulation_finished = True
     st.rerun()
@@ -189,6 +191,9 @@ if(st.session_state.simulation_finished):
     st.success("Simulation completed.")
     # results can be accessed through 'st.session_state.result'
     st.header("Results Visualization")
+
+    # st.write(st.session_state.result.F)
+    # st.write(st.session_state.nsga_data)
 
     def Plot_Pareto_Final():
         #

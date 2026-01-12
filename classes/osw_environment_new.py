@@ -56,6 +56,8 @@ class Environment:
         self.cost = [] # distance
         self.power_generated = [] # power generated in mWh
 
+        self.wave_height_violations = []
+
         self.episode_power_gained = 0
         self.episode_power_gained_new = 0
 
@@ -242,7 +244,15 @@ class Environment:
        
          
         reward += self.calculate_reward(maintenance_type, health_increase, self.current_distance_travelled, intepreted_action, hours_skipped, current_step, env, episode)
-    
+        
+        # st.write(intepreted_action)
+        if(float(self.get_average_hs_at_episode(self.buoy_data, episode)) > 1.5 and intepreted_action['perform_maintenance']):
+            wave_height = self.get_average_hs_at_episode(self.buoy_data, episode)
+            env.wave_height_violations.append(wave_height - 1.5)
+            # reward = -reward
+
+
+
         if(overworked == True):
             done = True
             # reward = -reward
@@ -361,9 +371,7 @@ class Environment:
         reward = (alpha * power_gained) - (beta * power_lost) - (gamma * cost) + (delta * health_increase)
         #reward = (alpha * power_gained) - (gamma * cost)
 
-        if(float(self.get_average_hs_at_episode(self.buoy_data, episode)) > 1.5):
-            reward = -reward
-
+        
         return reward 
     # calculate reward based on the amount of energy that the turbine will have not made based on the weather data.
 

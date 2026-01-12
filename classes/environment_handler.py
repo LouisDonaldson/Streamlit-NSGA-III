@@ -24,6 +24,7 @@ class EnvironmentHandler:
         self.csv= "Counter, Ep, Step, States, Actions, Cost, Power Generated, Overall \n"
 
         self.reward = {"Cost": 0.0, "Power_Generated": 0.0, "Overall": 0.0  }
+        self.wave_height_violations = []
         #self.GetAction(0)
         
         return
