@@ -13,8 +13,6 @@ import json
 from datetime import datetime, timedelta
 from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
-
-
 from classes.nsga_iii import NSGAIII_Interface
 from classes.llm_interface import GPTSession
 
@@ -121,8 +119,8 @@ if st.session_state.show_parameters == True:
 
     # Input fields
     st.markdown("The default parameters currently set are for fast results.")
-    max_generations = st.number_input("Maximum Generations", min_value=1, value=100)
-    population_size = st.number_input("Population Size", min_value=1, value=40)
+    max_generations = st.number_input("Maximum Generations", min_value=1, max_value=500, value=100)
+    population_size = st.number_input("Population Size", min_value=1, max_value=500, value=40)
     
     days = st.number_input("Days", min_value=1, value=7, max_value=365)
 
