@@ -152,11 +152,44 @@ if(st.session_state.simulation_finished):
     # results can be accessed through 'st.session_state.result'
     st.header("Results Visualization")
 
+<<<<<<< Updated upstream
+=======
+    # access turbines
+    #st.write(st.session_state.sim_envs[0].turbines.turbines)
+
+    # Flip power generation back to positive
+    true_power = -st.session_state.result.F[:, 1]
+
+    # Sort indices by ascending power
+    sorted_indices = np.argsort(true_power)
+
+    # Get sorted schedules and objectives
+    sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
+    sorted_objectives = st.session_state.result.F[sorted_indices]
+    sorted_environnments = st.session_state.result.opt.get("env")[sorted_indices]
+
+    st.code(sorted_objectives[1][0])
+    st.code(sorted_environnments[1].reward["Cost"])
+
+
+    st.code(f"Number of Schedules found: {len(sorted_schedules)}")
+
+    # st.session_state.sim_envs[0].reward["Cost"]
+    # st.code(st.session_state.result.history[0].pop.get("F")[1][0])
+
+    # schedule_environment_handler = st.session_state.sim_envs[-3:]
+    # st.write((schedule_environment_handler[0].reward["Cost"]))
+    # st.write((schedule_environment_handler[0].reward["Power_Generated"]))
+
+
+
+>>>>>>> Stashed changes
     def Plot_Pareto_Final():
         #
         # Pareto Front of Final Population
         #
         plt.clf() 
+<<<<<<< Updated upstream
         st.markdown("### Pareto Front of Final Population")
         # Flip power generation back to positive
         true_power = -st.session_state.result.F[:, 1]
@@ -169,6 +202,9 @@ if(st.session_state.simulation_finished):
         sorted_objectives = st.session_state.result.F[sorted_indices]
 
 
+=======
+        
+>>>>>>> Stashed changes
         # Visualize the Pareto front
         plt.figure(figsize=(10, 6))
         plt.scatter(sorted_objectives[:, 0], true_power[sorted_indices], c='blue', label="Pareto Front")
@@ -467,7 +503,20 @@ if(st.session_state.simulation_finished):
                 int_schedule.append(day_actions)
             return int_schedule
         
+<<<<<<< Updated upstream
         st.markdown("## Schedules from Final Population")
+=======
+        st.markdown("#### Schedules from Final Population")
+
+        # CfD inputs
+        col_strike, col_market = st.columns(2)
+        with col_strike:
+            strike_price = st.number_input("CfD Strike Price (£/MWh)", min_value=1, value=80)
+
+        with col_market:
+            market_price = st.number_input("Market Price (£/MWh)", min_value=1, value=50)
+
+>>>>>>> Stashed changes
         # Flip power generation back to positive
         true_power = -st.session_state.result.F[:, 1]
 
@@ -478,6 +527,7 @@ if(st.session_state.simulation_finished):
 
         readable_schedules = [ConvertScheduleToReadableFormat(TurnScheduleToIntActions(schedule)) for schedule in sorted_schedules]
 
+<<<<<<< Updated upstream
         st.session_state.schedule_index = st.selectbox(
             "Choose a schedule to display",
             options=list(range(len(sorted_schedules))),
@@ -485,6 +535,14 @@ if(st.session_state.simulation_finished):
         )
         
         if st.session_state.get("schedule_index", None) is not None:
+=======
+        def schedule_comparison():
+            st.markdown("### 🔄 Schedule Comparison")
+
+
+            # Comparison of 2 schedules
+            comp_col1, comp_col2 = st.columns(2)
+>>>>>>> Stashed changes
 
             schedule_to_show = readable_schedules[st.session_state.schedule_index]
             st.markdown(f"### Schedule {st.session_state.schedule_index + 1} (Day View)")
@@ -504,18 +562,31 @@ if(st.session_state.simulation_finished):
 
             st.markdown(f"### Schedule {st.session_state.schedule_index + 1} (Gantt View)")
 
+<<<<<<< Updated upstream
             from datetime import datetime, timedelta
+=======
+            cost1, power1 = sched1["Cost"], sched1["Power"]/24
+            cost2, power2 = sched2["Cost"], sched2["Power"]/24
+>>>>>>> Stashed changes
 
 
         # Gantt chart generation
         if st.session_state.get("schedule_index", None) is not None:
 
+<<<<<<< Updated upstream
             schedule_to_show = readable_schedules[st.session_state.schedule_index]
 
             gantt_rows = []
 
             # Base date for Day 1
             base_date = datetime(2026, 1, 1)
+=======
+            # Calculate profits
+            profit1 = (strike_price - market_price) * (power1 * 24) - cost1 # convert power from MW to MWh
+            profit2 = (strike_price - market_price) * (power2 * 24) - cost2
+            profit_diff = profit2 - profit1
+            profit_pct = (profit_diff / profit1 * 100) if profit1 != 0 else 0
+>>>>>>> Stashed changes
 
             # Define the 3 action slot times
             slot_times = {
@@ -524,6 +595,7 @@ if(st.session_state.simulation_finished):
                 2: timedelta(hours=15),  # 3pm
             }
 
+<<<<<<< Updated upstream
             for day_idx, day in enumerate(schedule_to_show):
                 day_date = base_date + timedelta(days=day_idx)
 
@@ -570,8 +642,28 @@ if(st.session_state.simulation_finished):
                 color="Component",
                 hover_data=["Day"],
                 title="Maintenance Timeline by Turbine",
+=======
+            with colA:
+                st.markdown(f"#### Schedule {schedule_one_index + 1}")
+                st.metric("💰 Cost", f"£{cost1:,.2f}")
+                st.metric("⚡ Avg Power", f"{power1:,.2f} MW")
+                st.metric("💰 Profit", f"£{profit1:,.2f}")
+
+            with colB:
+                st.markdown(f"#### Schedule {schedule_two_index + 1}")
+                st.metric("💰 Cost", f"£{cost2:,.2f}", delta=f"{cost_diff:,.2f} (£{cost_pct:+.1f}%)")
+                st.metric("⚡ Avg Power", f"{power2:,.2f} MW", delta=f"{power_diff:,.2f} ({power_pct:+.1f}%)")
+                st.metric("💰 Profit", f"£{profit2:,.2f}", delta=f"{profit_diff:,.2f} (£{profit_pct:+.1f}%)")
+            
+        def schedule_details():
+            st.session_state.schedule_index = st.selectbox(
+                "Choose a schedule to display details of below",
+                options=list(range(len(sorted_schedules))),
+                format_func=lambda i: f"Schedule {i+1}"
+>>>>>>> Stashed changes
             )
 
+<<<<<<< Updated upstream
             fig.update_layout(
                 legend=dict(
                     orientation="h",
@@ -582,6 +674,144 @@ if(st.session_state.simulation_finished):
                 ),
                 margin=dict(b=80)  # add bottom margin so legend fits
             )
+=======
+                        <div class="optimised-badge">
+                            Optimised for a window of {st.session_state.nsga_params['days']} days
+                        </div>
+                        """, unsafe_allow_html=True)
+
+                    
+                    cost = sorted_objectives.iloc[st.session_state.schedule_index]['Cost']
+                    power = sorted_objectives.iloc[st.session_state.schedule_index]['Power']/24
+                    profit1 = (strike_price - market_price) * (power * 24) - cost
+                    power_lost = sorted_environnments[st.session_state.schedule_index].env.cumulative_power_lost / 1000
+
+                    st.markdown(f"Power lost: {power_lost}")
+
+                    col1, col2 = st.columns(2)
+
+                    with col1:
+                        st.metric(label="💰 Cost of performing maintenance", value=f"£{cost:,.2f}")
+
+                    with col2:
+                        st.metric(label="⚡ Average Power Generated", value=f"{power:,.2f} MW", delta=f"{(strike_price - market_price) * (power * 24):,.2f}")
+                    
+                    st.metric("💰 Profit", f"£{profit1:,.2f}")
+
+                    def filter_schedule(schedule):
+                        filtered = []
+
+                        for day in schedule:
+                            day_actions = []
+                            for action in day:
+                                day_actions.append(action)
+
+                                # Stop processing this day if vessel returns to port
+                                if action["return_to_port"]:
+                                    day_actions.append(action)
+                                    break
+
+                            filtered.append(day_actions)
+
+                        return filtered
+                    
+                    def schedule_day_view_block():
+
+                        def action_idx_to_time(action_idx):
+                            time_map = {
+                                0: "09:00–12:00",
+                                1: "12:00–15:00",
+                                2: "15:00–18:00"
+                            }
+                            return time_map.get(action_idx, "Unknown time slot")
+
+
+                        st.write(f"#### Day View")
+                        # Build a Gantt-friendly table
+                        with st.expander("Daily Actions"):
+                            for day_idx, day in enumerate(schedule_to_show):
+                                with st.expander(f"Day {day_idx + 1}", expanded=True):
+                                    for action_idx, action in enumerate(day):
+                                        if action["return_to_port"]:
+                                            st.markdown(f"🔁 Return to port")
+                                            break
+                                        elif action["do_nothing"]:
+                                            st.markdown(f"{action_idx_to_time(action_idx)} - ⏸ Do nothing")
+                                        elif action["perform_maintenance"]:
+                                            d = action["maintenance_details"]
+                                            st.markdown(f"{action_idx_to_time(action_idx)} - 🛠 Turbine {d['turbine_id']} — {d['component']}")
+
+                    def gantt_chart_view_block():
+                    # Gantt chart generation
+                        st.markdown(f"#### Gantt View")
+                        with st.expander("Gantt-Chart"):
+                            schedule_to_show = readable_schedules[st.session_state.schedule_index]
+                            gantt_rows = []
+
+                            # Base date for Day 1
+                            base_date = datetime(2026, 1, 1)
+
+                            # Define the 3 action slot times
+                            slot_times = {
+                                0: timedelta(hours=9),   # 9am
+                                1: timedelta(hours=12),  # 12pm
+                                2: timedelta(hours=15),  # 3pm
+                            }
+
+                            # st.write(schedule_to_show)
+
+                            schedule_to_show = filter_schedule(schedule_to_show)
+
+                            for day_idx, day in enumerate(schedule_to_show):
+                                day_date = base_date + timedelta(days=day_idx)
+
+                                for slot_idx, action in enumerate(day):
+
+                                    # Only plot maintenance actions
+                                    if action["perform_maintenance"]:
+                                        d = action["maintenance_details"]
+                                        turbine = f"T{d['turbine_id']}"
+                                        component = d["component"]
+
+                                        start = day_date + slot_times[slot_idx]
+                                        finish = start + timedelta(hours=3)  # Assume each maintenance takes 3 hours
+
+                                        gantt_rows.append({
+                                            "Turbine": turbine,
+                                            "Component": component,
+                                            "Start": start,
+                                            "Finish": finish,
+                                            "Day": f"Day {day_idx + 1}"
+                                        })
+
+                            if len(gantt_rows) > 0:
+                                df = pd.DataFrame(gantt_rows)
+
+                                # Sort turbines numerically
+                                df["Turbine_num"] = df["Turbine"].str.extract(r'(\d+)').astype(int)
+                                df = df.sort_values("Turbine_num")
+
+                                fig = px.timeline(
+                                    df,
+                                    x_start="Start",
+                                    x_end="Finish",
+                                    y="Turbine",
+                                    color="Component",
+                                    hover_data=["Day"],
+                                    title="Maintenance Timeline by Turbine",
+                                )
+
+                                fig.update_layout(
+                                    legend=dict(
+                                        orientation="h",
+                                        yanchor="top",
+                                        y=-0.2,        # move legend below the chart
+                                        xanchor="center",
+                                        x=0.5
+                                    ),
+                                    margin=dict(b=80)  # add bottom margin so legend fits
+                                )
+>>>>>>> Stashed changes
 
 
 

@@ -42,6 +42,7 @@ class Environment:
         self.turbines = Farm(self.num_turbines, self.turbine_health_decrease_list)
 
         self.csv = ""
+        self.cumulative_power_lost = 0
 
         #print( self.turbine_health_decrease_list)
 
@@ -314,6 +315,7 @@ class Environment:
         self.power_difference.append(power_difference)
         self.power_generated.append(power_gained)
         self.cost.append(distance_travelled)
+        self.cumulative_power_lost += power_lost
 
         # cost calculated here in £
         cost = self.data_handler.CalculateCostOfFuel(float(self.get_average_hs_at_episode(self.buoy_data, episode)), distance_travelled)

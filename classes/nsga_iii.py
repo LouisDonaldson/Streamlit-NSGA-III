@@ -93,6 +93,7 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         )
 
     def _evaluate(self, x, out, *args, **kwargs):
+<<<<<<< Updated upstream
         env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, Environment=Environment, _stream = self.stream)
 
         env.RunSim(episodes=self.number_of_days, verbose=False)
@@ -102,6 +103,29 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         env.reward["Overall"]
 
         out["F"] = [float(env.reward["Cost"]), float(-env.reward["Power_Generated"])]
+=======
+        env = EnvironmentHandler(
+            x,
+            data_handler=self.data_handler,
+            number_of_days=self.number_of_days,
+            _start_day=self.start_day,
+            Environment=Environment,
+            _stream=self.stream
+        )
+
+        env.RunSim(episodes=self.number_of_days, verbose=self.verbose)
+
+        # Constraint
+        g = sum(env.wave_height_violations)
+
+        # Objectives
+        cost = env.reward["Cost"]
+        power = env.reward["Power_Generated"]
+
+        out["F"] = [cost, -power]
+        out["G"] = [g]
+        out["env"] = env 
+>>>>>>> Stashed changes
 
 
 class NSGAIII_Interface:
