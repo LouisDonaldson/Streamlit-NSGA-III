@@ -123,9 +123,10 @@ class EnvironmentHandler:
         #     print()
         #     raise EnvironmentError("Cost was")
 
+        
         self.env.hard_reset()
         if(verbose):
             print(f"Episode reward: {cum_reward}\n")
-            
+        return self.env    
             # print(f"Distance travelled: {env.episode_distance_travelled}.\nPower gained: {env.episode_power_gained}.\nHealth increase from maintenance: {env.episode_health_increase}\n")
          

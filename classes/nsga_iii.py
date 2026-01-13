@@ -99,8 +99,11 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
 
     def _evaluate(self, x, out, *args, **kwargs):
         env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, _start_day=self.start_day, Environment=Environment, _stream = self.stream)
-
-        env.RunSim(episodes=self.number_of_days, verbose=self.verbose)
+        simulation_environment = env.RunSim(episodes=self.number_of_days, verbose=self.verbose)
+        
+        # coincides with st.session_state.nsga_data
+        # nsga_data[0] belongs to sim_envs[0]
+        st.session_state.sim_envs.append(simulation_environment)
 
         # Objectives
         env.reward["Power_Generated"]

@@ -177,6 +177,7 @@ if st.session_state.get("run", True):
 
     st.session_state.run = False
     st.session_state.nsga_data = []
+    st.session_state.sim_envs = []
     st.session_state.result = start_simulation(
         st.session_state.nsga_params,
         st.session_state.data_stream
@@ -192,8 +193,9 @@ if(st.session_state.simulation_finished):
     # results can be accessed through 'st.session_state.result'
     st.header("Results Visualization")
 
-    # st.write(st.session_state.result.F)
-    # st.write(st.session_state.nsga_data)
+    # access turbines
+    #st.write(st.session_state.sim_envs[0].turbines.turbines)
+
 
     def Plot_Pareto_Final():
         #
@@ -421,9 +423,14 @@ if(st.session_state.simulation_finished):
             Y_cost = []  # objective 1
             Y_power = [] # objective 2
 
-            X = np.vstack(st.session_state.result.X)
+            X = []
+            F_all = []
+
+
+            X = np.vstack([h.pop.get("X") for h in st.session_state.result.history])            
+            print(len(X))
             # print(X)
-            F_all = np.vstack(st.session_state.result.F)
+            F_all = np.vstack([h.pop.get("F") for h in st.session_state.result.history])
             Y_cost = F_all[:, 0]
             Y_power = F_all[:, 1]
 
