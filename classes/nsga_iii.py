@@ -25,7 +25,6 @@ from classes.data_handler import DataHandler as _data_handler
 from classes.osw_environment_new import Environment as Environment
 from classes.environment_handler import EnvironmentHandler
 
-
 class Callback(Callback):
     def __init__(self, threshold=0.1, stream=None, termination_condition = {}, st=st):
         super().__init__()
@@ -70,7 +69,6 @@ class Callback(Callback):
         # Manual escape clause
         # if best_f1 < self.threshold:
             # raise StopIteration("Escape triggered: f1 below threshold")
-
 
 class WindFarmScheduling(ElementwiseProblem, _data_handler):
     def __init__(self, number_of_days, start_day, _stream=None, verbose=False):
