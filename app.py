@@ -124,15 +124,16 @@ if st.session_state.show_parameters == True:
 
     # Input fields
     st.markdown("The default parameters currently set are for fast results.")
-    max_generations = st.number_input("Maximum Generations", min_value=1, max_value=500, value=100)
-    population_size = st.number_input("Population Size", min_value=1, max_value=500, value=40)
+    max_generations = st.number_input("Maximum Generations (1-500)", min_value=1, max_value=500, value=100)
+    population_size = st.number_input("Population Size (1-500)", min_value=1, max_value=500, value=40)
     
-    days = st.number_input("Days", min_value=1, value=7, max_value=365)
+    days = st.number_input("Days (1-28)", min_value=1, value=7, max_value=28)
 
     # Visualise wave height average and choose which weather window will be chosen.
     wave_df = pd.read_csv("data/daily_averages.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
     wave_df["Hs"] = wave_df["Hs"].astype(float)
     start_day = st.slider(f"Select start day (max value is {365 - days} days)", min_value=0, max_value=365 - days, value=0 )
+   
     window = days  # e.g., 7‑day execution window
     wave_df["highlight"] = wave_df["day_number"].between(start_day, start_day + window)
     chart = (
@@ -217,7 +218,7 @@ if(st.session_state.simulation_finished):
     
     # Flip power generation back to positive
 
-    if len(st.session_state.result.F) == 0:
+    if not st.session_state.result.F:
         st.info('''No results have been found. Please reload the page and edit the model parameters''')
     else:
         true_power = -st.session_state.result.F[:, 1]
