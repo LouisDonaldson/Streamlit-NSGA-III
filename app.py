@@ -237,20 +237,29 @@ if(st.session_state.simulation_finished):
             #
             # Pareto Front of Final Population
             #
-            plt.clf() 
-            
-            
-            
+            plt.clf()
 
-            # Visualize the Pareto front
             plt.figure(figsize=(10, 6))
-            plt.scatter(sorted_objectives[:, 0], true_power[sorted_indices], c='blue', label="Pareto Front")
+            plt.plot(sorted_objectives[:, 0], true_power[sorted_indices],
+                    c='blue', marker="o", label="Pareto Front")
+
+            # Compute a dynamic offset (2% of y-range)
+            y_min, y_max = true_power.min(), true_power.max()
+            offset = (y_max - y_min) * 0.02
 
             # Annotate each point with its sorted index
             for i, idx in enumerate(sorted_indices):
-                x = st.session_state.result.F[idx, 0]              # Cost
-                y = -st.session_state.result.F[idx, 1]             # Power generation
-                plt.text(x, y, str(i + 1), fontsize=10, ha='center', va='bottom')
+                x = st.session_state.result.F[idx, 0]      # Cost
+                y = -st.session_state.result.F[idx, 1]     # Power generation
+
+                plt.text(
+                    x,
+                    y + offset,                             # ← raise label above point
+                    str(i + 1),
+                    fontsize=10,
+                    ha='center',
+                    va='bottom'
+                )
 
             plt.xlabel("Cost (£)")
             plt.ylabel("Power Generation (KW/h)")
@@ -259,6 +268,7 @@ if(st.session_state.simulation_finished):
             plt.legend()
 
             st.pyplot(plt)
+
 
         def Plot_Pareto_Generations():
             #
@@ -286,6 +296,8 @@ if(st.session_state.simulation_finished):
 
             plt.figure(figsize=(10, 6))
             sc = plt.scatter(all_x, all_y, c=all_gen, cmap='viridis', s=40,)
+            plt.plot(sorted_objectives[:, 0], true_power[sorted_indices], c='red', linewidth=2.5, label="Global Pareto Front")
+
 
             cbar = plt.colorbar(sc)
             cbar.set_label('Generation Index')
@@ -581,7 +593,6 @@ if(st.session_state.simulation_finished):
             )
 
             fig.update_layout(
-                title="Turbine Health Heatmap",
                 xaxis_side="top",
                 margin=dict(l=60, r=20, t=60, b=20),
                 coloraxis_colorbar=dict(
@@ -1027,6 +1038,7 @@ if(st.session_state.simulation_finished):
                                         """, unsafe_allow_html=True)
                                 else:
                                     st.info("Nothing has being scheduled so the Gantt-chart can not be rendered")
+                        
                         schedule_day_view_block()
                         gantt_chart_view_block()
                         
@@ -1037,9 +1049,7 @@ if(st.session_state.simulation_finished):
                 schedule_comparison()
                 
             schedule_details()
-
-
-
+        
         ## plot pareto
         st.markdown("### Pareto Front of Final Population")
         if "plot_pareto" in st.session_state or st.session_state.auto_plot:
