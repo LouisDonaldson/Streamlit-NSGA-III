@@ -114,7 +114,6 @@ st.markdown("There is also a Chatbot functionality to gain further insights into
 st.markdown("For in-depth information on how to understand the graphs and the technical information relating to the models, please visit the link below.")
 st.link_button("Further Information and documentation", "https://mammoth-cough-70c.notion.site/OSW-NSGA-III-Environment-2-0-2df063e6bdf280dcb0e9f2410734c92a")
 
-
 st.divider()
 
 # Configuration box
@@ -212,15 +211,11 @@ if(st.session_state.simulation_finished):
     st.success("Simulation completed.")
     # results can be accessed through 'st.session_state.result'
     st.header("Results Visualization")
-
-    # access turbines
-    #st.write(st.session_state.sim_envs[0].turbines.turbines)
     
-    # Flip power generation back to positive
-
-    if not st.session_state.result.F:
+    if st.session_state.result.F is None:
         st.info('''No results have been found. Please reload the page and edit the model parameters''')
     else:
+        # Flip power generation back to positive
         true_power = -st.session_state.result.F[:, 1]
 
         # Sort indices by ascending power
