@@ -103,12 +103,8 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
     def _evaluate(self, x, out, *args, **kwargs):
         env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, _start_day=self.start_day, Environment=Environment, _stream = self.stream)
         
-        
-
         env.RunSim(verbose=self.verbose)
 
-        
-        
         # Objectives
         env.reward["Power_Generated"]
         env.reward["Cost"]
@@ -124,7 +120,7 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         out["G"] = [g]
 
         # Save environments to access afterwards
-        # out["env"] = env # Uses far too much memory
+        # out["env"] = env ## Uses far too much memory
 
 
 class NSGAIII_Interface:

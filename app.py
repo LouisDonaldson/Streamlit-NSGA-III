@@ -16,10 +16,10 @@ from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 from classes.nsga_iii import NSGAIII_Interface
 from classes.llm_interface import GPTSession
 
-
-import cProfile
-import pstats
-import io
+# Runtime analysis
+# import cProfile
+# import pstats
+# import io
 
 st.set_page_config(
     page_title="NSGA3 OSWOP Dashboard",
@@ -184,20 +184,23 @@ if st.session_state.get("run", True):
     st.session_state.nsga_data = []
     # st.session_state.sim_envs = []
 
-    pr = cProfile.Profile()
-    pr.enable()
+   
 
     st.session_state.result = start_simulation(
         st.session_state.nsga_params,
         st.session_state.data_stream
     )
 
-    pr.disable()
-    s = io.StringIO()
-    ps = pstats.Stats(pr, stream=s).sort_stats('cumulative')
-    ps.print_stats(20)  # top 20 slowest functions
-    print(s.getvalue())
-    st.code(s.getvalue())
+    # Runtime analysis
+    # pr = cProfile.Profile()
+    # pr.enable()
+    # ## put thing to evaluate here
+    # pr.disable()
+    # s = io.StringIO()
+    # ps = pstats.Stats(pr, stream=s).sort_stats('cumulative')
+    # ps.print_stats(20)  # top 20 slowest functions
+    # print(s.getvalue())
+    # st.code(s.getvalue())
 
     
     st.session_state.simulation_finished = True
