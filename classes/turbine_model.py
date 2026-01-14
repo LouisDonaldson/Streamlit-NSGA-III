@@ -108,6 +108,13 @@ class Turbine:
     def get_power_produced(self, wind_speed):
         # Placeholder for power production logic
         return 0
+    
+    def degrade_turbine(self, degrade_amount):
+        if self.overall_health - degrade_amount < 0:
+            self.overall_health = 0
+        else:
+            self.overall_health -= degrade_amount
+        
 
 
 # component classes

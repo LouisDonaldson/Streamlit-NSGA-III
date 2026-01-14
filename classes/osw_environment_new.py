@@ -23,6 +23,7 @@ class Environment:
         self.current_state = 0
 
         self.step_limit = step_limit
+        self.step_interval = int(step_limit/3)
         self.days_limit = days_limit
 
         # Shows each turbine's health
@@ -42,15 +43,6 @@ class Environment:
 
         self.turbines = Farm(self.num_turbines, self.turbine_health_decrease_list)
         self.csv = ""
-
-        #print( self.turbine_health_decrease_list)
-
-        # print(f"Number of turbines: {self.num_turbines}\n")
-        # print(f"State size: {self.state_size}\n")
-        # print(f"Action size: {self.action_size}\n")
-        # print(f"Distance matrix loaded\n")
-        # print(f"Distance from port data loaded\n")
-        # print(f"Weather Data loaded\n")
 
         self.power_difference = [] # power difference in £/mWh
         self.cost = [] # distance
@@ -89,16 +81,38 @@ class Environment:
         
         return self.current_state
 
-    def decay_turbine_health(self, lb = 1, ub = 3):
-        # Randomly decay the turbine 1 - 3
-        
-        #print(increase)
-        for x in range(0,self.num_turbines):
-            increase = round(random.uniform(lb, ub))
+    def decay_turbine_health(self, lb=1, ub=3):
+        """
+        Randomly degrade each turbine's health by moving down the
+        turbine_health_decrease_list by 1–3 steps.
+        """
+
+        for turbine in self.turbines.turbines:  # or self.env.turbines.turbines depending on your structure
+            degrade_steps = round(random.uniform(lb, ub))
+
+            current_health = turbine.overall_health
+
+            # Find the index of the current health in the decay list
             try:
-                self.turbine_health[x] = self.turbine_health_decrease_list[self.turbine_health_decrease_list.index(self.turbine_health[x]) + increase]
-            except:
-                self.turbine_health[x] = self.turbine_health_decrease_list[len(self.turbine_health_decrease_list) - 1]
+                idx = self.turbine_health_decrease_list.index(current_health)
+            except ValueError:
+                # If the exact value isn't in the list, find the closest lower value
+                # This keeps the system stable even if health was modified elsewhere
+                idx = max(
+                    i for i, v in enumerate(self.turbine_health_decrease_list)
+                    if v >= current_health
+                )
+
+            # Compute the new index after degradation
+            new_idx = idx + degrade_steps
+
+            # Clamp to the end of the list
+            if new_idx >= len(self.turbine_health_decrease_list):
+                new_idx = len(self.turbine_health_decrease_list) - 1
+
+            # Assign the new health value
+            turbine.overall_health = self.turbine_health_decrease_list[new_idx]
+
      
     def increase_turbine_health(self, maintenance_details = {}):
         turbine_health_increase = round(random.uniform(50, 100))
@@ -108,28 +122,6 @@ class Environment:
         self.turbines.repair_component(maintenance_details["turbine_id"] - 1, maintenance_details["component"], turbine_health_increase) # -1 for 0 index
         health_increase_amount = self.turbines.turbines[maintenance_details["turbine_id"] - 1].overall_health - initial_health
         type = "corrective" if initial_health < self.turbine_health_threshhold else "preventative"
-        # health_current_state = self.turbine_health[turbine_index]
-
-        # # determines whether or not maintenance is corrective of preventative
-        # if (health_current_state < self.turbine_health_threshhold):
-        #     type = "Corrective"
-        # else:
-        #     type = "Preventative"
-
-        # health_decrease_index = self.turbine_health_decrease_list.index(health_current_state)
-        # if(type == "Corrective"):
-        #     new_health = self.turbine_health_decrease_list[0]
-        # else:
-        #     if(health_decrease_index - turbine_health_increase < 0):
-        #         new_health = self.turbine_health_decrease_list[0]
-        #     else:
-        #         new_health = self.turbine_health_decrease_list[health_decrease_index - turbine_health_increase]
-
-        # health_increase_amount = new_health - health_current_state
-
-        #print(new_health)
-        #raise EnvironmentError("Pause")
-        
 
         return health_increase_amount, type
     
@@ -195,6 +187,8 @@ class Environment:
         health_increase = 0
         type = None
         maintenance_type = ""
+
+        self.decay_turbine_health()
         
         if(intepreted_action["do_nothing"] == False and intepreted_action["return_to_port"] == False):
             # moving to a new turbine to perform maintenance
@@ -213,7 +207,7 @@ class Environment:
                 # reward += 100 - self.turbine_health[new_state]
 
             if(current_step < (self.step_limit - 3)):
-                hours_skipped = 2
+                hours_skipped = self.step_interval
             else:
                 overworked = True
         elif(intepreted_action["return_to_port"] and current_state == 0):
@@ -236,12 +230,21 @@ class Environment:
             # doing nothing            
             new_state = current_state
             if(current_step < (self.step_limit - 3)):
-                hours_skipped = 2
+                hours_skipped = self.step_interval
             if(current_step == self.step_limit):
                 overworked = True
 
         # if next move is the step limit and is not going back to port, then the agent is overworked
-       
+        turbine_maintained = None
+        
+        ## turbine has been maintained. 
+        ## find power lost due to downtime
+        power_lost = 0
+        if(intepreted_action["do_nothing"] == False and intepreted_action["return_to_port"] == False):
+            turbine_maintained = intepreted_action["maintenance_details"]["turbine_id"] - 1 # -1 for 0 index
+            _percentage_degradation = self.turbine_health[turbine_maintained] / 100
+            power_lost = (self.data_handler.FindPowerInMaintenanceWindow(episode, current_step, hours_skipped)) * _percentage_degradation
+
          
         reward += self.calculate_reward(maintenance_type, health_increase, self.current_distance_travelled, intepreted_action, hours_skipped, current_step, env, episode)
         
@@ -263,7 +266,7 @@ class Environment:
         #     if(x < self.turbine_health_threshhold):
         #         reward -= 10
 
-        return new_state, reward, done, hours_skipped, type
+        return new_state, reward, done, hours_skipped, type, power_lost
         
     def get_random_action(self, current_state):
         self.current_state = current_state
@@ -303,35 +306,8 @@ class Environment:
         power_lost = 0
         power_gained = 0
 
-        turbine_maintained = None
-        
-        if(action["do_nothing"] == False and action["return_to_port"] == False):
-            turbine_maintained = action["maintenance_details"]["turbine_id"] - 1 # -1 for 0 index
-            _percentage_degradation = self.turbine_health[turbine_maintained] / 100
-            power_lost = (self.data_handler.FindPowerGenerated(episode, time_skipped)) * _percentage_degradation
-        # else:
-            # raise EnvironmentError("No maintenance action taken. Slipped through logic.")
-        #((FindPowerGenerated(current_step, time_skipped)) * self.num_turbines * (average_turbine_health / 100))
-        
-        
-        for x in range(0, self.num_turbines):
-            if(x == turbine_maintained):
-                continue
-            turbine_power_generated = self.data_handler.FindPowerGenerated(episode, time_skipped)
-            percentage_degradation = self.turbine_health[x] / 100
-            power_gained += turbine_power_generated * percentage_degradation
-
-
-        power_difference = power_gained - power_lost # power difference calculated in kW/h        
-
-        power_difference = power_difference / 1000 # convert to MWh
-        power_difference = power_difference * self.levelised_cost_of_electricity # convert to £
-
-        self.power_difference.append(power_difference)
-        self.power_generated.append(power_gained)
-        self.cost.append(distance_travelled)
-
         # cost calculated here in £
+        ####################
         cost = self.data_handler.CalculateCostOfFuel(float(self.get_average_hs_at_episode(self.buoy_data, episode)), distance_travelled)
 
         if(action["perform_maintenance"]):
@@ -341,12 +317,8 @@ class Environment:
             cost += action_cost
             if(action_cost == 0):
                 raise Exception("Action cost should not be 0...")
-        # cost += action["maintenance_details"]["component"].repair_cost[f"${maintenance_type}"]
 
-        self.episode_power_gained += power_gained
-        self.episode_distance_travelled += cost
-        self.episode_power_gained_new += power_gained
-        self.episode_distance_travelled_new += cost
+        ####################
 
         # reward weightings
         alpha = 1.5 # power gained # positive
@@ -357,16 +329,8 @@ class Environment:
         if action["perform_maintenance"] and cost == 0:
             raise EnvironmentError("Something is not right here")
 
+        ## ["out"] to NSGA
         env.reward["Cost"] += cost
-        env.reward["Power_Generated"] += power_gained / 1000 # kW - mW
-
-        if "do_nothing" in st.session_state:
-            if st.session_state.do_nothing and action["perform_maintenance"]:
-                if cost == 0:
-                    print(action)
-                    print(maintenance_type)
-                    print(cost)
-                    print()
 
         reward = (alpha * power_gained) - (beta * power_lost) - (gamma * cost) + (delta * health_increase)
         #reward = (alpha * power_gained) - (gamma * cost)

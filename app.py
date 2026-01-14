@@ -212,6 +212,7 @@ if(st.session_state.simulation_finished):
         # Get sorted schedules and objectives
         sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
         sorted_objectives = st.session_state.result.F[sorted_indices]
+        sorted_environments = st.session_state.result.opt.get("env")[sorted_indices]
         
 
         # Visualize the Pareto front
@@ -225,7 +226,7 @@ if(st.session_state.simulation_finished):
             plt.text(x, y, str(i + 1), fontsize=10, ha='center', va='bottom')
 
         plt.xlabel("Cost (£)")
-        plt.ylabel("Power Generation (mW/h)")
+        plt.ylabel("Power Generation (KW/h)")
         plt.title("Pareto Front with Sorted Indices")
         plt.grid(True)
         plt.legend()
@@ -263,7 +264,7 @@ if(st.session_state.simulation_finished):
         cbar.set_label('Generation Index')
 
         plt.xlabel('Cost (£)')
-        plt.ylabel('Power Generated (mWh)')
+        plt.ylabel('Power Generated (KWh)')
         plt.title('Pareto Front Evolution Across Generations')
         plt.grid(True)
         plt.tight_layout()
@@ -283,7 +284,7 @@ if(st.session_state.simulation_finished):
         cost_history = [np.min(entry.pop.get("F")[:, 0]) for entry in st.session_state.result.history]
         plt.plot(cost_history, label="Min Cost")
         plt.xlabel("Generation")
-        plt.ylabel("Cost")
+        plt.ylabel("Cost (£)")
         plt.title("Convergence of Cost")
         plt.grid(True)
         plt.legend()
@@ -301,7 +302,7 @@ if(st.session_state.simulation_finished):
         y_history = [-np.max(entry.pop.get("F")[:, 1]) for entry in st.session_state.result.history]
         plt.plot(y_history)
         plt.xlabel("Generation")
-        plt.ylabel("Power Generated (mWh)")
+        plt.ylabel("Power Generated (KWh)")
         plt.title("Convergence of Power Generated")
         plt.grid(True)
         plt.legend()
@@ -610,7 +611,7 @@ if(st.session_state.simulation_finished):
         sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
         sorted_objectives = pd.DataFrame([st.session_state.result.F[i] for i in sorted_indices], columns=["Cost", "Power"])
 
-        sorted_objectives["Power"] = sorted_objectives["Power"].abs()
+        sorted_objectives["Power"] = sorted_objectives["Power"].abs() / 1000
         sorted_objectives["Schedule"] = sorted_objectives.index
 
         # st.write(sorted_objectives)

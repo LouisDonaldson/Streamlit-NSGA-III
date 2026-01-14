@@ -10,11 +10,11 @@ class EnvironmentHandler:
 
         self.schedule = self.FormatSchedule(self.schedule)
 
-        days = number_of_days
-        hours = 5
+        self.days = number_of_days
+        hours = 9
 
         self.encoded_schedule = self.schedule
-        self.env = Environment(days, hours, data_handler, _stream = _stream, _start_day = _start_day)
+        self.env = Environment(hours, self.days, data_handler, _stream = _stream, _start_day = _start_day)
         self.day = 0
         self.time = 0
         self.action_string = ""
@@ -23,8 +23,9 @@ class EnvironmentHandler:
 
         self.csv= "Counter, Ep, Step, States, Actions, Cost, Power Generated, Overall \n"
 
-        self.reward = {"Cost": 0.0, "Power_Generated": 0.0, "Overall": 0.0  }
+        self.reward = {"Cost": 0.0, "Power_Generated": 0.0, "new_Power_Generated": 0.0, "Overall": 0.0  }
         self.wave_height_violations = []
+        self.hours_performing_maintenance = 0
         #self.GetAction(0)
         
         return
@@ -52,14 +53,63 @@ class EnvironmentHandler:
         
         
         return next_action
+    
+    # def FindDayPowerGenerated(self, episode, maintenance_hours, turbines_under_maintenance=1):
+    #     """
+    #     Computes total farm energy for one day (kWh).
+    #     - Uses hourly wind data for the correct day (via Days column)
+    #     - Subtracts maintenance losses per turbine
+    #     - Applies average turbine health scaling
+    #     """
+
+    #     num_turbines = len(self.env.turbines.turbines)
+
+    #     # 1. Compute average turbine health
+    #     avg_health = sum(t.overall_health for t in self.env.turbines.turbines)
+    #     avg_health = (avg_health / num_turbines) / 100.0
+
+    #     # 2. Extract the 24 hourly rows for this episode/day
+    #     mast_df = self.env.data_handler.mast_df
+    #     day_df = mast_df[mast_df["Days"] == episode + 2] # offset by 2 because Day 1 only has 1 row
+
+    #     if len(day_df) != 24:
+    #         raise ValueError(f"Day {episode} does not contain 24 hourly rows. Found {len(day_df)} rows.")
+
+    #     # 3. Compute energy for one turbine over this day
+    #     single_turbine_energy = 0.0
+    #     for wind in day_df["ANx_80_WS_Avg"].values:
+    #         single_turbine_energy += self.env.data_handler.PowerFromWind(wind)
+
+    #     # 4. Farm energy before maintenance
+    #     farm_energy_before = single_turbine_energy * num_turbines
+
+    #     # 5. Maintenance loss (per turbine offline)
+    #     hourly_power = single_turbine_energy / 24
+    #     maintenance_loss = hourly_power * maintenance_hours * turbines_under_maintenance
+
+    #     # 6. Final farm energy
+    #     farm_energy_after = farm_energy_before - maintenance_loss
+
+    #     # 7. Apply health scaling
+    #     farm_energy_after *= avg_health
+
+    #     # Debug prints
+    #     print(f"\nEpisode: {episode}")
+    #     print(f"Single turbine: {single_turbine_energy/1000:.3f} MWh")
+    #     print(f"Farm before maintenance: {farm_energy_before/1000:.3f} MWh")
+    #     print(f"Maintenance loss: {maintenance_loss/1000:.3f} MWh")
+    #     print(f"Farm after maintenance: {farm_energy_after/1000:.3f} MWh")
+    #     print(f"Avg health scaling: {avg_health:.2f}")
+
+    #     return farm_energy_after  # kWh
  
-    def RunSim(self, episodes=7, steps = 5, verbose = False):
+    def RunSim(self, verbose = False):
         counter = 1
 
         if(verbose):
             print("Starting simulation...")
                  
-        for episode in range(episodes):
+        for episode in range(self.days):
             if(verbose):
                 print(f"Day: {episode + 1}\n")
             # reset the environment
@@ -74,15 +124,21 @@ class EnvironmentHandler:
             episodes_actions = ""
             current_s = 0
 
-            for s in range(0, steps):
+            episode_hours_skipped = 0
 
+            day_power_lost = 0 # Power lost due to turbine downtime
+
+            for s in range(0, self.env.step_limit):
                 action = self.GetAction(int(state), episode)
                 #print(f"Action: {action}, Step: {current_s}")
                 # print(f"Chosen action: {action}")
                 
-                new_state, reward, done, hours_skipped, type = self.env.step(action, current_s, self, episode, )
+                new_state, reward, done, hours_skipped, type, power_lost = self.env.step(action, current_s, self, episode, )
+                day_power_lost += power_lost
 
                 self.reward["Overall"] = self.reward["Overall"] + reward
+                self.hours_performing_maintenance += hours_skipped # Overall hours skipped 
+                episode_hours_skipped += hours_skipped # Episode (day) hours skipped
 
                 cum_reward += reward
 
@@ -107,7 +163,7 @@ class EnvironmentHandler:
                 if done == True:
                     break
 
-                if(current_s + hours_skipped >= steps):
+                if(current_s + hours_skipped >= self.env.step_limit):
                     break
                 else:
                     s += hours_skipped
@@ -117,16 +173,36 @@ class EnvironmentHandler:
             counter += 1
 
             self.csv += f"{counter}, {episode}, {s}, {episodes_states}, {episodes_actions}, {(self.reward["Cost"])}, {self.reward["Power_Generated"]}, {(self.reward["Overall"])} \n"
+            
+            farm_wide_power_generated = 0
+            for i, t in enumerate(self.env.turbines.turbines):
+                t_health = t.overall_health / 100 # / 100 to convert to scalar. 100% health = 1
+                possible_power_production = self.env.data_handler.FindPowerGenerated(episode)
+                
+                # print(f"Possible power: {possible_power_production} | Turbine Health: {t_health*100}% | Actual power: {possible_power_production * t_health}")
+                
+                farm_wide_power_generated += possible_power_production * t_health
+
+            # farm_wide_power_generated = single_turbine_power_generated * len(self.env.turbines.turbines)
+
+            self.reward['new_Power_Generated'] += farm_wide_power_generated - day_power_lost
+            # print(f"Day: {episode} | {farm_wide_power_generated} KWh generated | Power lost: {day_power_lost}")
+        
+
             #print(counter)
+
+        
 
         # if(self.reward['Cost'] == 0):
         #     print()
         #     raise EnvironmentError("Cost was")
 
         
-        self.env.hard_reset()
         if(verbose):
             print(f"Episode reward: {cum_reward}\n")
+
+
+
         return self.env    
             # print(f"Distance travelled: {env.episode_distance_travelled}.\nPower gained: {env.episode_power_gained}.\nHealth increase from maintenance: {env.episode_health_increase}\n")
          

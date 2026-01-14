@@ -80,7 +80,15 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         self.number_of_days = number_of_days
         self.start_day = start_day
         self.data_handler = _data_handler()
+        
+        st.session_state.current_log = f"Beginning data import..."
+        st.code(st.session_state.current_log, language="markdown")
+
         self.data_handler.BeginImport()
+
+        st.session_state.current_log = f"Data import completed."
+        st.code(st.session_state.current_log, language="markdown")
+
         self.stream = _stream
         self.verbose=verbose
         # lower = [[0, 0, 0] for _ in range(365)]
@@ -99,7 +107,7 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
 
     def _evaluate(self, x, out, *args, **kwargs):
         env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, _start_day=self.start_day, Environment=Environment, _stream = self.stream)
-        simulation_environment = env.RunSim(episodes=self.number_of_days, verbose=self.verbose)
+        simulation_environment = env.RunSim(verbose=self.verbose)
         
         # coincides with st.session_state.nsga_data
         # nsga_data[0] belongs to sim_envs[0]
@@ -116,8 +124,11 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         g = sum(env.wave_height_violations)
 
         # Out to NSGA
-        out["F"] = [env.reward["Cost"], -(env.reward["Power_Generated"])] 
+        out["F"] = [env.reward["Cost"], -(env.reward["new_Power_Generated"])] 
         out["G"] = [g]
+
+        # Save environments to access afterwards
+        out["env"] = env
 
 
 
