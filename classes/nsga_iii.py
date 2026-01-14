@@ -10,8 +10,6 @@ import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import random # random number generation
 import streamlit as st
-import tracemalloc
-
 
 import matplotlib.pyplot as plt
 from prettytable import PrettyTable
@@ -22,8 +20,6 @@ from pymoo.termination import get_termination
 from pymoo.termination.default import DefaultMultiObjectiveTermination
 from pymoo.core.callback import Callback
 from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
-
-
 
 from classes.data_handler import DataHandler as _data_handler
 from classes.osw_environment_new import Environment as Environment
@@ -108,7 +104,12 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
 
     def _evaluate(self, x, out, *args, **kwargs):
         env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, _start_day=self.start_day, Environment=Environment, _stream = self.stream)
+        
+        
+
         env.RunSim(verbose=self.verbose)
+
+        
         
         # Objectives
         env.reward["Power_Generated"]

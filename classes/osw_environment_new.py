@@ -112,8 +112,7 @@ class Environment:
 
             # Assign the new health value
             turbine.overall_health = self.turbine_health_decrease_list[new_idx]
-
-     
+   
     def increase_turbine_health(self, maintenance_details = {}):
         turbine_health_increase = round(random.uniform(50, 100))
         
