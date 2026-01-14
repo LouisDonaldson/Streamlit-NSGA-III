@@ -119,6 +119,8 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         out["F"] = [env.reward["Cost"], -(env.reward["new_Power_Generated"])] 
         out["G"] = [g]
 
+        out["ep_snapshots"] = env.episode_snapshots
+
         # Save environments to access afterwards
         # out["env"] = env ## Uses far too much memory
 

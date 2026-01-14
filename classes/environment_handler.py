@@ -26,6 +26,8 @@ class EnvironmentHandler:
         self.reward = {"Cost": 0.0, "Power_Generated": 0.0, "new_Power_Generated": 0.0, "Overall": 0.0  }
         self.wave_height_violations = []
         self.hours_performing_maintenance = 0
+        self.episode_snapshots = []
+        self.turbine_health_snapshots = []
         #self.GetAction(0)
         
         return
@@ -110,6 +112,11 @@ class EnvironmentHandler:
             print("Starting simulation...")
                  
         for episode in range(self.days):
+            # print(f"Episode: {episode + 1}")
+            # for t in self.env.turbines.turbines:
+            #     print(t.overall_health)
+            # print()
+
             if(verbose):
                 print(f"Day: {episode + 1}\n")
             # reset the environment
@@ -168,21 +175,32 @@ class EnvironmentHandler:
                 else:
                     s += hours_skipped
                     current_s = current_s + hours_skipped
-                
-                
+                    
             counter += 1
 
             self.csv += f"{counter}, {episode}, {s}, {episodes_states}, {episodes_actions}, {(self.reward["Cost"])}, {self.reward["Power_Generated"]}, {(self.reward["Overall"])} \n"
             
             farm_wide_power_generated = 0
+            turbines_health = []
             for i, t in enumerate(self.env.turbines.turbines):
                 t_health = t.overall_health / 100 # / 100 to convert to scalar. 100% health = 1
+                turbines_health.append(t.overall_health)
                 possible_power_production = self.env.data_handler.FindPowerGenerated(episode)
                 
                 # print(f"Possible power: {possible_power_production} | Turbine Health: {t_health*100}% | Actual power: {possible_power_production * t_health}")
                 
                 farm_wide_power_generated += possible_power_production * t_health
 
+            # self.turbine_health_snapshots.append(turbines_health)
+
+            self.episode_snapshots.append({
+                "day": episode + 1,
+                "t_health": turbines_health,
+                "generated_power": farm_wide_power_generated - day_power_lost,
+                "potential_generated_power": farm_wide_power_generated,
+                "power_lost": day_power_lost,
+                "cost": self.reward["Cost"]
+            })
             # farm_wide_power_generated = single_turbine_power_generated * len(self.env.turbines.turbines)
 
             self.reward['new_Power_Generated'] += farm_wide_power_generated - day_power_lost
