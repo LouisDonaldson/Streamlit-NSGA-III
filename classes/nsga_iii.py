@@ -10,6 +10,7 @@ import numpy as np # linear algebra
 import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import random # random number generation
 import streamlit as st
+import tracemalloc
 
 
 import matplotlib.pyplot as plt
@@ -107,12 +108,8 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
 
     def _evaluate(self, x, out, *args, **kwargs):
         env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, _start_day=self.start_day, Environment=Environment, _stream = self.stream)
-        simulation_environment = env.RunSim(verbose=self.verbose)
+        env.RunSim(verbose=self.verbose)
         
-        # coincides with st.session_state.nsga_data
-        # nsga_data[0] belongs to sim_envs[0]
-        st.session_state.sim_envs.append(simulation_environment)
-
         # Objectives
         env.reward["Power_Generated"]
         env.reward["Cost"]
@@ -128,8 +125,7 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         out["G"] = [g]
 
         # Save environments to access afterwards
-        out["env"] = env
-
+        # out["env"] = env # Uses far too much memory
 
 
 class NSGAIII_Interface:
@@ -178,6 +174,5 @@ class NSGAIII_Interface:
         
         # self.stream.AddData(data_to_add)            
         
-    
     
 

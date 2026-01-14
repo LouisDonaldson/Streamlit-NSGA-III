@@ -177,7 +177,7 @@ if st.session_state.get("run", True):
 
     st.session_state.run = False
     st.session_state.nsga_data = []
-    st.session_state.sim_envs = []
+    # st.session_state.sim_envs = []
     st.session_state.result = start_simulation(
         st.session_state.nsga_params,
         st.session_state.data_stream
@@ -195,7 +195,17 @@ if(st.session_state.simulation_finished):
 
     # access turbines
     #st.write(st.session_state.sim_envs[0].turbines.turbines)
+    
+    # Flip power generation back to positive
+    true_power = -st.session_state.result.F[:, 1]
 
+    # Sort indices by ascending power
+    sorted_indices = np.argsort(true_power)
+
+    # Get sorted schedules and objectives
+    sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
+    sorted_objectives = st.session_state.result.F[sorted_indices]
+    # sorted_environments = st.session_state.result.opt.get("env")[sorted_indices]
 
     def Plot_Pareto_Final():
         #
@@ -203,16 +213,7 @@ if(st.session_state.simulation_finished):
         #
         plt.clf() 
         
-        # Flip power generation back to positive
-        true_power = -st.session_state.result.F[:, 1]
-
-        # Sort indices by ascending power
-        sorted_indices = np.argsort(true_power)
-
-        # Get sorted schedules and objectives
-        sorted_schedules = [st.session_state.result.X[i].reshape((st.session_state.nsga_params['days'], 3)) for i in sorted_indices]
-        sorted_objectives = st.session_state.result.F[sorted_indices]
-        sorted_environments = st.session_state.result.opt.get("env")[sorted_indices]
+        
         
 
         # Visualize the Pareto front
@@ -1026,7 +1027,6 @@ if(st.session_state.simulation_finished):
     SurrogateModels_WithSHAP()
 
 
-
 ## Chatbot Sidebar
 def GPT_Handler():
 
@@ -1111,3 +1111,6 @@ def GPT_Handler():
             st.rerun()
 
 GPT_Handler()
+
+
+
