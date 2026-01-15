@@ -11,7 +11,6 @@ import pandas as pd # data processing, CSV file I/O (e.g. pd.read_csv)
 import random # random number generation
 import streamlit as st
 
-
 import matplotlib.pyplot as plt
 from prettytable import PrettyTable
 
@@ -22,15 +21,12 @@ from pymoo.termination.default import DefaultMultiObjectiveTermination
 from pymoo.core.callback import Callback
 from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
-
-
 from classes.data_handler import DataHandler as _data_handler
 from classes.osw_environment_new import Environment as Environment
 from classes.environment_handler import EnvironmentHandler
 
-
 class Callback(Callback):
-    def __init__(self, threshold=0.1, stream=[], termination_condition = {}, st=st):
+    def __init__(self, threshold=0.1, stream=None, termination_condition = {}, st=st):
         super().__init__()
         self.st = st
         self.termination_condition = termination_condition
@@ -50,8 +46,9 @@ class Callback(Callback):
         best_f1 = f_vals[:, 0].min()
         x_list = algorithm.pop.get("X")
 
-        self.st.session_state.current_log = f"**| {algorithm.termination.perc * 100}% complete | Generation: {gen} | Eps: {algorithm.output.eps.value} |**"
+        self.st.session_state.current_log = f"| {algorithm.termination.perc * 100}% complete | Generation: {gen} | Eps: {algorithm.output.eps.value} |"
         self.st.code(self.st.session_state.current_log, language="markdown")
+
         # self.st.rerun()
 
         data_to_add = {"generation": gen,
@@ -65,26 +62,37 @@ class Callback(Callback):
                         "schedule_actions": [[int(val) for val in row] for row in x_list]
                         }
 
+        st.session_state.nsga_data.append(data_to_add)
+
         self.stream.AddData(data_to_add)
         
         # Manual escape clause
         # if best_f1 < self.threshold:
             # raise StopIteration("Escape triggered: f1 below threshold")
 
-
 class WindFarmScheduling(ElementwiseProblem, _data_handler):
-    def __init__(self, number_of_days, _stream=None):
+    def __init__(self, number_of_days, start_day, _stream=None, verbose=False):
         self.number_of_days = number_of_days
+        self.start_day = start_day
         self.data_handler = _data_handler()
+        
+        st.session_state.current_log = f"Beginning data import..."
+        st.code(st.session_state.current_log, language="markdown")
+
         self.data_handler.BeginImport()
+
+        st.session_state.current_log = f"Data import completed."
+        st.code(st.session_state.current_log, language="markdown")
+
         self.stream = _stream
+        self.verbose=verbose
         # lower = [[0, 0, 0] for _ in range(365)]
         # upper = [[28, 28, 28] for _ in range(365)]
         # print(lower)
         super().__init__(
             n_var=number_of_days*3,          # Number of decision variables
             n_obj=2,          # Number of objectives
-            n_ieq_constr=0,   # Number of inequality constraints
+            n_ieq_constr=1,   # Number of inequality constraints
             # xl = np.array(lower),  # Lower bounds
             # xu = np.array(upper),  # Upper bounds
             xl = np.zeros(self.number_of_days*3, dtype=int),  # Lower bounds
@@ -93,52 +101,42 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         )
 
     def _evaluate(self, x, out, *args, **kwargs):
-<<<<<<< Updated upstream
-        env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, Environment=Environment, _stream = self.stream)
+        env = EnvironmentHandler(x, data_handler=self.data_handler, number_of_days=self.number_of_days, _start_day=self.start_day, Environment=Environment, _stream = self.stream)
+        
+        env.RunSim(verbose=self.verbose)
 
-        env.RunSim(episodes=self.number_of_days, verbose=False)
-        # print(f"{env.reward}")
+        # Objectives
         env.reward["Power_Generated"]
         env.reward["Cost"]
+
+        # Overall reward, not used
         env.reward["Overall"]
-
-        out["F"] = [float(env.reward["Cost"]), float(-env.reward["Power_Generated"])]
-=======
-        env = EnvironmentHandler(
-            x,
-            data_handler=self.data_handler,
-            number_of_days=self.number_of_days,
-            _start_day=self.start_day,
-            Environment=Environment,
-            _stream=self.stream
-        )
-
-        env.RunSim(episodes=self.number_of_days, verbose=self.verbose)
 
         # Constraint
         g = sum(env.wave_height_violations)
 
-        # Objectives
-        cost = env.reward["Cost"]
-        power = env.reward["Power_Generated"]
-
-        out["F"] = [cost, -power]
+        # Out to NSGA
+        out["F"] = [env.reward["Cost"], -(env.reward["new_Power_Generated"])] 
         out["G"] = [g]
-        out["env"] = env 
->>>>>>> Stashed changes
+
+        out["ep_snapshots"] = env.episode_snapshots
+
+        # Save environments to access afterwards
+        # out["env"] = env ## Uses far too much memory
 
 
 class NSGAIII_Interface:
     def __init__(self, nsga_params, _stream=None, st=st):
         self.generations = int(nsga_params['generations'])
         self.population_size = int(nsga_params['population_size'])
+        self.start_day = int(nsga_params['start_day'])
         self.st = st
         self.result = None
         self.num_days = int(nsga_params['days'])
         self.stream = _stream
         # self.run()
 
-    def run(self):
+    def run(self, verbose=False):
         termination = DefaultMultiObjectiveTermination(
         xtol=1e-8,
         cvtol=1e-6,
@@ -148,7 +146,7 @@ class NSGAIII_Interface:
         n_max_evals=self.generations * self.population_size
         )
 
-        problem = WindFarmScheduling(self.num_days, self.stream)
+        problem = WindFarmScheduling(self.num_days, start_day=self.start_day, _stream=self.stream, verbose=verbose)
 
         print("Starting optimization with NSGA-III...")
 
@@ -163,15 +161,15 @@ class NSGAIII_Interface:
                         verbose=True,
                         save_history=True)
         
-        data_to_add = {
-                    "completed": True,
-                    "schedule_actions": [[int(val) for val in row] for row in result.X.tolist()],
-                    "current_dominating_sets":result.F.tolist()
-
-                    }
-        
-        self.stream.AddData(data_to_add)            
         return result
-    
+        # st.write(result.X.tolist())
+        # data_to_add = {
+        #             "completed": True,
+        #             "schedule_actions": [[int(val) for val in row] for row in result.X.tolist()],
+        #             "current_dominating_sets":result.F.tolist()
+        #             }
+        
+        # self.stream.AddData(data_to_add)            
+        
     
 

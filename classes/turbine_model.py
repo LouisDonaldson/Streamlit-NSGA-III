@@ -1,10 +1,11 @@
 import random
 
+
 class Farm:
     def __init__(self, num_turbines, exp_decay_list):
         self.exp_decay_list = exp_decay_list
         self.turbines = [Turbine(i, self.exp_decay_list[0]) for i in range(num_turbines)]
-        
+
     def get_total_power(self, wind_speed):
         total_power = sum(turbine.get_power_produced(wind_speed) for turbine in self.turbines)
         return total_power
@@ -107,6 +108,13 @@ class Turbine:
     def get_power_produced(self, wind_speed):
         # Placeholder for power production logic
         return 0
+    
+    def degrade_turbine(self, degrade_amount):
+        if self.overall_health - degrade_amount < 0:
+            self.overall_health = 0
+        else:
+            self.overall_health -= degrade_amount
+        
 
 
 # component classes
