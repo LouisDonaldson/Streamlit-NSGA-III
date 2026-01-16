@@ -220,21 +220,8 @@ class EnvironmentHandler:
         self.reward['new_Power_Generated'] += power_gen_so_far
         # print(f"Overall power generated: {power_gen_so_far} KWh ({power_gen_so_far / 1000} MWh) | Power lost: {power_lost_so_far} KWh ({power_lost_so_far / 1000} MWh)")
 
-        
-
-            #print(counter)
-
-        
-
-        # if(self.reward['Cost'] == 0):
-        #     print()
-        #     raise EnvironmentError("Cost was")
-
-        
         if(verbose):
             print(f"Episode reward: {cum_reward}\n")
-
-
 
         return self.env    
             # print(f"Distance travelled: {env.episode_distance_travelled}.\nPower gained: {env.episode_power_gained}.\nHealth increase from maintenance: {env.episode_health_increase}\n")

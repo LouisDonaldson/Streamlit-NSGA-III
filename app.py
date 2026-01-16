@@ -632,7 +632,7 @@ if(st.session_state.simulation_finished):
                 n_turbines = heatmap_df.shape[0]
                 n_days = heatmap_df.shape[1]
 
-                heatmap_df.index = [f"Turbine {i+1:02d}" for i in range(n_turbines)]
+                heatmap_df.index = [f"T {i+1:02d}" for i in range(n_turbines)]
                 heatmap_df.columns = [f"Day {i+1}" for i in range(n_days)]
                 return heatmap_df
 
@@ -760,6 +760,9 @@ if(st.session_state.simulation_finished):
 
             def schedule_comparison():
                 # Comparison of 2 schedules
+
+                st.markdown("### 🔄 Schedule Comparison")
+
                 comp_col1, comp_col2 = st.columns(2)
 
                 schedule_one_index = 0
@@ -797,11 +800,6 @@ if(st.session_state.simulation_finished):
                 # Avoid division by zero
                 cost_pct = (cost_diff / cost1 * 100) if cost1 != 0 else 0
                 power_pct = (power_diff / power1 * 100) if power1 != 0 else 0
-
-                # CfD inputs
-                st.markdown("### 🔄 Schedule Comparison")
-
-                
 
                 # Calculate profits
                 profit1 = (strike_price - market_price) * power1 - cost1
