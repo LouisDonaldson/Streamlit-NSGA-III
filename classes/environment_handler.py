@@ -217,7 +217,7 @@ class EnvironmentHandler:
             
             print()
 
-        self.reward['new_Power_Generated'] = power_gen_so_far
+        self.reward['new_Power_Generated'] += power_gen_so_far
         # print(f"Overall power generated: {power_gen_so_far} KWh ({power_gen_so_far / 1000} MWh) | Power lost: {power_lost_so_far} KWh ({power_lost_so_far / 1000} MWh)")
 
         

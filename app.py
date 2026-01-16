@@ -127,12 +127,15 @@ if st.session_state.show_parameters == True:
     
     days = st.number_input("Days (1-28)", min_value=1, value=7, max_value=28)
 
-    start_day = st.slider(f"Select start day (max value is {365 - days} days)", min_value=0, max_value=365 - days, value=0 )
+    start_day = st.slider(f"Select start day (max value is {100 - days} days)", min_value=0, max_value=100 - days, value=0 )
+
+    days_to_display = 100
 
     def display_wave_height_graph(days):
         # Visualise wave height average and choose which weather window will be chosen.
         wave_df = pd.read_csv("data/daily_averages.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
         wave_df["Hs"] = wave_df["Hs"].astype(float)
+        wave_df = wave_df.iloc[0:days_to_display-1]
     
         window = days  # e.g., 7‑day execution window
         wave_df["highlight"] = wave_df["day_number"].between(start_day, start_day + window)
@@ -153,7 +156,6 @@ if st.session_state.show_parameters == True:
 
         st.altair_chart(chart, use_container_width=True)
     
-
     def display_wind_graph(days):
         # Visualise wave height average and choose which weather window will be chosen.
         df = pd.read_csv("data/mast_hourly_avg.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
@@ -176,6 +178,7 @@ if st.session_state.show_parameters == True:
         )
 
         window = days
+        daily_df = daily_df.iloc[0:days_to_display-1]
         daily_df["highlight"] = daily_df["day_number"].between(start_day, start_day + window)
 
         # Build Altair chart (matching your wave_df style)
@@ -204,7 +207,6 @@ if st.session_state.show_parameters == True:
     with st.expander("Wave height graph", expanded=True):
         display_wave_height_graph(days)
     with st.expander("Wind speed graph", expanded=True):
-        st.warning("REMINDER: There's currently a 72 day discrepency between both datasets. This needs sorting.")
         display_wind_graph(days)
 
     # 2015-09-10 23:00:00
