@@ -242,7 +242,7 @@ class Environment:
         if(intepreted_action["do_nothing"] == False and intepreted_action["return_to_port"] == False):
             turbine_maintained = intepreted_action["maintenance_details"]["turbine_id"] - 1 # -1 for 0 index
             _percentage_degradation = self.turbine_health[turbine_maintained] / 100
-            power_lost = (self.data_handler.FindPowerInMaintenanceWindow(episode, current_step, hours_skipped)) * _percentage_degradation
+            power_lost = (self.data_handler.FindPowerInMaintenanceWindow(episode, current_step, self.start_day, hours_skipped)) * _percentage_degradation
 
          
         reward += self.calculate_reward(maintenance_type, health_increase, self.current_distance_travelled, intepreted_action, hours_skipped, current_step, env, episode)
@@ -296,7 +296,6 @@ class Environment:
 
         return data[offset]["Hs"]
     
-
     def calculate_reward(self, maintenance_type, health_increase, distance_travelled, action, time_skipped, current_step, env, episode):
         # reward is calculated based on the cumulative turbine health / the distance travelled
 

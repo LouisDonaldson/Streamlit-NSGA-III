@@ -26,7 +26,6 @@ st.set_page_config(
     page_icon="🌊"
 )
 
-
 if "running" not in st.session_state:
     st.session_state.running = False
 
@@ -128,29 +127,89 @@ if st.session_state.show_parameters == True:
     
     days = st.number_input("Days (1-28)", min_value=1, value=7, max_value=28)
 
-    # Visualise wave height average and choose which weather window will be chosen.
-    wave_df = pd.read_csv("data/daily_averages.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
-    wave_df["Hs"] = wave_df["Hs"].astype(float)
     start_day = st.slider(f"Select start day (max value is {365 - days} days)", min_value=0, max_value=365 - days, value=0 )
-   
-    window = days  # e.g., 7‑day execution window
-    wave_df["highlight"] = wave_df["day_number"].between(start_day, start_day + window)
-    chart = (
-        alt.Chart(wave_df)
-        .mark_bar()
-        .encode(
-            x=alt.X("day_number:O", title="Day of Year"),
-            y=alt.Y("Hs:Q", title="Avg Wave Height (m)"),
-            color=alt.condition(
-                "datum.highlight == true",
-                alt.value("#ff7f0e"),   # highlighted bars
-                alt.value("#1f77b4")    # normal bars
-            ),
-            tooltip=["day_number", "Hs"]
-        )
-    )
 
-    st.altair_chart(chart, use_container_width=True)
+    def display_wave_height_graph(days):
+        # Visualise wave height average and choose which weather window will be chosen.
+        wave_df = pd.read_csv("data/daily_averages.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
+        wave_df["Hs"] = wave_df["Hs"].astype(float)
+    
+        window = days  # e.g., 7‑day execution window
+        wave_df["highlight"] = wave_df["day_number"].between(start_day, start_day + window)
+        chart = (
+            alt.Chart(wave_df)
+            .mark_bar()
+            .encode(
+                x=alt.X("day_number:O", title="Day of Year"),
+                y=alt.Y("Hs:Q", title="Avg Wave Height (m)"),
+                color=alt.condition(
+                    "datum.highlight == true",
+                    alt.value("#ff7f0e"),   # highlighted bars
+                    alt.value("#1f77b4")    # normal bars
+                ),
+                tooltip=["day_number", "Hs"]
+            )
+        )
+
+        st.altair_chart(chart, use_container_width=True)
+    
+
+    def display_wind_graph(days):
+        # Visualise wave height average and choose which weather window will be chosen.
+        df = pd.read_csv("data/mast_hourly_avg.csv")  # Assuming wave data is in this CSV file with 'date' and 'wave_height' columns
+
+        # Parse timestamp
+        df["TIMESTAMP"] = pd.to_datetime(df["TIMESTAMP"])
+
+        # Extract day of year
+        df["day_number"] = df["TIMESTAMP"].dt.dayofyear
+
+        # Choose the wind speed column you want to average
+        wind_col = "ANx_80_WS_Avg"
+
+        # Compute daily average wind speed
+        daily_df = (
+            df.groupby("day_number")[wind_col]
+            .mean()
+            .reset_index()
+            .rename(columns={wind_col: "wind_speed"})
+        )
+
+        window = days
+        daily_df["highlight"] = daily_df["day_number"].between(start_day, start_day + window)
+
+        # Build Altair chart (matching your wave_df style)
+        chart = (
+            alt.Chart(daily_df)
+            .mark_bar()
+            .encode(
+                x=alt.X("day_number:O", title="Day of Year"),
+                y=alt.Y("wind_speed:Q", title="Avg Wind Speed (m/s)"),
+                color=alt.condition(
+                    "datum.highlight == true",
+                    alt.value("#ff7f0e"),   # highlighted bars
+                    alt.value("#1f77b4")    # normal bars
+                ),
+                tooltip=["day_number", "wind_speed"]
+            )
+            .properties(
+                title="Daily Average Wind Speed",
+                width=700,
+                height=400
+            )
+        )
+
+        st.altair_chart(chart, use_container_width=True)
+
+    with st.expander("Wave height graph", expanded=True):
+        display_wave_height_graph(days)
+    with st.expander("Wind speed graph", expanded=True):
+        st.warning("REMINDER: There's currently a 72 day discrepency between both datasets. This needs sorting.")
+        display_wind_graph(days)
+
+    # 2015-09-10 23:00:00
+    # 07/01/2015 16:00
+
 
 
     st.write(f"Maximum number of evaluations will be: ```{max_generations * population_size}```")
@@ -206,6 +265,7 @@ if st.session_state.get("run", True):
     st.session_state.simulation_finished = True
     st.rerun()
 
+#### Simulation has finished - render results
 if(st.session_state.simulation_finished):
     # simulation finished. Show results below
     st.success("Simulation completed.")
@@ -264,7 +324,6 @@ if(st.session_state.simulation_finished):
             plt.legend()
 
             st.pyplot(plt)
-
 
         def Plot_Pareto_Generations():
             #
@@ -676,7 +735,9 @@ if(st.session_state.simulation_finished):
                 strike_price = st.number_input("CfD Strike Price (£/MWh)", min_value=1, value=80)
 
             with col_market:
-                market_price = st.number_input("Market Price (£/MWh)", min_value=1, value=50)
+                market_price = st.number_input("Market Price (£/MWh)", min_value=0, value=50)
+
+            st.metric("1 MWh Price", f"💵 {(strike_price - market_price) * 1} £/MWh")
 
             # Flip power generation back to positive
             true_power = -st.session_state.result.F[:, 1]
@@ -757,9 +818,9 @@ if(st.session_state.simulation_finished):
 
                 with colB:
                     st.markdown(f"#### Schedule {schedule_two_index + 1}")
-                    st.metric("💰 Cost", f"£{cost2:,.2f}", delta=f"{cost_diff:,.2f} (£{cost_pct:+.1f}%)")
+                    st.metric("💰 Cost", f"£{cost2:,.2f}", delta=f"£{cost_diff:,.2f} (£{cost_pct:+.1f}%)")
                     st.metric("⚡ Power", f"{power2:,.2f} MWh", delta=f"{power_diff:,.2f} ({power_pct:+.1f}%)")
-                    st.metric("💰 Profit", f"£{profit2:,.2f}", delta=f"{profit_diff:,.2f} (£{profit_pct:+.1f}%)")
+                    st.metric("💰 Profit", f"£{profit2:,.2f}", delta=f"£{profit_diff:,.2f} (£{profit_pct:+.1f}%)")
                 
             def schedule_details():
                 st.session_state.schedule_index = st.selectbox(

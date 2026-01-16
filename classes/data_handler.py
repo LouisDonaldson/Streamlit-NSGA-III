@@ -107,14 +107,14 @@ class DataHandler:
 
         return hourly_df
 
-    def FindPowerGenerated(self, episode, hours=24):
+    def FindPowerGenerated(self, episode, day_offset, hours=24):
         """
         Fast version: uses precomputed NumPy arrays instead of pandas slicing.
         Returns total power for the given episode (day).
         """
 
         # Get the pre-cached wind speeds for this day
-        wind_speeds = self.wind_by_day[episode + 2]   # NumPy array, length 24
+        wind_speeds = self.wind_by_day[episode + day_offset + 2]   # NumPy array, length 24
 
         # Convert wind speeds to power using vectorised operations
         total = 0.0
@@ -128,14 +128,14 @@ class DataHandler:
         # Sum the day's power
         return power_curve.sum()
 
-    def FindPowerInMaintenanceWindow(self, episode, current_step, time_skipped=3):
+    def FindPowerInMaintenanceWindow(self, episode, current_step, day_offset, time_skipped=3):
         # Map step to hour index
         step_to_hour = {0: 9, 3: 12, 6: 15}
         start_hour = step_to_hour[current_step]
         end_hour = start_hour + time_skipped
 
         # Use your precomputed NumPy array
-        winds = self.wind_by_day[episode + 2][start_hour:end_hour]
+        winds = self.wind_by_day[episode + day_offset + 2][start_hour:end_hour]
 
         total = 0.0
         for w in winds:
@@ -178,7 +178,7 @@ class DataHandler:
         frac = (wind - lower) / (upper - lower)
 
         # Linear interpolation
-        return p_low + frac * (p_high - p_low)
+        return p_low + frac * (p_high - p_low) 
 
     def PowerFromWind(self, wind):
         if wind < 0.0:
