@@ -734,10 +734,10 @@ if(st.session_state.simulation_finished):
             st.markdown("#### Schedules from Final Population")
             col_strike, col_market = st.columns(2)
             with col_strike:
-                strike_price = st.number_input("CfD Strike Price (£/MWh)", min_value=1, value=80)
+                strike_price = st.number_input("CfD Strike Price (£/MWh)", min_value=1, value=90)
 
             with col_market:
-                market_price = st.number_input("Market Price (£/MWh)", min_value=0, value=50)
+                market_price = st.number_input("Market Price (£/MWh)", min_value=0, value=0)
 
             st.metric("1 MWh Price", f"💵 {(strike_price - market_price) * 1} £/MWh")
 
