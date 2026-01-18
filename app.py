@@ -129,7 +129,7 @@ if st.session_state.show_parameters == True:
 
     start_day = st.slider(f"Select start day (max value is {100 - days} days)", min_value=0, max_value=100 - days, value=0 )
 
-    days_to_display = 100
+    days_to_display = 150
 
     def display_wave_height_graph(days):
         # Visualise wave height average and choose which weather window will be chosen.
@@ -244,8 +244,6 @@ if st.session_state.get("run", True):
     st.session_state.run = False
     st.session_state.nsga_data = []
     # st.session_state.sim_envs = []
-
-   
 
     st.session_state.result = start_simulation(
         st.session_state.nsga_params,
