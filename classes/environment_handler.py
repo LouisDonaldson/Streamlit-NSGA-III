@@ -111,6 +111,8 @@ class EnvironmentHandler:
         power_gen_so_far = 0
         power_lost_so_far = 0
 
+        turbine_power_gen_overall_snapshot = []
+
         if(verbose):
             print("Starting simulation...")
 
@@ -138,6 +140,9 @@ class EnvironmentHandler:
             episode_hours_skipped = 0
 
             day_power_lost = 0 # Power lost due to turbine downtime
+
+            turbine_ep_power_gen = np.zeros(len(self.env.turbines.turbines))
+            # arr = 
 
             for s in range(0, self.env.step_limit):
                 action = self.GetAction(int(state), episode)
@@ -186,6 +191,7 @@ class EnvironmentHandler:
             
             farm_wide_power_generated = 0
             turbines_health = []
+            
             for i, t in enumerate(self.env.turbines.turbines):
                 raw_health = t.overall_health / 100
                 t_health = 0.8 + 0.2 * raw_health
@@ -197,10 +203,12 @@ class EnvironmentHandler:
                 # print(f"T{i+1} | Possible power: {possible_power_production} | Turbine Health: {t_health*100}% | Actual power: {possible_power_production * t_health}")
                 
                 farm_wide_power_generated += (possible_power_production * t_health)
+                turbine_ep_power_gen[i] = possible_power_production * t_health
 
             # print("---------------")
             # print(f"Farm wide production: {farm_wide_power_generated} KWh ({farm_wide_power_generated / 1000} MWh) | Power lost: {day_power_lost} KWh")
 
+            # turbine_power_gen_overall_snapshot.append(turbine_ep_power_gen)
 
             self.episode_snapshots.append({
                 "day": episode + 1,
@@ -208,7 +216,8 @@ class EnvironmentHandler:
                 "generated_power": farm_wide_power_generated - day_power_lost,
                 "potential_generated_power": farm_wide_power_generated,
                 "power_lost": day_power_lost,
-                "cost": self.reward["Cost"]
+                "cost": self.reward["Cost"],
+                "t_power": turbine_ep_power_gen
             })
             # farm_wide_power_generated = single_turbine_power_generated * len(self.env.turbines.turbines)
 

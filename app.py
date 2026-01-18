@@ -636,6 +636,8 @@ if(st.session_state.simulation_finished):
 
             df = extract_t_health_from_snapshot(snapshots[schedule_num])
             
+            st.write(df)
+
             fig = px.imshow(
                 df,
                 color_continuous_scale=[
@@ -661,6 +663,57 @@ if(st.session_state.simulation_finished):
                         The turbine health can be between 0% and 100% and will decay at an exponential rate. 
                         The greater the health, the more energy production possible by each turbine.''')
             
+            st.plotly_chart(fig, use_container_width=True)
+
+        def turbine_power_heatmap(schedule_num):
+            # st.write(snapshots)
+            def extract_t_power_from_snapshot(snapshot):
+                turbine_power = []
+                for s in snapshot:
+                    turbine_power.append(s["t_power"])   # <-- changed key
+
+                df = pd.DataFrame(turbine_power)
+                heatmap_df = df.T
+
+                n_turbines = heatmap_df.shape[0]
+                n_days = heatmap_df.shape[1]
+
+                heatmap_df.index = [f"T {i+1:02d}" for i in range(n_turbines)]
+                heatmap_df.columns = [f"Day {i+1}" for i in range(n_days)]
+                return heatmap_df
+
+            df = extract_t_power_from_snapshot(snapshots[schedule_num])
+            st.write(df)
+
+            fig = px.imshow(
+                df,
+                color_continuous_scale=[
+                    (0.0, "#d73027"),   # red (low power)
+                    (0.5, "#fee08b"),   # yellow
+                    (1.0, "#1a9850")    # green (high power)
+                ],
+                aspect="auto",
+                labels=dict(x="Day", y="Turbine", color="Power"),   # <-- updated
+            )
+
+            fig.update_layout(
+                xaxis_side="top",
+                margin=dict(l=60, r=20, t=60, b=20),
+                coloraxis_colorbar=dict(
+                    title="Energy (KWh)",      # <-- updated
+                    ticks="outside"
+                )
+            )
+
+            st.markdown('''
+            This heatmap shows the **energy output** of each turbine across the optimisation window.
+            Power values reflect the actual energy produced by each turbine per day.
+            Higher values indicate stronger production, while lower values may reflect
+            weather constraints, or reduced turbine performance.
+            
+            **The downtime of turbines is not shown in this diagram however is calculated in the final energy production of the schedule.**
+            ''')
+
             st.plotly_chart(fig, use_container_width=True)
 
         def ShowSchedules():
@@ -1103,6 +1156,9 @@ if(st.session_state.simulation_finished):
                         
                         with st.expander("Turbine Health Heatmap"):
                             turbine_health_heatmap(st.session_state.schedule_index)
+
+                        with st.expander("Turbine Energy Generation"):
+                            turbine_power_heatmap(st.session_state.schedule_index)
 
             if len(sorted_schedules) > 1:
                 schedule_comparison()
