@@ -371,7 +371,7 @@ if(st.session_state.simulation_finished):
             # 
             plt.clf()
 
-            st.markdown("### Convergence of Cost")
+            st.markdown("#### Convergence of Cost")
 
 
             # Track the minimum cost over generations
@@ -390,7 +390,7 @@ if(st.session_state.simulation_finished):
             # Convergence of Power Generated
             # 
 
-            st.markdown("### Convergence of Power Generated")
+            st.markdown("#### Convergence of Power Generated")
 
             plt.clf() 
             y_history = [-np.max(entry.pop.get("F")[:, 1]) for entry in st.session_state.result.history]
@@ -410,7 +410,7 @@ if(st.session_state.simulation_finished):
             # Convergence Via Hypervolume
             #
 
-            st.markdown("### Convergence via Hypervolume")
+            st.markdown("#### Convergence via Hypervolume")
 
             st.markdown('''Hypervolume convergence graphs are an informative way to understand 
                         how the model is progressing. It is the volume of objective space 
@@ -656,6 +656,10 @@ if(st.session_state.simulation_finished):
                 )
             )
 
+            st.markdown('''This shows the overall health of all turbine components for each turbine across the window of optimisation.
+                        In this model, the health of the turbine reflects the energy production efficiency.
+                        The turbine health can be between 0% and 100% and will decay at an exponential rate. 
+                        The greater the health, the more energy production possible by each turbine.''')
             
             st.plotly_chart(fig, use_container_width=True)
 
