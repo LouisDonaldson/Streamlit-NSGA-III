@@ -217,6 +217,13 @@ if st.session_state.show_parameters == True:
     st.write(f"Maximum number of evaluations will be: ```{max_generations * population_size}```")
 
     st.session_state.auto_plot = st.checkbox("Auto-run visualisation after optimisation finishes", value=True)
+    llm_analysis = st.checkbox("Automatically add GPT Summaries", value=False)
+    if llm_analysis:
+        if "api_key" in st.session_state:
+            if st.session_state.api_key:
+                st.success("API key successfully added.")
+            else:
+                st.warning("Please add API key in the sidebar to continue")
 
     params = {
         "generations": max_generations,
@@ -228,10 +235,24 @@ if st.session_state.show_parameters == True:
     if st.button("Start Simulation"):
         ## parameters are valid
         # running simulation
-        st.session_state.show_parameters = False
-        st.session_state.run = True
-        st.session_state.nsga_params = params
-        st.rerun()
+
+        #config check
+        config_correct = True
+
+        ## LLM Analysis check
+        if llm_analysis:
+            if "api_key" in st.session_state:
+                if not st.session_state.api_key:
+                    st.warning("Please add API key if you want to use GPT summaries.")
+                    config_correct = False
+                else:
+                    st.session_state.summary_gpt_session = GPTSession(api_key=st.session_state.api_key)
+                    
+        if config_correct:
+            st.session_state.show_parameters = False
+            st.session_state.run = True
+            st.session_state.nsga_params = params
+            st.rerun()
 
 
     st.divider()
@@ -288,6 +309,42 @@ if(st.session_state.simulation_finished):
         snapshots = st.session_state.result.opt.get("ep_snapshots")[sorted_indices] # Snapshots of information produced per day
         # st.write(snapshots[0])
 
+        def GPT_Summary_Handler(data_to_attach, prompt, name, initial=False):
+            if "summary_gpt_session" in st.session_state:
+                if initial:
+                    # initialisation
+                    response = st.session_state.summary_gpt_session.chat("Anything I send you is relating to my NSGA3 dashboard which is running to find optimal maintenance operation schedules for an offshore wind farm. Make sure your responses are formatted in such a way that they can be streamed as a response straight into an st.write() but don't mention anything about streamlit.")
+                    if response['status_code'] == 200:
+                        return True
+                    else:
+                        return False
+                else:
+                    if "gpt_summaries" in st.session_state:
+                        # check is summary already stored
+                        for summary in st.session_state.gpt_summaries:
+                            if summary['name'] == name:
+                                with st.expander("GPT Summary"):
+                                    st.write(summary['text'])
+                                    return True
+                        
+                        # summary not stored - send new message
+                        try:
+                            # Send message to GPT and render
+                            response = st.session_state.summary_gpt_session.chat(f"'{data_to_attach}'. Please analyse this data from the following prompt: \n{prompt}")["response"]
+                            st.session_state.gpt_summaries.append({
+                                "name": name,
+                                "text": response
+                            })
+                            with st.expander("GPT Summary"):
+                                st.write(response)
+                        except:
+                            st.error("Error with GPT Summary")
+                    else:
+                        st.session_state.gpt_summaries = []
+                   
+
+                   
+            return
 
         def Plot_Pareto_Final():
             #
@@ -324,6 +381,16 @@ if(st.session_state.simulation_finished):
             plt.legend()
 
             st.pyplot(plt)
+
+            if "summary_gpt_session" in st.session_state:
+                data_to_send = {
+                    "cost": sorted_objectives[:, 0],
+                    "energy_produced": true_power[sorted_indices]
+                }
+
+                prompt = "The following dataset was used to plot the pareto front. Can you analyse this? Only send a concise summary"
+
+                GPT_Summary_Handler(data_to_send, prompt, name="pareto_front_final")
 
         def Plot_Pareto_Generations():
             #
@@ -385,6 +452,13 @@ if(st.session_state.simulation_finished):
         
             st.pyplot(plt)
 
+            if "summary_gpt_session" in st.session_state:
+                data_to_send = {
+                    "cost_history": cost_history,
+                }
+                prompt = "The following dataset was used to plot the cost convergence. Can you analyse this? Only send a concise summary"
+                GPT_Summary_Handler(data_to_send, prompt, name="cost_convergence")
+
         def Plot_Power_Convergence():
             #
             # Convergence of Power Generated
@@ -402,6 +476,13 @@ if(st.session_state.simulation_finished):
             plt.legend()
 
             st.pyplot(plt)
+
+            if "summary_gpt_session" in st.session_state:
+                data_to_send = {
+                    "cost_history": y_history,
+                }
+                prompt = "The following dataset was used to plot the power convergence. Can you analyse this? Only send a concise summary."
+                GPT_Summary_Handler(data_to_send, prompt, name="power_convergence")
 
             ###############################################################################
 
@@ -429,6 +510,13 @@ if(st.session_state.simulation_finished):
             plt.legend()
 
             st.pyplot(plt)
+
+            if "summary_gpt_session" in st.session_state:
+                data_to_send = {
+                    "hypervolume_history": hv_history,
+                }
+                prompt = "The following dataset was used to plot the hypervolume convergence. Can you analyse this? Only send a concise summary."
+                GPT_Summary_Handler(data_to_send, prompt, name="hypervolume_convergence")
             ################################################################################
 
         def Plot_GD_Convergence():
@@ -557,6 +645,15 @@ if(st.session_state.simulation_finished):
                 fig2, ax2 = plt.subplots()
                 shap.summary_plot(shap_values_power, X, feature_names=feature_names, show=False)
                 st.pyplot(fig2)
+
+                if "summary_gpt_session" in st.session_state:
+                    data_to_send = {
+                        "shap_values_power": shap_values_power,
+                        "shap_values_cost": shap_values_cost
+                    }
+                    prompt = "The following dataset was used to show SHAP. Can you analyse this?"
+                    GPT_Summary_Handler(data_to_send, prompt, name="SHAP_init_analysis")
+                
                 st.divider()
 
                 ################################################################################
@@ -660,6 +757,12 @@ if(st.session_state.simulation_finished):
                 )
 
                 st.plotly_chart(fig, use_container_width=True)
+                st.markdown("#### 🎨 What this heatmap shows")
+                st.markdown("- Red → strong conflict \n(slot helps one objective but hurts the other)")
+                        
+                st.markdown("- Blue → strong synergy\n(slot helps or hurts both objectives together)")
+                        
+                st.markdown("- White → neutral / irrelevant\nThis gives you a tension map across the entire schedule.")
 
             st.divider()
 
@@ -925,6 +1028,17 @@ if(st.session_state.simulation_finished):
                     st.metric("💰 Cost", f"£{cost2:,.2f}", delta=f"£{cost_diff:,.2f} (£{cost_pct:+.1f}%)")
                     st.metric("⚡ Power", f"{power2:,.2f} MWh", delta=f"{power_diff:,.2f} ({power_pct:+.1f}%)")
                     st.metric("💰 Profit", f"£{profit2:,.2f}", delta=f"£{profit_diff:,.2f} (£{profit_pct:+.1f}%)")
+
+                if "summary_gpt_session" in st.session_state:
+                    data_to_send = {
+                        "schedules:": sorted_objectives,
+                        "strike_price": strike_price,
+                        "market_price": market_price,
+                    }
+
+                    prompt = "The following dataset was used to compare schedules. Can you analyse this comparing all schedules with profitability and tradeoff justification?"
+
+                    GPT_Summary_Handler(data_to_send, prompt, name="sched_comparison")
                 
             def schedule_details():
                 st.session_state.schedule_index = st.selectbox(
@@ -1214,6 +1328,12 @@ if(st.session_state.simulation_finished):
                 
             schedule_details()
         
+        if "summary_gpt_session" in st.session_state:
+            if GPT_Summary_Handler("", "", "initial", initial=True):
+                st.success("Summary GPT session initialised.")
+            else:
+                st.error("Summary GPT session error. Could not initialise")
+
         ## plot pareto
         st.markdown("### Pareto Front of Final Population")
         if "plot_pareto" in st.session_state or st.session_state.auto_plot:
@@ -1269,9 +1389,12 @@ if(st.session_state.simulation_finished):
         
         SurrogateModels_WithSHAP()
 
+        # GPT_Summary_Handler("", "Say hello to me :)")
+
+
 
 ## Chatbot Sidebar
-def GPT_Handler():
+def GPT_Sidebar_Handler():
 
     # --- Session State Setup ---
     if "api_key" not in st.session_state:
@@ -1337,7 +1460,8 @@ def GPT_Handler():
                     st.session_state.gpt_session.chat(summary_text)
                     st.session_state.gpt_data_initialised = True
                     st.rerun()
-                    
+
+          
 
         if user_input:
             # # Save user message
@@ -1353,6 +1477,9 @@ def GPT_Handler():
 
             st.rerun()
 
-GPT_Handler()
+
+GPT_Sidebar_Handler()
+
+
 
 
