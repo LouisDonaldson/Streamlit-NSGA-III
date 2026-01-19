@@ -615,6 +615,52 @@ if(st.session_state.simulation_finished):
                 ax.grid(False)
                 plt.title("SHAP Importance Heatmap for Power Generation Objective")
                 st.pyplot(plt)
+
+                st.divider()
+
+                st.markdown("### SHAP Conflict Map (Cost vs Energy Production)")
+                # -----------------------------
+                # 4. Compute conflict score per action slot
+                #    (sign disagreement frequency)
+                # -----------------------------
+                shap_cost = shap_values_cost.values
+                shap_power = shap_values_power.values
+
+
+                sign_cost = np.sign(shap_cost)
+                sign_power = np.sign(shap_power)
+
+                # Boolean matrix: True where signs disagree
+                sign_disagree = sign_cost != sign_power
+
+                # Conflict score per feature (0 to 1)
+                conflict_score = sign_disagree.mean(axis=0)
+
+                # -----------------------------
+                # 5. Build a heatmap-friendly matrix
+                # -----------------------------
+                heatmap_matrix = conflict_score.reshape(1, -1)  # single row
+
+                # -----------------------------
+                # 6. Plotly heatmap
+                # -----------------------------
+                fig = px.imshow(
+                    heatmap_matrix,
+                    labels=dict(x="Action Slot", y="", color="Conflict Level"),
+                    x=feature_names,
+                    y=["Conflict"],
+                    color_continuous_scale="RdBu",
+                    aspect="auto",
+                )
+
+                fig.update_layout(
+                    title="Conflict Heatmap (Cost vs Energy SHAP)",
+                    xaxis_title="Action Slots",
+                    yaxis_title="",
+                )
+
+                st.plotly_chart(fig, use_container_width=True)
+
             st.divider()
 
         def turbine_health_heatmap(schedule_num):
