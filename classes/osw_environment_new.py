@@ -29,7 +29,7 @@ class Environment:
         # Shows each turbine's health
         
         self.current_distance_travelled = 0
-        self.turbine_health_decrease_list = [0] * 500
+        self.turbine_health_decrease_list = [0] * 300
         turbine_decay_rate = 0.01
 
         self.levelised_cost_of_electricity = 70

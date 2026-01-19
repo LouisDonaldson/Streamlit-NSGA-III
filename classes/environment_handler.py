@@ -28,6 +28,7 @@ class EnvironmentHandler:
         self.hours_performing_maintenance = 0
         self.episode_snapshots = []
         self.turbine_health_snapshots = []
+
         #self.GetAction(0)
         
         return
@@ -194,14 +195,17 @@ class EnvironmentHandler:
             
             for i, t in enumerate(self.env.turbines.turbines):
                 raw_health = t.overall_health / 100
-                t_health = 0.8 + 0.2 * raw_health
+                t_health = raw_health
 
-                 # / 100 to convert to scalar. 100% health = 1
+                if t.overall_health < self.env.turbine_health_threshhold:
+                    possible_power_production = 0
+                else:
+                    # t_health = 0.8 + 0.2 * raw_health
+                    possible_power_production = self.env.data_handler.FindPowerGenerated(episode, day_offset = self.env.start_day)
+                    
                 turbines_health.append(t.overall_health)
-                possible_power_production = self.env.data_handler.FindPowerGenerated(episode, day_offset = self.env.start_day)
-                
-                # print(f"T{i+1} | Possible power: {possible_power_production} | Turbine Health: {t_health*100}% | Actual power: {possible_power_production * t_health}")
-                
+                    # print(f"T{i+1} | Possible power: {possible_power_production} | Turbine Health: {t_health*100}% | Actual power: {possible_power_production * t_health}")
+                    
                 farm_wide_power_generated += (possible_power_production * t_health)
                 turbine_ep_power_gen[i] = possible_power_production * t_health
 

@@ -204,9 +204,9 @@ if st.session_state.show_parameters == True:
 
         st.altair_chart(chart, use_container_width=True)
 
-    with st.expander("Wave height graph", expanded=True):
+    with st.expander("Average Daily Wave Height Graph", expanded=True):
         display_wave_height_graph(days)
-    with st.expander("Wind speed graph", expanded=True):
+    with st.expander("Avergage Daily Wind Speed Graph", expanded=True):
         display_wind_graph(days)
 
     # 2015-09-10 23:00:00
@@ -636,7 +636,8 @@ if(st.session_state.simulation_finished):
 
             df = extract_t_health_from_snapshot(snapshots[schedule_num])
             
-            st.write(df)
+            with st.expander("Turbine Health Dataset"):
+                st.write(df)
 
             fig = px.imshow(
                 df,
@@ -683,7 +684,9 @@ if(st.session_state.simulation_finished):
                 return heatmap_df
 
             df = extract_t_power_from_snapshot(snapshots[schedule_num])
-            st.write(df)
+            
+            with st.expander("Turbine Energy Generation Dataset"):
+                st.write(df)
 
             fig = px.imshow(
                 df,
@@ -693,14 +696,14 @@ if(st.session_state.simulation_finished):
                     (1.0, "#1a9850")    # green (high power)
                 ],
                 aspect="auto",
-                labels=dict(x="Day", y="Turbine", color="Power"),   # <-- updated
+                labels=dict(x="Day", y="Turbine", color="Power"),
             )
 
             fig.update_layout(
                 xaxis_side="top",
                 margin=dict(l=60, r=20, t=60, b=20),
                 coloraxis_colorbar=dict(
-                    title="Energy (KWh)",      # <-- updated
+                    title="Energy (KWh)",
                     ticks="outside"
                 )
             )
