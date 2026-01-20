@@ -413,6 +413,10 @@ if(st.session_state.simulation_finished):
             # Pareto Front of Generations
             #
             plt.clf() 
+            
+            # ---------------------------------------
+            # Build arrays of all points across gens
+            # ---------------------------------------
             all_x = []
             all_y = []
             all_gen = []
@@ -420,33 +424,67 @@ if(st.session_state.simulation_finished):
             num_to_show = len(st.session_state.result.history)
 
             for gen, entry in enumerate(st.session_state.result.history):
-                if(gen % (len(st.session_state.result.history) // num_to_show) != 0):
+                if gen % (len(st.session_state.result.history) // num_to_show) != 0:
                     continue
+
                 F = entry.pop.get("F")
                 for cost, power in F:
                     all_x.append(cost)
-                    all_y.append(-power)  
-                    all_gen.append(gen)   
+                    all_y.append(-power)   # keep your sign convention
+                    all_gen.append(gen)
 
             all_x = np.array(all_x)
             all_y = np.array(all_y)
             all_gen = np.array(all_gen)
 
-            plt.figure(figsize=(10, 6))
-            sc = plt.scatter(all_x, all_y, c=all_gen, cmap='viridis', s=40,)
-            plt.plot(sorted_objectives[:, 0], true_power[sorted_indices], c='red', linewidth=2.5, label="Global Pareto Front")
+            # ---------------------------------------
+            # Create Plotly figure
+            # ---------------------------------------
+            fig = go.Figure()
 
+            # Scatter of all generations
+            fig.add_trace(go.Scatter(
+                x=all_x,
+                y=all_y,
+                mode="markers",
+                marker=dict(
+                    size=6,
+                    color=all_gen,
+                    colorscale="Viridis",
+                    showscale=True,
+                    colorbar=dict(title="Generation Index")
+                ),
+                name="Population Points"
+            ))
 
-            cbar = plt.colorbar(sc)
-            cbar.set_label('Generation Index')
+            # Global Pareto front line
+            fig.add_trace(go.Scatter(
+                x=sorted_objectives[:, 0],
+                y=true_power[sorted_indices],
+                mode="lines",
+                line=dict(color="red", width=3),
+                name="Global Pareto Front"
+            ))
 
-            plt.xlabel('Cost (£)')
-            plt.ylabel('Power Generated (KWh)')
-            plt.title('Pareto Front Evolution Across Generations')
-            plt.grid(True)
-            plt.tight_layout()
+            # ---------------------------------------
+            # Layout styling
+            # ---------------------------------------
+            fig.update_layout(
+                title="Pareto Front Evolution Across Generations",
+                xaxis_title="Cost (£)",
+                yaxis_title="Power Generated (KWh)",
+                template="plotly_white",
+                height=600,
+            )
 
-            st.pyplot(plt)
+            # Optional: grid-like look
+            fig.update_xaxes(showgrid=True, gridcolor="lightgrey")
+            fig.update_yaxes(showgrid=True, gridcolor="lightgrey")
+
+            # ---------------------------------------
+            # Streamlit render
+            # ---------------------------------------
+            st.plotly_chart(fig, use_container_width=True)
 
         def Plot_Cost_Convergence():
             #
