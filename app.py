@@ -115,6 +115,15 @@ st.link_button("Further Information and documentation", "https://mammoth-cough-7
 
 st.divider()
 
+def GPT_Summary_Button():
+    ## LLM Analysis check
+    if "api_key" in st.session_state:
+        if not st.session_state.api_key:
+            st.warning("Please add API key in sidebar if you want to use GPT summaries.")
+        else:
+            st.session_state.summary_gpt_session = GPTSession(api_key=st.session_state.api_key)
+            st.rerun()
+
 # Configuration box
 # If simulation not started, show configuration box
 if st.session_state.show_parameters == True:
@@ -296,6 +305,12 @@ if(st.session_state.simulation_finished):
     if st.session_state.result.F is None:
         st.info('''No results have been found. Please reload the page and edit the model parameters''')
     else:
+        
+        ## Allows users to generate summaries after completion
+        if not "summary_gpt_session" in st.session_state:
+            if st.button("Generate GPT Summaries"):
+                GPT_Summary_Button()
+
         # Flip power generation back to positive
         true_power = -st.session_state.result.F[:, 1]
 
@@ -354,7 +369,7 @@ if(st.session_state.simulation_finished):
 
             plt.figure(figsize=(10, 6))
             plt.plot(sorted_objectives[:, 0], true_power[sorted_indices],
-                    c='blue', marker="o", label="Pareto Front")
+                    c='red', marker="o", label="Pareto Front")
 
             # Compute a dynamic offset (2% of y-range)
             y_min, y_max = true_power.min(), true_power.max()
@@ -391,6 +406,7 @@ if(st.session_state.simulation_finished):
                 prompt = "The following dataset was used to plot the pareto front. Can you analyse this? Only send a concise summary"
 
                 GPT_Summary_Handler(data_to_send, prompt, name="pareto_front_final")
+                
 
         def Plot_Pareto_Generations():
             #
