@@ -81,7 +81,7 @@ class Environment:
         
         return self.current_state
 
-    def decay_turbine_health(self, lb=1, ub=3):
+    def decay_turbine_health(self, lb=1, ub=2):
         """
         Randomly degrade each turbine's health by moving down the
         turbine_health_decrease_list by 1–3 steps.
@@ -114,7 +114,7 @@ class Environment:
             turbine.overall_health = self.turbine_health_decrease_list[new_idx]
    
     def increase_turbine_health(self, maintenance_details = {}):
-        turbine_health_increase = round(random.uniform(50, 100))
+        turbine_health_increase = round(random.uniform(80, 100))
         
         # print(turbine_index)
         initial_health = self.turbines.turbines[maintenance_details["turbine_id"] - 1].overall_health
