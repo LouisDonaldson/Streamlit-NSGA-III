@@ -478,8 +478,18 @@ if(st.session_state.simulation_finished):
             )
 
             # Optional: grid-like look
-            fig.update_xaxes(showgrid=True, gridcolor="lightgrey")
-            fig.update_yaxes(showgrid=True, gridcolor="lightgrey")
+            fig.update_xaxes(showgrid=True, gridcolor="rgba(150,150,150,0.15)")
+            fig.update_yaxes(showgrid=True, gridcolor="rgba(150,150,150,0.15)")
+
+            fig.update_traces(marker=dict(
+                colorbar=dict(
+                    len=0.8,
+                    lenmode="fraction",
+                    y=0.45,           # center vertically
+                    yanchor="middle"
+                )
+            ))
+
 
             # ---------------------------------------
             # Streamlit render
