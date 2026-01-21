@@ -667,32 +667,34 @@ if(st.session_state.simulation_finished):
                     st.rerun()
                 st.warning("Computing the SHAP values can take a few minutes depending on the dataset size. Please click the button to start the computation.")
             else:
-                Y_cost = []  # objective 1
-                Y_power = [] # objective 2
+                st.cache_data
+                def compute_shap():
+                    Y_cost = []  # objective 1
+                    Y_power = [] # objective 2
 
-                X = []
-                F_all = []
+                    X = []
+                    F_all = []
 
 
-                X = np.vstack([h.pop.get("X") for h in st.session_state.result.history])            
-                print(len(X))
-                # print(X)
-                F_all = np.vstack([h.pop.get("F") for h in st.session_state.result.history])
-                Y_cost = F_all[:, 0]
-                Y_power = F_all[:, 1]
+                    X = np.vstack([h.pop.get("X") for h in st.session_state.result.history])            
+                    F_all = np.vstack([h.pop.get("F") for h in st.session_state.result.history])
+                    Y_cost = F_all[:, 0]
+                    Y_power = F_all[:, 1]
 
-                st.session_state.shap_model_cost = xgb.XGBRegressor().fit(X, Y_cost)
-                st.session_state.shap_model_power = xgb.XGBRegressor().fit(X, Y_power)
+                    st.session_state.shap_model_cost = xgb.XGBRegressor().fit(X, Y_cost)
+                    st.session_state.shap_model_power = xgb.XGBRegressor().fit(X, Y_power)
 
-                st.session_state.explainer_cost = shap.Explainer(st.session_state.shap_model_cost, feature_perturbation="interventional")
-                shap_values_cost = st.session_state.explainer_cost(X, check_additivity=False)
+                    st.session_state.explainer_cost = shap.Explainer(st.session_state.shap_model_cost, feature_perturbation="interventional")
+                    shap_values_cost = st.session_state.explainer_cost(X, check_additivity=False)
 
-                st.session_state.explainer_power = shap.Explainer(st.session_state.shap_model_power, feature_perturbation="interventional")
-                shap_values_power = st.session_state.explainer_power(X, check_additivity=False)
+                    st.session_state.explainer_power = shap.Explainer(st.session_state.shap_model_power, feature_perturbation="interventional")
+                    shap_values_power = st.session_state.explainer_power(X, check_additivity=False)
 
-                feature_names = [f"x{i}" for i in range(len(X[1]))]
-                # print(len(feature_names))
-                # print(len(X))
+                    feature_names = [f"x{i}" for i in range(len(X[1]))]
+
+                    return shap_values_cost, shap_values_power, feature_names, X
+
+                shap_values_cost, shap_values_power, feature_names, X = compute_shap()
 
                 st.markdown("### SHAP Summary Plot for Cost Objective")
                 st.markdown('''SHAP summary graphs like seen in the image below are a 
@@ -728,23 +730,29 @@ if(st.session_state.simulation_finished):
 
                 # Use TreeExplainer for XGBoost models
                 # Cost model
-                explainer = shap.TreeExplainer(st.session_state.shap_model_cost, feature_perturbation="interventional")
-                shap_values = explainer.shap_values(X, check_additivity=False)   # X is your flattened schedule dataset
 
-                mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
+                @st.cache_data
+                def compute_cost_heatmap():
+                    explainer = shap.TreeExplainer(st.session_state.shap_model_cost, feature_perturbation="interventional")
+                    shap_values = explainer.shap_values(X, check_additivity=False)   # X is your flattened schedule dataset
 
-                heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
+                    mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
 
+                    heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
+
+                    return heatmap_data
+
+                heatmap_data_cost = compute_cost_heatmap()
                 # import matplotlib.pyplot as plt
 
                 plt.figure(figsize=(12, 6))
-                sns.heatmap(heatmap_data, cmap="viridis")
+                sns.heatmap(heatmap_data_cost, cmap="viridis")
                 plt.xlabel("Action slot")
                 plt.ylabel("Day")
                 plt.title("SHAP Importance Heatmap")
                 plt.show()
 
-                sns.heatmap(heatmap_data, cmap="coolwarm")
+                sns.heatmap(heatmap_data_cost, cmap="coolwarm")
                 ax.grid(False)
                 plt.title("SHAP Importance Heatmap for Cost Objective")
                 st.pyplot(plt)
@@ -758,21 +766,27 @@ if(st.session_state.simulation_finished):
 
                 st.markdown("### SHAP Importance Heatmap for Power Generation Objective")
 
-                explainer = shap.TreeExplainer(st.session_state.shap_model_power)
-                shap_values = explainer.shap_values(X)   # X is your flattened schedule dataset
+                st.cache_data
+                def compute_energy_heatmap():
+                    explainer = shap.TreeExplainer(st.session_state.shap_model_power)
+                    shap_values = explainer.shap_values(X)   # X is your flattened schedule dataset
 
-                mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
+                    mean_abs_shap = np.mean(np.abs(shap_values), axis=0)
 
-                heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
+                    heatmap_data = mean_abs_shap.reshape((st.session_state.nsga_params['days'], 3))
+
+                    return heatmap_data
+
+                heatmap_data_energy = compute_energy_heatmap()
 
                 plt.figure(figsize=(12, 6))
-                sns.heatmap(heatmap_data, cmap="viridis")
+                sns.heatmap(heatmap_data_energy, cmap="viridis")
                 plt.xlabel("Action slot")
                 plt.ylabel("Day")
                 plt.title("SHAP Importance Heatmap")
                 plt.show()
 
-                sns.heatmap(heatmap_data, cmap="coolwarm")
+                sns.heatmap(heatmap_data_energy, cmap="coolwarm")
                 ax.grid(False)
                 plt.title("SHAP Importance Heatmap for Power Generation Objective")
                 st.pyplot(plt)
@@ -780,31 +794,35 @@ if(st.session_state.simulation_finished):
                 st.divider()
 
                 st.markdown("### SHAP Conflict Map (Cost vs Energy Production)")
+
+                st.cache_data
+                def compute_conflict_map():
                 # -----------------------------
                 # 4. Compute conflict score per action slot
                 #    (sign disagreement frequency)
                 # -----------------------------
-                shap_cost = shap_values_cost.values
-                shap_power = shap_values_power.values
+                    shap_cost = shap_values_cost.values
+                    shap_power = shap_values_power.values
 
 
-                sign_cost = np.sign(shap_cost)
-                sign_power = np.sign(shap_power)
+                    sign_cost = np.sign(shap_cost)
+                    sign_power = np.sign(shap_power)
 
-                # Boolean matrix: True where signs disagree
-                sign_disagree = sign_cost != sign_power
+                    # Boolean matrix: True where signs disagree
+                    sign_disagree = sign_cost != sign_power
 
-                # Conflict score per feature (0 to 1)
-                conflict_score = sign_disagree.mean(axis=0)
+                    # Conflict score per feature (0 to 1)
+                    conflict_score = sign_disagree.mean(axis=0)
 
-                # -----------------------------
-                # 5. Build a heatmap-friendly matrix
-                # -----------------------------
-                heatmap_matrix = conflict_score.reshape(1, -1)  # single row
+                    # -----------------------------
+                    # 5. Build a heatmap-friendly matrix
+                    # -----------------------------
+                    heatmap_matrix = conflict_score.reshape(1, -1)  # single row
 
-                # -----------------------------
-                # 6. Plotly heatmap
-                # -----------------------------
+                    return heatmap_matrix
+                
+                heatmap_matrix = compute_conflict_map()
+
                 fig = px.imshow(
                     heatmap_matrix,
                     labels=dict(x="Action Slot", y="", color="Conflict Level"),
