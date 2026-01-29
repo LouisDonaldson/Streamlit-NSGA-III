@@ -107,13 +107,13 @@ def start_simulation(nsga_params, stream):
 st.badge("Under Construction", color="red")
 st.warning("This application is still under development. Some features may not work as expected. This is a very computationally expensive application - A high number of evaluations may crash the application due to cloud service RAM limitations.")
 # Title
-st.title("NSGA OSWOP Dashboard")
-st.subheader("NSGA Offshore Wind Farm Scheduling Optimisation Simulation Dashboard")
+st.title("OSWOP-OPTIMEX Dashboard")
+st.subheader("Offshore Wind Maintenance Scheduling Optimisation Explainability")
 
-st.markdown("This application allows you to configure and run a simulation for optimising offshore wind farm scheduling for maintenance operations using the NSGA-III algorithm.")
+st.markdown("This application allows you to configure and run a simulation for optimising offshore wind farm scheduling for maintenance operations using different MOOP algorithms.")
 st.markdown("There is also a Chatbot functionality to gain further insights into the results. Please see sidebar for more information (top left corner).")
 st.markdown("For in-depth information on how to understand the graphs and the technical information relating to the models, please visit the link below.")
-st.link_button("Further Information and documentation", "https://mammoth-cough-70c.notion.site/OSW-NSGA-III-Environment-2-0-2df063e6bdf280dcb0e9f2410734c92a")
+st.link_button("Further Information and documentation", "https://mammoth-cough-70c.notion.site/OSWOP-OPTIMEX-Dashboard-Streamlit-2df063e6bdf280dcb0e9f2410734c92a")
 
 st.divider()
 
