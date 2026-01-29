@@ -329,6 +329,7 @@ class Environment:
 
         ## ["out"] to NSGA
         env.reward["Cost"] += cost
+        env.reward["RUL_Max"] = health_increase
 
         reward = (alpha * power_gained) - (beta * power_lost) - (gamma * cost) + (delta * health_increase)
         #reward = (alpha * power_gained) - (gamma * cost)

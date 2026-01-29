@@ -1,3 +1,4 @@
+from networkx import config
 import numpy as np
 from pymoo.core.problem import ElementwiseProblem
 from pymoo.algorithms.moo.nsga3 import NSGA3
@@ -15,6 +16,11 @@ import matplotlib.pyplot as plt
 from prettytable import PrettyTable
 
 from pymoo.algorithms.moo.nsga3 import NSGA3
+from pymoo.algorithms.moo.nsga2 import NSGA2
+from pymoo.algorithms.moo.moead import MOEAD
+from pymoo.algorithms.moo.sms import SMSEMOA
+
+
 from pymoo.optimize import minimize
 from pymoo.termination import get_termination
 from pymoo.termination.default import DefaultMultiObjectiveTermination
@@ -71,10 +77,11 @@ class Callback(Callback):
             # raise StopIteration("Escape triggered: f1 below threshold")
 
 class WindFarmScheduling(ElementwiseProblem, _data_handler):
-    def __init__(self, number_of_days, start_day, _stream=None, verbose=False):
+    def __init__(self, number_of_days, start_day, _stream=None, verbose=False, algo_params={}):
         self.number_of_days = number_of_days
         self.start_day = start_day
         self.data_handler = _data_handler()
+        self.algo_params = algo_params
         
         st.session_state.current_log = f"Beginning data import..."
         st.code(st.session_state.current_log, language="markdown")
@@ -89,15 +96,20 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         # lower = [[0, 0, 0] for _ in range(365)]
         # upper = [[28, 28, 28] for _ in range(365)]
         # print(lower)
+        
         super().__init__(
             n_var=number_of_days*3,          # Number of decision variables
-            n_obj=2,          # Number of objectives
-            n_ieq_constr=1,   # Number of inequality constraints
             # xl = np.array(lower),  # Lower bounds
             # xu = np.array(upper),  # Upper bounds
             xl = np.zeros(self.number_of_days*3, dtype=int),  # Lower bounds
-            xu = np.full(self.number_of_days*3, 163, dtype=int)  # Upper bounds
- 
+            xu = np.full(self.number_of_days*3, 163, dtype=int),  # Upper bounds
+
+            n_obj = sum(1 for v in self.algo_params["objectives"].values() if v),
+            n_ieq_constr = sum(1 for v in self.algo_params["constraints"].values() if v),
+
+            # n_obj=2,          # Number of objectives
+            # n_ieq_constr=1,   # Number of inequality constraints
+        
         )
 
     def _evaluate(self, x, out, *args, **kwargs):
@@ -113,11 +125,33 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         env.reward["Overall"]
 
         # Constraint
-        g = sum(env.wave_height_violations)
+        # g = sum(env.wave_height_violations)
+
+        # # Out to NSGA
+        # out["F"] = [env.reward["Cost"], -(env.reward["new_Power_Generated"])] 
+        # out["G"] = [g]
+
+        # Objectives
+        F = []
+        if self.algo_params["objectives"]["cost"]:
+            F.append(env.reward["Cost"])
+        if self.algo_params["objectives"]["energy"]:
+            F.append(-(env.reward["new_Power_Generated"]))   
+        if self.algo_params["objectives"]["rul_max"]:
+            F.append(-(env.reward["RUL_Max"]))              
+
+        # constraints
+        G = []
+        if self.algo_params["constraints"]["wave_height"]:
+            G.append(sum(env.wave_height_violations))
+
+        # Not implemented yet
+        # if config["constraints"]["staff_availability"]:
+        #     G.append(env.staff_availability_violation)      
 
         # Out to NSGA
-        out["F"] = [env.reward["Cost"], -(env.reward["new_Power_Generated"])] 
-        out["G"] = [g]
+        out["F"] = F
+        out["G"] = G
 
         out["ep_snapshots"] = env.episode_snapshots
 
@@ -125,7 +159,7 @@ class WindFarmScheduling(ElementwiseProblem, _data_handler):
         # out["env"] = env ## Uses far too much memory
 
 
-class NSGAIII_Interface:
+class Optimiser_Interface:
     def __init__(self, nsga_params, _stream=None, st=st):
         self.generations = int(nsga_params['generations'])
         self.population_size = int(nsga_params['population_size'])
@@ -134,6 +168,7 @@ class NSGAIII_Interface:
         self.result = None
         self.num_days = int(nsga_params['days'])
         self.stream = _stream
+        self.algo_params = nsga_params["algorithm_params"]
         # self.run()
 
     def run(self, verbose=False):
@@ -146,12 +181,31 @@ class NSGAIII_Interface:
         n_max_evals=self.generations * self.population_size
         )
 
-        problem = WindFarmScheduling(self.num_days, start_day=self.start_day, _stream=self.stream, verbose=verbose)
+        problem = WindFarmScheduling(self.num_days, start_day=self.start_day, _stream=self.stream, verbose=verbose, algo_params=self.algo_params)
 
-        print("Starting optimization with NSGA-III...")
+        print("Starting optimization")
 
         ref_dirs = get_reference_directions("das-dennis", 2, n_partitions=self.population_size//2)
-        algorithm = NSGA3(ref_dirs=ref_dirs, pop_size=self.population_size)
+        
+        algo_choice = st.session_state.algorithm_params["algorithm"]
+        # Map choice to algorithm
+        if algo_choice == "NSGA-II":
+            algorithm = NSGA2(pop_size=200)
+
+        elif algo_choice == "NSGA-III":
+            ref_dirs = get_reference_directions("das-dennis", n_dim=2, n_points=100)
+            algorithm = NSGA3(pop_size=200, ref_dirs=ref_dirs)
+
+        elif algo_choice == "MOEA/D":
+            ref_dirs = get_reference_directions("das-dennis", n_dim=2, n_points=100)
+            algorithm = MOEAD(ref_dirs=ref_dirs)
+
+        elif algo_choice == "SMS-EMOA":
+            algorithm = SMSEMOA(pop_size=200)
+
+        st.write(f"Running optimisation with: {algo_choice}")
+
+        # algorithm = NSGA3(ref_dirs=ref_dirs, pop_size=self.population_size)
 
         result = minimize(problem,
                         algorithm,

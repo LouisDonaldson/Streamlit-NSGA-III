@@ -13,7 +13,7 @@ import json
 from datetime import datetime, timedelta
 from pymoo.util.nds.non_dominated_sorting import NonDominatedSorting
 
-from classes.optimisation import Optimiser_Interface
+from classes.optimisation import NSGAIII_Interface
 from classes.llm_interface import GPTSession
 
 # Runtime analysis
@@ -22,7 +22,7 @@ from classes.llm_interface import GPTSession
 # import io
 
 st.set_page_config(
-    page_title="NSGA OSWOP Dashboard",
+    page_title="NSGA3 OSWOP Dashboard",
     page_icon="🌊"
 )
 
@@ -90,13 +90,11 @@ class DataStream:
 
 st.session_state.data_stream = DataStream()
 def start_simulation(nsga_params, stream):
-
-   
-    interface = Optimiser_Interface(nsga_params, _stream=stream, st=st)
-
+    nsga_interface = NSGAIII_Interface(nsga_params, _stream=stream, st=st)
+    
     st.session_state.running = True
 
-    sim_data = interface.run(verbose=False)
+    sim_data = nsga_interface.run(verbose=False)
 
     st.session_state.running = False
     st.session_state.simulation_finished = True
@@ -107,8 +105,8 @@ def start_simulation(nsga_params, stream):
 st.badge("Under Construction", color="red")
 st.warning("This application is still under development. Some features may not work as expected. This is a very computationally expensive application - A high number of evaluations may crash the application due to cloud service RAM limitations.")
 # Title
-st.title("NSGA OSWOP Dashboard")
-st.subheader("NSGA Offshore Wind Farm Scheduling Optimisation Simulation Dashboard")
+st.title("NSGA3 OSWOP Dashboard")
+st.subheader("NSGA-III Offshore Wind Farm Scheduling Optimisation Simulation Dashboard")
 
 st.markdown("This application allows you to configure and run a simulation for optimising offshore wind farm scheduling for maintenance operations using the NSGA-III algorithm.")
 st.markdown("There is also a Chatbot functionality to gain further insights into the results. Please see sidebar for more information (top left corner).")
@@ -116,6 +114,91 @@ st.markdown("For in-depth information on how to understand the graphs and the te
 st.link_button("Further Information and documentation", "https://mammoth-cough-70c.notion.site/OSW-NSGA-III-Environment-2-0-2df063e6bdf280dcb0e9f2410734c92a")
 
 st.divider()
+
+## Chatbot Sidebar
+def GPT_Sidebar_Handler():
+
+    # --- Session State Setup ---
+    if "api_key" not in st.session_state:
+        st.session_state.api_key = None
+
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    st.markdown("""
+        <style>
+            [data-testid="stSidebar"] {
+                width: clamp(260px, 25vw, 380px) !important;
+            }
+            [data-testid="stSidebar"] > div:first-child {
+                width: clamp(260px, 25vw, 380px) !important;
+            }
+        </style>
+        """, unsafe_allow_html=True)
+
+    # --- Sidebar UI ---
+    st.title("💬 GPT Chatbot")
+    with st.expander("ℹ️ About this ChatBot"):
+        st.markdown('''Use this functionality to ask questions about the data produced by the model. It can be made aware of the data by clicking ```Initialise ChatGPT with simulation data```''')
+        st.markdown('''Please be aware that it is not aware of any further processed data, including the SHAP or surrogate model data.''')
+    # Step 1: Ask for API key if missing
+    if not st.session_state.api_key:
+        api_key_input = st.text_input(
+            "Enter your API key",
+            type="password",
+            placeholder="sk-...",
+        )
+
+        if api_key_input:
+            st.session_state.api_key = api_key_input
+            st.rerun()
+
+        st.stop()  # Prevents chatbot from rendering until key is set
+
+    # Step 2: Show chat once API key exists
+    st.success("API key loaded")
+
+    if "gpt_data_initialised" in st.session_state:
+        if st.session_state.gpt_data_initialised:
+            st.info("GPT initialised with simulation data.") 
+
+    if "gpt_session" not in st.session_state:
+        st.session_state.gpt_session = GPTSession(api_key=st.session_state.api_key)
+    # Display chat history
+    for msg in st.session_state.gpt_session.messages[1:]:
+        role = "assistant" if msg["role"] == "assistant" else "user"
+        with st.chat_message(role):
+            st.write(msg["content"])
+            st.divider()
+
+    # User input
+    user_input = st.chat_input("Ask me something...")
+    if st.session_state.simulation_finished:
+        if "gpt_data_initialised" not in st.session_state:
+            if st.button("Initialise GPT with simulation data"):
+                summary_text = f"Your job is to be an assistant to the person who will be sending the following messages in regards to understanding the data provided shortly, which was produced from a model. The short summary of how the model works: 'The simulation has completed with {len(st.session_state.result.F)} solutions in the final population. The objectives were cost and power generation over a period of {st.session_state.nsga_params['days']} days starting from day {st.session_state.nsga_params['start_day']} of the year. The Pareto front shows the trade-off between minimizing cost and maximizing power generation. The surrogate models were built using XGBoost and analyzed with SHAP to understand feature importance. Key insights include how different maintenance schedules impact both objectives.' The following is all of the data relating to the optimisation: '{json.dumps(st.session_state.nsga_data, indent=2)}' If you understand this, please can you reply with just 'I am up to date on the data. How can I help? :)'" 
+                # st.write(summary_text)
+                st.session_state.gpt_session.chat(summary_text)
+                st.session_state.gpt_data_initialised = True
+                st.rerun()
+
+        
+
+    if user_input:
+        # # Save user message
+        st.session_state.gpt_session.chat(user_input)
+
+        # st.session_state.messages.append({"role": "user", "content": user_input})
+
+        # # Replace this with your real GPT call using st.session_state.api_key
+        # assistant_reply = f"(Pretend GPT) You said: {user_input}"
+
+        # # Save assistant reply
+        # st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
+
+        st.rerun()
+
+
 
 def GPT_Summary_Button():
     ## LLM Analysis check
@@ -132,56 +215,10 @@ if st.session_state.show_parameters == True:
     st.header("Simulation Configuration")
 
     # Input fields
-    # Algorithm parameters
     st.markdown("The default parameters currently set are for fast results.")
     max_generations = st.number_input("Maximum Generations (1-500)", min_value=1, max_value=500, value=100)
     population_size = st.number_input("Population Size (1-500)", min_value=1, max_value=500, value=40)
     
-    st.session_state.algorithm_params = {
-        "objectives":
-            {
-            "cost": False,
-            "energy": False,
-            "rul_max": False
-            },
-        "constraints":
-            {
-            "wave_height": False,
-            "staff_availability": False
-            }
-    }
-
-    col1, col2 = st.columns(2)
-    with col1:
-        # Objectives
-        st.write("### Objectives")
-        st.session_state.algorithm_params["objectives"]["cost"] = st.checkbox("Cost of Maintenance Operations", value=True, disabled=False)
-        st.session_state.algorithm_params["objectives"]["energy"] = st.checkbox("Energy Generation Maximisation", value=True, disabled=False)
-        st.session_state.algorithm_params["objectives"]["rul_max"] = st.checkbox("Turbine RUL Maximisation", value=False, disabled=True)
-
-    with col2:
-        #constraints
-        st.write("### Constraints")
-        st.session_state.algorithm_params["constraints"]["wave_height"] = st.checkbox("Wave height", value=True, disabled=False)
-        st.session_state.algorithm_params["constraints"]["staff_availability"] = st.checkbox("Staff availability", value=False, disabled=True)
-
-    # Algorithm Selection
-    st.write("### Algorithm Selection")
-    st.session_state.algorithm_params["algorithm"] = st.selectbox(
-        "Choose an algorithm:",
-        ("NSGA-II", "NSGA-III", "MOEA/D", "SMS-EMOA")
-    )
-
-    if st.session_state.algorithm_params["algorithm"] == "MOEA/D" or st.session_state.algorithm_params["algorithm"] == "SMS-EMOA":
-        st.session_state.algorithm_params["constraints"]["wave_height"] = False
-        st.session_state.algorithm_params["constraints"]["staff_availability"] = False
-        st.info("Constraints are not currently supported for MOEA/D or SMS-EMOA algorithms.")
-
-
-    st.divider()
-    
-    # Environment setup
-    st.write("### Environment Setup")
     days = st.number_input("Days (1-28)", min_value=1, value=7, max_value=28)
 
     start_day = st.slider(f"Select start day (max value is {100 - days} days)", min_value=0, max_value=100 - days, value=0 )
@@ -269,6 +306,8 @@ if st.session_state.show_parameters == True:
     # 2015-09-10 23:00:00
     # 07/01/2015 16:00
 
+
+
     st.write(f"Maximum number of evaluations will be: ```{max_generations * population_size}```")
 
     st.session_state.auto_plot = st.checkbox("Auto-run visualisation after optimisation finishes", value=True)
@@ -285,7 +324,6 @@ if st.session_state.show_parameters == True:
         "population_size": population_size,
         "days": days,
         "start_day": start_day,
-        "algorithm_params": st.session_state.algorithm_params,
         }
 
     if st.button("Start Simulation"):
@@ -347,7 +385,7 @@ if(st.session_state.simulation_finished):
     # simulation finished. Show results below
     st.success("Simulation completed.")
     # results can be accessed through 'st.session_state.result'
-    st.header("Results Visualization")
+    # st.header("Results Visualization")
     
     if st.session_state.result.F is None:
         st.info('''No results have been found. Please reload the page and edit the model parameters''')
@@ -454,7 +492,6 @@ if(st.session_state.simulation_finished):
 
                 GPT_Summary_Handler(data_to_send, prompt, name="pareto_front_final")
                 
-
         def Plot_Pareto_Generations():
             #
             # Pareto Front of Generations
@@ -697,12 +734,12 @@ if(st.session_state.simulation_finished):
             st.plotly_chart(fig, use_container_width=True)
             plt.clf()
     
-        def SurrogateModels_WithSHAP():
+        def SurrogateModels_WithGlobalSHAP():
             #
             # Surrogate Model Summary
             #
 
-            st.markdown("## SHAP Analysis of Surrogate Models for Objectives")
+            st.markdown("## Global SHAP Analysis of Surrogate Models for Objectives")
             st.markdown('''SHAP (SHapley Additive exPlanations) is a method of creating explainability 
                         of machine-learning predictions. Is uses ideas from game theory to 
                         assign each feature in a model a 'fair share' of responsibility for a model's output. 
@@ -894,6 +931,7 @@ if(st.session_state.simulation_finished):
                 st.markdown("- White → neutral / irrelevant\nThis gives you a tension map across the entire schedule.")
 
             st.divider()
+
 
         def turbine_health_heatmap(schedule_num):
             def extract_t_health_from_snapshot(snapshot):
@@ -1463,152 +1501,71 @@ if(st.session_state.simulation_finished):
             else:
                 st.error("Summary GPT session error. Could not initialise")
 
-        ## plot pareto
-        st.markdown("### Pareto Front of Final Population")
-        if "plot_pareto" in st.session_state or st.session_state.auto_plot:
-            Plot_Pareto_Final()
-            st.divider()
-        else:
-            if st.button("Plot Final Pareto Front Graph"):
-                st.session_state.plot_pareto = True
-                st.rerun()
+        tab1, tab2, tab3 = st.tabs(["Visualisations", "Explainability", "GPT Chat"])
 
-        ## plot pareto generations
-        st.markdown("### Pareto Front Evolution Across Generations")
-        if "plot_pareto_generations" in st.session_state or st.session_state.auto_plot:
-            Plot_Pareto_Generations()
-            st.divider()
-        else:
-            if st.button("Plot Pareto Front Evolutions Across Generations"):
-                st.session_state.plot_pareto_generations = True
-                st.rerun()
-        
-        ## show schedules
-        st.markdown('''### Schedule Details''')
-        if "show_schedules" in st.session_state or st.session_state.auto_plot:
-            ShowSchedules()
-            st.divider()
-        else:
-            if st.button("See Schedule Details"):
-                st.session_state.show_schedules = True
-                st.rerun()
-        
-        ## Plot convergences
-        st.markdown("### Convergence Visualisation")
-        st.markdown('''Convergence graphs show how the NSGA optimisation model 
-                        improves its solutions over time.''')
-        if "plot_objective_convergence" in st.session_state or st.session_state.auto_plot:
-            Plot_Cost_Convergence()
-            Plot_Power_Convergence()
-            st.divider()
-        else:
-            if st.button("Plot Objective Convergences"):
-                st.session_state.plot_objective_convergence = True
-                st.rerun()
-
-        if "plot_additional_convergence" in st.session_state:
-            Plot_Hypervolume_Convergence()
-            # Plot_GD_Convergence()
-            st.divider()
-        else:
-            # st.error("Be aware, plotting the technical convergence graphs can crash the application. Only run when app hosted locally.")
-            if st.button("Plot Technical Convergences"):
-                st.session_state.plot_additional_convergence = True
-                st.rerun()
-        
-        SurrogateModels_WithSHAP()
-
-        # GPT_Summary_Handler("", "Say hello to me :)")
-
-
-
-## Chatbot Sidebar
-def GPT_Sidebar_Handler():
-
-    # --- Session State Setup ---
-    if "api_key" not in st.session_state:
-        st.session_state.api_key = None
-
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
-
-    st.markdown("""
-        <style>
-            [data-testid="stSidebar"] {
-                width: clamp(260px, 25vw, 380px) !important;
-            }
-            [data-testid="stSidebar"] > div:first-child {
-                width: clamp(260px, 25vw, 380px) !important;
-            }
-        </style>
-        """, unsafe_allow_html=True)
-
-    # --- Sidebar UI ---
-    with st.sidebar:
-        st.title("💬 GPT Chatbot")
-        with st.expander("ℹ️ About this ChatBot"):
-            st.markdown('''Use this functionality to ask questions about the data produced by the model. It can be made aware of the data by clicking ```Initialise ChatGPT with simulation data```''')
-            st.markdown('''Please be aware that it is not aware of any further processed data, including the SHAP or surrogate model data.''')
-        # Step 1: Ask for API key if missing
-        if not st.session_state.api_key:
-            api_key_input = st.text_input(
-                "Enter your API key",
-                type="password",
-                placeholder="sk-...",
-            )
-
-            if api_key_input:
-                st.session_state.api_key = api_key_input
-                st.rerun()
-
-            st.stop()  # Prevents chatbot from rendering until key is set
-
-        # Step 2: Show chat once API key exists
-        st.success("API key loaded")
-
-        if "gpt_data_initialised" in st.session_state:
-            if st.session_state.gpt_data_initialised:
-                st.info("GPT initialised with simulation data.") 
-
-        if "gpt_session" not in st.session_state:
-            st.session_state.gpt_session = GPTSession(api_key=st.session_state.api_key)
-        # Display chat history
-        for msg in st.session_state.gpt_session.messages[1:]:
-            role = "assistant" if msg["role"] == "assistant" else "user"
-            with st.chat_message(role):
-                st.write(msg["content"])
+        with tab1:
+            ## show schedules
+            st.markdown('''### Schedule Details''')
+            if "show_schedules" in st.session_state or st.session_state.auto_plot:
+                ShowSchedules()
                 st.divider()
-
-        # User input
-        user_input = st.chat_input("Ask me something...")
-        if st.session_state.simulation_finished:
-            if "gpt_data_initialised" not in st.session_state:
-                if st.button("Initialise GPT with simulation data"):
-                    summary_text = f"Your job is to be an assistant to the person who will be sending the following messages in regards to understanding the data provided shortly, which was produced from a model. The short summary of how the model works: 'The simulation has completed with {len(st.session_state.result.F)} solutions in the final population. The objectives were cost and power generation over a period of {st.session_state.nsga_params['days']} days starting from day {st.session_state.nsga_params['start_day']} of the year. The Pareto front shows the trade-off between minimizing cost and maximizing power generation. The surrogate models were built using XGBoost and analyzed with SHAP to understand feature importance. Key insights include how different maintenance schedules impact both objectives.' The following is all of the data relating to the optimisation: '{json.dumps(st.session_state.nsga_data, indent=2)}' If you understand this, please can you reply with just 'I am up to date on the data. How can I help? :)'" 
-                    # st.write(summary_text)
-                    st.session_state.gpt_session.chat(summary_text)
-                    st.session_state.gpt_data_initialised = True
+            else:
+                if st.button("See Schedule Details"):
+                    st.session_state.show_schedules = True
+                    st.rerun()
+        
+            ## plot pareto
+            st.markdown("### Pareto Front of Final Population")
+            if "plot_pareto" in st.session_state or st.session_state.auto_plot:
+                Plot_Pareto_Final()
+                st.divider()
+            else:
+                if st.button("Plot Final Pareto Front Graph"):
+                    st.session_state.plot_pareto = True
                     st.rerun()
 
-          
+            ## plot pareto generations
+            st.markdown("### Pareto Front Evolution Across Generations")
+            if "plot_pareto_generations" in st.session_state or st.session_state.auto_plot:
+                Plot_Pareto_Generations()
+                st.divider()
+            else:
+                if st.button("Plot Pareto Front Evolutions Across Generations"):
+                    st.session_state.plot_pareto_generations = True
+                    st.rerun()
+            
+            
+            ## Plot convergences
+            st.markdown("### Convergence Visualisation")
+            st.markdown('''Convergence graphs show how the NSGA optimisation model 
+                            improves its solutions over time.''')
+            if "plot_objective_convergence" in st.session_state or st.session_state.auto_plot:
+                Plot_Cost_Convergence()
+                Plot_Power_Convergence()
+                st.divider()
+            else:
+                if st.button("Plot Objective Convergences"):
+                    st.session_state.plot_objective_convergence = True
+                    st.rerun()
 
-        if user_input:
-            # # Save user message
-            st.session_state.gpt_session.chat(user_input)
+            if "plot_additional_convergence" in st.session_state:
+                Plot_Hypervolume_Convergence()
+                # Plot_GD_Convergence()
+                st.divider()
+            else:
+                # st.error("Be aware, plotting the technical convergence graphs can crash the application. Only run when app hosted locally.")
+                if st.button("Plot Technical Convergences"):
+                    st.session_state.plot_additional_convergence = True
+                    st.rerun()
 
-            # st.session_state.messages.append({"role": "user", "content": user_input})
-
-            # # Replace this with your real GPT call using st.session_state.api_key
-            # assistant_reply = f"(Pretend GPT) You said: {user_input}"
-
-            # # Save assistant reply
-            # st.session_state.messages.append({"role": "assistant", "content": assistant_reply})
-
-            st.rerun()
-
-
-GPT_Sidebar_Handler()
+        with tab2:
+            global_shap, local_shap = st.tabs(["Global SHAP Analysis", "Local SHAP Analysis"])
+            with global_shap:
+                SurrogateModels_WithGlobalSHAP()
 
 
+        with tab3:
+            GPT_Sidebar_Handler()
+        # GPT_Summary_Handler("", "Say hello to me :)")
 
 
