@@ -22,7 +22,7 @@ from classes.llm_interface import GPTSession
 # import io
 
 st.set_page_config(
-    page_title="NSGA OSWOP Dashboard",
+    page_title="OSWOP-OPTIMEX Dashboard",
     page_icon="🌊"
 )
 
