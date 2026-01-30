@@ -134,8 +134,6 @@ if st.session_state.show_parameters == True:
     # Input fields
     # Algorithm parameters
     st.markdown("The default parameters currently set are for fast results.")
-    max_generations = st.number_input("Maximum Generations (1-500)", min_value=1, max_value=500, value=100)
-    population_size = st.number_input("Population Size (1-500)", min_value=1, max_value=500, value=40)
     
     st.session_state.algorithm_params = {
         "objectives":
@@ -148,7 +146,9 @@ if st.session_state.show_parameters == True:
             {
             "wave_height": False,
             "staff_availability": False
-            }
+            },
+        "algorithm": {}
+
     }
 
     col1, col2 = st.columns(2)
@@ -167,17 +167,25 @@ if st.session_state.show_parameters == True:
 
     # Algorithm Selection
     st.write("### Algorithm Selection")
-    st.session_state.algorithm_params["algorithm"] = st.selectbox(
+    st.session_state.algorithm_params["algorithm"]["name"] = st.selectbox(
         "Choose an algorithm:",
-        ("NSGA-II", "NSGA-III", "MOEA/D", "SMS-EMOA")
+        ("NSGA-II", "NSGA-III", "MOEA/D", "SMS-EMOA", "MOPSO-CD")
     )
 
-    if st.session_state.algorithm_params["algorithm"] == "MOEA/D" or st.session_state.algorithm_params["algorithm"] == "SMS-EMOA":
+    if st.session_state.algorithm_params["algorithm"]["name"] == "MOEA/D" or st.session_state.algorithm_params["algorithm"] == "SMS-EMOA" or st.session_state.algorithm_params["algorithm"] == "MOPSO-CD":
         st.session_state.algorithm_params["constraints"]["wave_height"] = False
         st.session_state.algorithm_params["constraints"]["staff_availability"] = False
         st.info("Constraints are not currently supported for MOEA/D or SMS-EMOA algorithms.")
 
+    if st.session_state.algorithm_params["algorithm"]["name"] == "MOPSO-CD":
+        st.session_state.algorithm_params["algorithm"]["inertia_weight"] = st.slider("Inertia Weight (0-1)", min_value=0.0, max_value=1.0, value=0.5, step=0.1)
+        st.session_state.algorithm_params["algorithm"]["n_offsprings"] = st.number_input("Particles per generation (1-500)", min_value=1, max_value=500, value=40)
+    
+    # default parameters
+    max_generations = st.number_input("Maximum Generations (1-500)", min_value=1, max_value=500, value=100)
+    population_size = st.number_input("Population Size (1-500)", min_value=1, max_value=500, value=40)
 
+    # st.write(max_generations, population_size)
     st.divider()
     
     # Environment setup

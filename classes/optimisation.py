@@ -18,6 +18,8 @@ from pymoo.algorithms.moo.nsga3 import NSGA3
 from pymoo.algorithms.moo.nsga2 import NSGA2
 from pymoo.algorithms.moo.moead import MOEAD
 from pymoo.algorithms.moo.sms import SMSEMOA
+from pymoo.algorithms.moo.mopso_cd import MOPSO_CD
+
 
 
 from pymoo.optimize import minimize
@@ -183,10 +185,8 @@ class Optimiser_Interface:
         problem = WindFarmScheduling(self.num_days, start_day=self.start_day, _stream=self.stream, verbose=verbose, algo_params=self.algo_params)
 
         print("Starting optimization")
-
-        ref_dirs = get_reference_directions("das-dennis", 2, n_partitions=self.population_size//2)
         
-        algo_choice = st.session_state.algorithm_params["algorithm"]
+        algo_choice = st.session_state.algorithm_params["algorithm"]["name"]
         # Map choice to algorithm
         if algo_choice == "NSGA-II":
             algorithm = NSGA2(pop_size=200)
@@ -201,6 +201,11 @@ class Optimiser_Interface:
 
         elif algo_choice == "SMS-EMOA":
             algorithm = SMSEMOA(pop_size=200)
+
+        elif algo_choice == "MOPSO-CD":
+            inertia_weight = st.session_state.algorithm_params["algorithm"]["inertia_weight"]
+            n_offsprings = st.session_state.algorithm_params["algorithm"]["n_offsprings"]
+            algorithm = MOPSO_CD(pop_size=self.population_size, inertia_weight=inertia_weight, n_offsprings=n_offsprings)
 
         st.write(f"Running optimisation with: {algo_choice}")
 
