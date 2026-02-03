@@ -21,6 +21,8 @@ from classes.llm_interface import GPTSession
 # import pstats
 # import io
 
+import time
+
 st.set_page_config(
     page_title="OSWOP-OPTIMEX Dashboard",
     page_icon="🌊"
@@ -330,10 +332,14 @@ if st.session_state.get("run", True):
     st.session_state.nsga_data = []
     # st.session_state.sim_envs = []
 
+    st.session_state.start_time = time.time()
+
     st.session_state.result = start_simulation(
         st.session_state.nsga_params,
         st.session_state.data_stream
     )
+
+    st.session_state.end_time = time.time()
 
     # Runtime analysis
     # pr = cProfile.Profile()
@@ -354,6 +360,7 @@ if st.session_state.get("run", True):
 if(st.session_state.simulation_finished):
     # simulation finished. Show results below
     st.success("Simulation completed.")
+    st.success(f"TTC: {st.session_state.end_time - st.session_state.start_time:.2f} seconds")
     # results can be accessed through 'st.session_state.result'
     st.header("Results Visualization")
     
