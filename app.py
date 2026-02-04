@@ -107,6 +107,9 @@ def start_simulation(nsga_params, stream):
 st.badge("Under Construction", color="red")
 st.warning("This application is still under development. Some features may not work as expected. This is a very computationally expensive application - A high number of evaluations may crash the application due to cloud service RAM limitations.")
 # Title
+import streamlit as st
+
+st.image("OPEX Logo.svg", use_column_width=True, width=200)
 st.title("OSWOP-OPTIMEX Dashboard")
 st.subheader("Offshore Wind Maintenance Scheduling Optimisation Explainability")
 
