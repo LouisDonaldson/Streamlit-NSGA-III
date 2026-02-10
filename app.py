@@ -109,7 +109,7 @@ st.warning("This application is still under development. Some features may not w
 # Title
 import streamlit as st
 
-st.image("OPEX Logo.svg", use_column_width=True, width=200)
+st.image("OPEX Logo.png", use_column_width=True, width=200)
 st.title("OSWOP-OPTIMEX Dashboard")
 st.subheader("Offshore Wind Maintenance Scheduling Optimisation Explainability")
 
