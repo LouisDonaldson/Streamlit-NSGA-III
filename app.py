@@ -1185,7 +1185,7 @@ if(st.session_state.simulation_finished):
                         "market_price": market_price,
                     }
 
-                    prompt = "The following dataset was used to compare schedules. Can you analyse this comparing all schedules with profitability and tradeoff justification?"
+                    prompt = "The following dataset was used to compare schedules. Can you analyse this comparing all schedules with profitability and tradeoff justification? If the market value is set to 0, this does not reflect real-world conditions, only that the user is interested in profit from CfD only."
 
                     GPT_Summary_Handler(data_to_send, prompt, name="sched_comparison")
                 
