@@ -109,6 +109,9 @@ def start_simulation(nsga_params, stream):
 st.badge("Under Construction", color="red")
 st.warning("This application is still under development. Some features may not work as expected. This is a very computationally expensive application - A high number of evaluations may crash the application due to cloud service RAM limitations.")
 # Title
+import streamlit as st
+
+st.image("OPEX Logo.png", width="stretch")
 st.title("OSWOP-OPTIMEX Dashboard")
 st.subheader("Offshore Wind Maintenance Scheduling Optimisation Explainability")
 
@@ -279,9 +282,9 @@ if st.session_state.show_parameters == True:
     # 2015-09-10 23:00:00
     # 07/01/2015 16:00
 
-    st.write(f"Maximum number of evaluations will be: ```{max_generations * population_size}```")
-
-    st.session_state.auto_plot = st.checkbox("Auto-run visualisation after optimisation finishes", value=True)
+    # LLM Configuration
+    st.divider()
+    st.write("### LLM Configuration")
     llm_analysis = st.checkbox("Automatically add GPT Summaries", value=False)
     if llm_analysis:
         if "api_key" in st.session_state:
@@ -289,6 +292,14 @@ if st.session_state.show_parameters == True:
                 st.success("API key successfully added.")
             else:
                 st.warning("Please add API key in the sidebar to continue")
+
+    st.divider()
+
+    
+    st.write(f"Maximum number of evaluations will be: ```{max_generations * population_size}```")
+
+    st.session_state.auto_plot = st.checkbox("Auto-run visualisation after optimisation finishes", value=True)
+    
 
     params = {
         "generations": max_generations,
@@ -1113,6 +1124,7 @@ if(st.session_state.simulation_finished):
                 # Comparison of 2 schedules
 
                 st.markdown("### 🔄 Schedule Comparison")
+                st.write("Any schedules produced can be seen in the Pareto front plot. These are labelled and correspond to the selection of schedules below.")
 
                 comp_col1, comp_col2 = st.columns(2)
 
@@ -1180,7 +1192,7 @@ if(st.session_state.simulation_finished):
                         "market_price": market_price,
                     }
 
-                    prompt = "The following dataset was used to compare schedules. Can you analyse this comparing all schedules with profitability and tradeoff justification?"
+                    prompt = "The following dataset was used to compare schedules. Can you analyse this comparing all schedules with profitability and tradeoff justification? If the market value is set to 0, this does not reflect real-world conditions, only that the user is interested in profit from CfD only."
 
                     GPT_Summary_Handler(data_to_send, prompt, name="sched_comparison")
                 
@@ -1472,66 +1484,72 @@ if(st.session_state.simulation_finished):
                 
             schedule_details()
         
+        metrics_tab, sched_tab, shap_tab = st.tabs(["Algorithm Metrics", "Schedule Details", "SHAP"])
+
         if "summary_gpt_session" in st.session_state:
             if GPT_Summary_Handler("", "", "initial", initial=True):
                 st.success("Summary GPT session initialised.")
             else:
                 st.error("Summary GPT session error. Could not initialise")
 
-        ## plot pareto
-        st.markdown("### Pareto Front of Final Population")
-        if "plot_pareto" in st.session_state or st.session_state.auto_plot:
-            Plot_Pareto_Final()
-            st.divider()
-        else:
-            if st.button("Plot Final Pareto Front Graph"):
-                st.session_state.plot_pareto = True
-                st.rerun()
+        with metrics_tab:
+            ## plot pareto
+            st.markdown("### Pareto Front of Final Population")
+            if "plot_pareto" in st.session_state or st.session_state.auto_plot:
+                Plot_Pareto_Final()
+                st.divider()
+            else:
+                if st.button("Plot Final Pareto Front Graph"):
+                    st.session_state.plot_pareto = True
+                    st.rerun()
 
-        ## plot pareto generations
-        st.markdown("### Pareto Front Evolution Across Generations")
-        if "plot_pareto_generations" in st.session_state or st.session_state.auto_plot:
-            Plot_Pareto_Generations()
-            st.divider()
-        else:
-            if st.button("Plot Pareto Front Evolutions Across Generations"):
-                st.session_state.plot_pareto_generations = True
-                st.rerun()
-        
-        ## show schedules
-        st.markdown('''### Schedule Details''')
-        if "show_schedules" in st.session_state or st.session_state.auto_plot:
-            ShowSchedules()
-            st.divider()
-        else:
-            if st.button("See Schedule Details"):
-                st.session_state.show_schedules = True
-                st.rerun()
-        
-        ## Plot convergences
-        st.markdown("### Convergence Visualisation")
-        st.markdown('''Convergence graphs show how the NSGA optimisation model 
-                        improves its solutions over time.''')
-        if "plot_objective_convergence" in st.session_state or st.session_state.auto_plot:
-            Plot_Cost_Convergence()
-            Plot_Power_Convergence()
-            st.divider()
-        else:
-            if st.button("Plot Objective Convergences"):
-                st.session_state.plot_objective_convergence = True
-                st.rerun()
+            ## plot pareto generations
+            st.markdown("### Pareto Front Evolution Across Generations")
+            if "plot_pareto_generations" in st.session_state or st.session_state.auto_plot:
+                Plot_Pareto_Generations()
+                st.divider()
+            else:
+                if st.button("Plot Pareto Front Evolutions Across Generations"):
+                    st.session_state.plot_pareto_generations = True
+                    st.rerun()
 
-        if "plot_additional_convergence" in st.session_state:
-            Plot_Hypervolume_Convergence()
-            # Plot_GD_Convergence()
-            st.divider()
-        else:
-            # st.error("Be aware, plotting the technical convergence graphs can crash the application. Only run when app hosted locally.")
-            if st.button("Plot Technical Convergences"):
-                st.session_state.plot_additional_convergence = True
-                st.rerun()
+            ## Plot convergences
+            st.markdown("### Convergence Visualisation")
+            st.markdown('''Convergence graphs show how the NSGA optimisation model 
+                            improves its solutions over time.''')
+            if "plot_objective_convergence" in st.session_state or st.session_state.auto_plot:
+                Plot_Cost_Convergence()
+                Plot_Power_Convergence()
+                st.divider()
+            else:
+                if st.button("Plot Objective Convergences"):
+                    st.session_state.plot_objective_convergence = True
+                    st.rerun()
+
+            if "plot_additional_convergence" in st.session_state or st.session_state.auto_plot:
+                Plot_Hypervolume_Convergence()
+                # Plot_GD_Convergence()
+                st.divider()
+            else:
+                # st.error("Be aware, plotting the technical convergence graphs can crash the application. Only run when app hosted locally.")
+                if st.button("Plot Technical Convergences"):
+                    st.session_state.plot_additional_convergence = True
+                    st.rerun()
         
-        SurrogateModels_WithSHAP()
+        with sched_tab:
+            ## show schedules
+            st.markdown('''### Schedule Details''')
+            if "show_schedules" in st.session_state or st.session_state.auto_plot:
+                ShowSchedules()
+                st.divider()
+            else:
+                if st.button("See Schedule Details"):
+                    st.session_state.show_schedules = True
+                    st.rerun()
+        
+        
+        with shap_tab:
+            SurrogateModels_WithSHAP()
 
         # GPT_Summary_Handler("", "Say hello to me :)")
 

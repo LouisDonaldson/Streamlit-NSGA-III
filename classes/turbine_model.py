@@ -114,8 +114,6 @@ class Turbine:
             self.overall_health = 0
         else:
             self.overall_health -= degrade_amount
-        
-
 
 # component classes
 class Component:
@@ -157,19 +155,18 @@ class Component:
         
         return self.status, self.health
 
- 
-    
+
 class Nacelle_Comp(Component):
     def __init__(self, failure_rate=0.01):
         super().__init__()
         self.failure_rate = failure_rate
 
-        self.repair_cost = {"corrective": {"lb": 20000, "ub": 35000}, "preventative": {"lb": 7000, "ub": 15000}}
+        self.repair_cost = {
+            "corrective": {"lb": 20000, "ub": 35000}, 
+            "preventative": {"lb": 7000, "ub": 15000}}
        
         return
-    
-    
-    
+      
 class Blades_Comp(Component):
     def __init__(self, failure_rate=0.01):
         super().__init__()
@@ -180,7 +177,6 @@ class Blades_Comp(Component):
         self.repair_cost = {"corrective": {"lb": 15000, "ub": 30000}, "preventative": {"lb": 4000, "ub": 10000}}
         return
     
-
 class Tower_Comp(Component):
     def __init__(self, failure_rate=0.01):
         super().__init__()
@@ -191,7 +187,6 @@ class Tower_Comp(Component):
         self.repair_cost = {"corrective": {"lb": 8000, "ub": 20000}, "preventative": {"lb": 3000, "ub": 7000}}
         return
     
-
 class Generator_Comp(Component):
     def __init__(self, failure_rate=0.01):
         super().__init__()
@@ -212,7 +207,6 @@ class Gearbox_Comp(Component):
         self.repair_cost = {"corrective": {"lb": 50000, "ub": 95000}, "preventative": {"lb": 10000, "ub": 20000}}
         return
   
-
 class ControlSystem_Comp(Component):
     def __init__(self, failure_rate=0.01):
         super().__init__()
