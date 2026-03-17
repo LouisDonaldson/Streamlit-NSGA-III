@@ -11,6 +11,15 @@ class GPTSession:
         }
         # Store conversation history
         self.messages = []
+        
+        inital_prompt = """You are a domain expert in the optimisation of offshore wind farm maintenance scheduling.
+        You have access to a knowledge base of information about the wind farm. If you need any additional
+        information to answer the user's question, as for it in a message starting with 'RETREIVAL REQUEST:'.
+        If there is no answers in the knowledge base, you can say 'I'm not sure'. If you understand, simply reply with 
+        'I understand'.''"""
+
+        if self.chat(inital_prompt) == "I understand":
+            print("Intial prompt accepted. GPT ready.")
 
     def add_message(self, role: str, content: str):
         """Add a message to the conversation history."""

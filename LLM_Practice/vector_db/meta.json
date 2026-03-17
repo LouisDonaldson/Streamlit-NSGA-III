@@ -1,0 +1,5525 @@
+{
+  "0": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 1,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 1 and turbine 1 is 0.0 meters."
+  },
+  "1": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 2,
+    "distance_m": 325.8746444,
+    "text": "Distance between turbine 1 and turbine 2 is 325.8746444 meters."
+  },
+  "2": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 3,
+    "distance_m": 688.7869458,
+    "text": "Distance between turbine 1 and turbine 3 is 688.7869458 meters."
+  },
+  "3": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 4,
+    "distance_m": 1014.1309460000001,
+    "text": "Distance between turbine 1 and turbine 4 is 1014.1309460000001 meters."
+  },
+  "4": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 5,
+    "distance_m": 1358.417176,
+    "text": "Distance between turbine 1 and turbine 5 is 1358.417176 meters."
+  },
+  "5": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 6,
+    "distance_m": 1702.793077,
+    "text": "Distance between turbine 1 and turbine 6 is 1702.793077 meters."
+  },
+  "6": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 7,
+    "distance_m": 2061.3461169999996,
+    "text": "Distance between turbine 1 and turbine 7 is 2061.3461169999996 meters."
+  },
+  "7": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 8,
+    "distance_m": 2372.654365,
+    "text": "Distance between turbine 1 and turbine 8 is 2372.654365 meters."
+  },
+  "8": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 9,
+    "distance_m": 2731.184334,
+    "text": "Distance between turbine 1 and turbine 9 is 2731.184334 meters."
+  },
+  "9": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 10,
+    "distance_m": 622.6743017,
+    "text": "Distance between turbine 1 and turbine 10 is 622.6743017 meters."
+  },
+  "10": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 11,
+    "distance_m": 783.7610284,
+    "text": "Distance between turbine 1 and turbine 11 is 783.7610284 meters."
+  },
+  "11": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 12,
+    "distance_m": 1020.4817799999998,
+    "text": "Distance between turbine 1 and turbine 12 is 1020.4817799999998 meters."
+  },
+  "12": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 13,
+    "distance_m": 1292.662199,
+    "text": "Distance between turbine 1 and turbine 13 is 1292.662199 meters."
+  },
+  "13": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 14,
+    "distance_m": 1605.278691,
+    "text": "Distance between turbine 1 and turbine 14 is 1605.278691 meters."
+  },
+  "14": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 15,
+    "distance_m": 1928.692941,
+    "text": "Distance between turbine 1 and turbine 15 is 1928.692941 meters."
+  },
+  "15": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 16,
+    "distance_m": 2229.8412120000003,
+    "text": "Distance between turbine 1 and turbine 16 is 2229.8412120000003 meters."
+  },
+  "16": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 17,
+    "distance_m": 2562.621514,
+    "text": "Distance between turbine 1 and turbine 17 is 2562.621514 meters."
+  },
+  "17": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 18,
+    "distance_m": 2882.204029,
+    "text": "Distance between turbine 1 and turbine 18 is 2882.204029 meters."
+  },
+  "18": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 19,
+    "distance_m": 1344.912728,
+    "text": "Distance between turbine 1 and turbine 19 is 1344.912728 meters."
+  },
+  "19": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 20,
+    "distance_m": 1526.582998,
+    "text": "Distance between turbine 1 and turbine 20 is 1526.582998 meters."
+  },
+  "20": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 21,
+    "distance_m": 1770.25297,
+    "text": "Distance between turbine 1 and turbine 21 is 1770.25297 meters."
+  },
+  "21": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 22,
+    "distance_m": 2043.081728,
+    "text": "Distance between turbine 1 and turbine 22 is 2043.081728 meters."
+  },
+  "22": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 23,
+    "distance_m": 2317.3176999999996,
+    "text": "Distance between turbine 1 and turbine 23 is 2317.3176999999996 meters."
+  },
+  "23": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 24,
+    "distance_m": 2615.409244,
+    "text": "Distance between turbine 1 and turbine 24 is 2615.409244 meters."
+  },
+  "24": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 25,
+    "distance_m": 2910.210846,
+    "text": "Distance between turbine 1 and turbine 25 is 2910.210846 meters."
+  },
+  "25": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 26,
+    "distance_m": 3229.080924,
+    "text": "Distance between turbine 1 and turbine 26 is 3229.080924 meters."
+  },
+  "26": {
+    "type": "turbine_distance",
+    "turbine_a": 1,
+    "turbine_b": 27,
+    "distance_m": 3535.834782,
+    "text": "Distance between turbine 1 and turbine 27 is 3535.834782 meters."
+  },
+  "27": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 1,
+    "distance_m": 325.8746444,
+    "text": "Distance between turbine 2 and turbine 1 is 325.8746444 meters."
+  },
+  "28": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 2,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 2 and turbine 2 is 0.0 meters."
+  },
+  "29": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 3,
+    "distance_m": 364.5856847,
+    "text": "Distance between turbine 2 and turbine 3 is 364.5856847 meters."
+  },
+  "30": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 4,
+    "distance_m": 688.8541466,
+    "text": "Distance between turbine 2 and turbine 4 is 688.8541466 meters."
+  },
+  "31": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 5,
+    "distance_m": 1033.211201,
+    "text": "Distance between turbine 2 and turbine 5 is 1033.211201 meters."
+  },
+  "32": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 6,
+    "distance_m": 1377.6283190000001,
+    "text": "Distance between turbine 2 and turbine 6 is 1377.6283190000001 meters."
+  },
+  "33": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 7,
+    "distance_m": 1736.085849,
+    "text": "Distance between turbine 2 and turbine 7 is 1736.085849 meters."
+  },
+  "34": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 8,
+    "distance_m": 2047.313785,
+    "text": "Distance between turbine 2 and turbine 8 is 2047.313785 meters."
+  },
+  "35": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 9,
+    "distance_m": 2405.80341,
+    "text": "Distance between turbine 2 and turbine 9 is 2405.80341 meters."
+  },
+  "36": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 10,
+    "distance_m": 602.5806685,
+    "text": "Distance between turbine 2 and turbine 10 is 602.5806685 meters."
+  },
+  "37": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 11,
+    "distance_m": 604.86672,
+    "text": "Distance between turbine 2 and turbine 11 is 604.86672 meters."
+  },
+  "38": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 12,
+    "distance_m": 760.7035994,
+    "text": "Distance between turbine 2 and turbine 12 is 760.7035994 meters."
+  },
+  "39": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 13,
+    "distance_m": 1002.7285539999999,
+    "text": "Distance between turbine 2 and turbine 13 is 1002.7285539999999 meters."
+  },
+  "40": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 14,
+    "distance_m": 1299.043009,
+    "text": "Distance between turbine 2 and turbine 14 is 1299.043009 meters."
+  },
+  "41": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 15,
+    "distance_m": 1614.503475,
+    "text": "Distance between turbine 2 and turbine 15 is 1614.503475 meters."
+  },
+  "42": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 16,
+    "distance_m": 1912.0926330000002,
+    "text": "Distance between turbine 2 and turbine 16 is 1912.0926330000002 meters."
+  },
+  "43": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 17,
+    "distance_m": 2242.110224,
+    "text": "Distance between turbine 2 and turbine 17 is 2242.110224 meters."
+  },
+  "44": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 18,
+    "distance_m": 2559.841637,
+    "text": "Distance between turbine 2 and turbine 18 is 2559.841637 meters."
+  },
+  "45": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 19,
+    "distance_m": 1194.886305,
+    "text": "Distance between turbine 2 and turbine 19 is 1194.886305 meters."
+  },
+  "46": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 20,
+    "distance_m": 1317.2593,
+    "text": "Distance between turbine 2 and turbine 20 is 1317.2593 meters."
+  },
+  "47": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 21,
+    "distance_m": 1521.404986,
+    "text": "Distance between turbine 2 and turbine 21 is 1521.404986 meters."
+  },
+  "48": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 22,
+    "distance_m": 1769.521703,
+    "text": "Distance between turbine 2 and turbine 22 is 1769.521703 meters."
+  },
+  "49": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 23,
+    "distance_m": 2027.9831210000002,
+    "text": "Distance between turbine 2 and turbine 23 is 2027.9831210000002 meters."
+  },
+  "50": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 24,
+    "distance_m": 2317.4738220000004,
+    "text": "Distance between turbine 2 and turbine 24 is 2317.4738220000004 meters."
+  },
+  "51": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 25,
+    "distance_m": 2604.8727679999997,
+    "text": "Distance between turbine 2 and turbine 25 is 2604.8727679999997 meters."
+  },
+  "52": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 26,
+    "distance_m": 2918.746368,
+    "text": "Distance between turbine 2 and turbine 26 is 2918.746368 meters."
+  },
+  "53": {
+    "type": "turbine_distance",
+    "turbine_a": 2,
+    "turbine_b": 27,
+    "distance_m": 3221.797471,
+    "text": "Distance between turbine 2 and turbine 27 is 3221.797471 meters."
+  },
+  "54": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 1,
+    "distance_m": 688.7869458,
+    "text": "Distance between turbine 3 and turbine 1 is 688.7869458 meters."
+  },
+  "55": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 2,
+    "distance_m": 364.5856847,
+    "text": "Distance between turbine 3 and turbine 2 is 364.5856847 meters."
+  },
+  "56": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 3,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 3 and turbine 3 is 0.0 meters."
+  },
+  "57": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 4,
+    "distance_m": 325.9486738,
+    "text": "Distance between turbine 3 and turbine 4 is 325.9486738 meters."
+  },
+  "58": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 5,
+    "distance_m": 669.8514074000001,
+    "text": "Distance between turbine 3 and turbine 5 is 669.8514074000001 meters."
+  },
+  "59": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 6,
+    "distance_m": 1014.1242269999999,
+    "text": "Distance between turbine 3 and turbine 6 is 1014.1242269999999 meters."
+  },
+  "60": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 7,
+    "distance_m": 1372.714074,
+    "text": "Distance between turbine 3 and turbine 7 is 1372.714074 meters."
+  },
+  "61": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 8,
+    "distance_m": 1684.070884,
+    "text": "Distance between turbine 3 and turbine 8 is 1684.070884 meters."
+  },
+  "62": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 9,
+    "distance_m": 2042.6201580000002,
+    "text": "Distance between turbine 3 and turbine 9 is 2042.6201580000002 meters."
+  },
+  "63": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 10,
+    "distance_m": 803.8431526999999,
+    "text": "Distance between turbine 3 and turbine 10 is 803.8431526999999 meters."
+  },
+  "64": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 11,
+    "distance_m": 631.19524,
+    "text": "Distance between turbine 3 and turbine 11 is 631.19524 meters."
+  },
+  "65": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 12,
+    "distance_m": 608.4327037,
+    "text": "Distance between turbine 3 and turbine 12 is 608.4327037 meters."
+  },
+  "66": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 13,
+    "distance_m": 755.8366567,
+    "text": "Distance between turbine 3 and turbine 13 is 755.8366567 meters."
+  },
+  "67": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 14,
+    "distance_m": 1001.356229,
+    "text": "Distance between turbine 3 and turbine 14 is 1001.356229 meters."
+  },
+  "68": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 15,
+    "distance_m": 1292.7813589999998,
+    "text": "Distance between turbine 3 and turbine 15 is 1292.7813589999998 meters."
+  },
+  "69": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 16,
+    "distance_m": 1579.5554590000002,
+    "text": "Distance between turbine 3 and turbine 16 is 1579.5554590000002 meters."
+  },
+  "70": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 17,
+    "distance_m": 1901.41283,
+    "text": "Distance between turbine 3 and turbine 17 is 1901.41283 meters."
+  },
+  "71": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 18,
+    "distance_m": 2213.6043929999996,
+    "text": "Distance between turbine 3 and turbine 18 is 2213.6043929999996 meters."
+  },
+  "72": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 19,
+    "distance_m": 1170.263977,
+    "text": "Distance between turbine 3 and turbine 19 is 1170.263977 meters."
+  },
+  "73": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 20,
+    "distance_m": 1198.3234579999998,
+    "text": "Distance between turbine 3 and turbine 20 is 1198.3234579999998 meters."
+  },
+  "74": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 21,
+    "distance_m": 1328.506591,
+    "text": "Distance between turbine 3 and turbine 21 is 1328.506591 meters."
+  },
+  "75": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 22,
+    "distance_m": 1526.724232,
+    "text": "Distance between turbine 3 and turbine 22 is 1526.724232 meters."
+  },
+  "76": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 23,
+    "distance_m": 1752.546727,
+    "text": "Distance between turbine 3 and turbine 23 is 1752.546727 meters."
+  },
+  "77": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 24,
+    "distance_m": 2023.3757529999998,
+    "text": "Distance between turbine 3 and turbine 24 is 2023.3757529999998 meters."
+  },
+  "78": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 25,
+    "distance_m": 2295.155839,
+    "text": "Distance between turbine 3 and turbine 25 is 2295.155839 meters."
+  },
+  "79": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 26,
+    "distance_m": 2598.234895,
+    "text": "Distance between turbine 3 and turbine 26 is 2598.234895 meters."
+  },
+  "80": {
+    "type": "turbine_distance",
+    "turbine_a": 3,
+    "turbine_b": 27,
+    "distance_m": 2893.226463,
+    "text": "Distance between turbine 3 and turbine 27 is 2893.226463 meters."
+  },
+  "81": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 1,
+    "distance_m": 1014.1309460000001,
+    "text": "Distance between turbine 4 and turbine 1 is 1014.1309460000001 meters."
+  },
+  "82": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 2,
+    "distance_m": 688.8541466,
+    "text": "Distance between turbine 4 and turbine 2 is 688.8541466 meters."
+  },
+  "83": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 3,
+    "distance_m": 325.9486738,
+    "text": "Distance between turbine 4 and turbine 3 is 325.9486738 meters."
+  },
+  "84": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 4,
+    "distance_m": 0.09493529797,
+    "text": "Distance between turbine 4 and turbine 4 is 0.09493529797 meters."
+  },
+  "85": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 5,
+    "distance_m": 344.3570621,
+    "text": "Distance between turbine 4 and turbine 5 is 344.3570621 meters."
+  },
+  "86": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 6,
+    "distance_m": 688.7741879,
+    "text": "Distance between turbine 4 and turbine 6 is 688.7741879 meters."
+  },
+  "87": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 7,
+    "distance_m": 1047.256545,
+    "text": "Distance between turbine 4 and turbine 7 is 1047.256545 meters."
+  },
+  "88": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 8,
+    "distance_m": 1358.532874,
+    "text": "Distance between turbine 4 and turbine 8 is 1358.532874 meters."
+  },
+  "89": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 9,
+    "distance_m": 1717.055853,
+    "text": "Distance between turbine 4 and turbine 9 is 1717.055853 meters."
+  },
+  "90": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 10,
+    "distance_m": 1034.0445750000001,
+    "text": "Distance between turbine 4 and turbine 10 is 1034.0445750000001 meters."
+  },
+  "91": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 11,
+    "distance_m": 773.0768144,
+    "text": "Distance between turbine 4 and turbine 11 is 773.0768144 meters."
+  },
+  "92": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 12,
+    "distance_m": 595.896713,
+    "text": "Distance between turbine 4 and turbine 12 is 595.896713 meters."
+  },
+  "93": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 13,
+    "distance_m": 594.4320296,
+    "text": "Distance between turbine 4 and turbine 13 is 594.4320296 meters."
+  },
+  "94": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 14,
+    "distance_m": 748.8874692,
+    "text": "Distance between turbine 4 and turbine 14 is 748.8874692 meters."
+  },
+  "95": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 15,
+    "distance_m": 1002.759913,
+    "text": "Distance between turbine 4 and turbine 15 is 1002.759913 meters."
+  },
+  "96": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 16,
+    "distance_m": 1275.278941,
+    "text": "Distance between turbine 4 and turbine 16 is 1275.278941 meters."
+  },
+  "97": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 17,
+    "distance_m": 1588.3287349999998,
+    "text": "Distance between turbine 4 and turbine 17 is 1588.3287349999998 meters."
+  },
+  "98": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 18,
+    "distance_m": 1895.5419849999998,
+    "text": "Distance between turbine 4 and turbine 18 is 1895.5419849999998 meters."
+  },
+  "99": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 19,
+    "distance_m": 1198.335969,
+    "text": "Distance between turbine 4 and turbine 19 is 1198.335969 meters."
+  },
+  "100": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 20,
+    "distance_m": 1134.980834,
+    "text": "Distance between turbine 4 and turbine 20 is 1134.980834 meters."
+  },
+  "101": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 21,
+    "distance_m": 1180.35884,
+    "text": "Distance between turbine 4 and turbine 21 is 1180.35884 meters."
+  },
+  "102": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 22,
+    "distance_m": 1317.309519,
+    "text": "Distance between turbine 4 and turbine 22 is 1317.309519 meters."
+  },
+  "103": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 23,
+    "distance_m": 1503.836869,
+    "text": "Distance between turbine 4 and turbine 23 is 1503.836869 meters."
+  },
+  "104": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 24,
+    "distance_m": 1752.618512,
+    "text": "Distance between turbine 4 and turbine 24 is 1752.618512 meters."
+  },
+  "105": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 25,
+    "distance_m": 2007.7439469999997,
+    "text": "Distance between turbine 4 and turbine 25 is 2007.7439469999997 meters."
+  },
+  "106": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 26,
+    "distance_m": 2300.033799,
+    "text": "Distance between turbine 4 and turbine 26 is 2300.033799 meters."
+  },
+  "107": {
+    "type": "turbine_distance",
+    "turbine_a": 4,
+    "turbine_b": 27,
+    "distance_m": 2587.6210140000003,
+    "text": "Distance between turbine 4 and turbine 27 is 2587.6210140000003 meters."
+  },
+  "108": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 1,
+    "distance_m": 1358.417176,
+    "text": "Distance between turbine 5 and turbine 1 is 1358.417176 meters."
+  },
+  "109": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 2,
+    "distance_m": 1033.211201,
+    "text": "Distance between turbine 5 and turbine 2 is 1033.211201 meters."
+  },
+  "110": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 3,
+    "distance_m": 669.8514074000001,
+    "text": "Distance between turbine 5 and turbine 3 is 669.8514074000001 meters."
+  },
+  "111": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 4,
+    "distance_m": 344.3570621,
+    "text": "Distance between turbine 5 and turbine 4 is 344.3570621 meters."
+  },
+  "112": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 5,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 5 and turbine 5 is 0.0 meters."
+  },
+  "113": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 6,
+    "distance_m": 344.4171229,
+    "text": "Distance between turbine 5 and turbine 6 is 344.4171229 meters."
+  },
+  "114": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 7,
+    "distance_m": 702.9294110999999,
+    "text": "Distance between turbine 5 and turbine 7 is 702.9294110999999 meters."
+  },
+  "115": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 8,
+    "distance_m": 1014.2486269999999,
+    "text": "Distance between turbine 5 and turbine 8 is 1014.2486269999999 meters."
+  },
+  "116": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 9,
+    "distance_m": 1372.790994,
+    "text": "Distance between turbine 5 and turbine 9 is 1372.790994 meters."
+  },
+  "117": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 10,
+    "distance_m": 1333.412749,
+    "text": "Distance between turbine 5 and turbine 10 is 1333.412749 meters."
+  },
+  "118": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 11,
+    "distance_m": 1034.048837,
+    "text": "Distance between turbine 5 and turbine 11 is 1034.048837 meters."
+  },
+  "119": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 12,
+    "distance_m": 773.9954154999999,
+    "text": "Distance between turbine 5 and turbine 12 is 773.9954154999999 meters."
+  },
+  "120": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 13,
+    "distance_m": 618.9497564000001,
+    "text": "Distance between turbine 5 and turbine 13 is 618.9497564000001 meters."
+  },
+  "121": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 14,
+    "distance_m": 594.4303618,
+    "text": "Distance between turbine 5 and turbine 14 is 594.4303618 meters."
+  },
+  "122": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 15,
+    "distance_m": 748.9217554999999,
+    "text": "Distance between turbine 5 and turbine 15 is 748.9217554999999 meters."
+  },
+  "123": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 16,
+    "distance_m": 983.5655628999999,
+    "text": "Distance between turbine 5 and turbine 16 is 983.5655628999999 meters."
+  },
+  "124": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 17,
+    "distance_m": 1275.400757,
+    "text": "Distance between turbine 5 and turbine 17 is 1275.400757 meters."
+  },
+  "125": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 18,
+    "distance_m": 1571.3897670000001,
+    "text": "Distance between turbine 5 and turbine 18 is 1571.3897670000001 meters."
+  },
+  "126": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 19,
+    "distance_m": 1340.0840309999999,
+    "text": "Distance between turbine 5 and turbine 19 is 1340.0840309999999 meters."
+  },
+  "127": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 20,
+    "distance_m": 1191.814466,
+    "text": "Distance between turbine 5 and turbine 20 is 1191.814466 meters."
+  },
+  "128": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 21,
+    "distance_m": 1135.04081,
+    "text": "Distance between turbine 5 and turbine 21 is 1135.04081 meters."
+  },
+  "129": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 22,
+    "distance_m": 1180.33257,
+    "text": "Distance between turbine 5 and turbine 22 is 1180.33257 meters."
+  },
+  "130": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 23,
+    "distance_m": 1300.695753,
+    "text": "Distance between turbine 5 and turbine 23 is 1300.695753 meters."
+  },
+  "131": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 24,
+    "distance_m": 1509.3334830000001,
+    "text": "Distance between turbine 5 and turbine 24 is 1509.3334830000001 meters."
+  },
+  "132": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 25,
+    "distance_m": 1734.889741,
+    "text": "Distance between turbine 5 and turbine 25 is 1734.889741 meters."
+  },
+  "133": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 26,
+    "distance_m": 2007.9121209999998,
+    "text": "Distance between turbine 5 and turbine 26 is 2007.9121209999998 meters."
+  },
+  "134": {
+    "type": "turbine_distance",
+    "turbine_a": 5,
+    "turbine_b": 27,
+    "distance_m": 2282.487599,
+    "text": "Distance between turbine 5 and turbine 27 is 2282.487599 meters."
+  },
+  "135": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 1,
+    "distance_m": 1702.793077,
+    "text": "Distance between turbine 6 and turbine 1 is 1702.793077 meters."
+  },
+  "136": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 2,
+    "distance_m": 1377.6283190000001,
+    "text": "Distance between turbine 6 and turbine 2 is 1377.6283190000001 meters."
+  },
+  "137": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 3,
+    "distance_m": 1014.1242269999999,
+    "text": "Distance between turbine 6 and turbine 3 is 1014.1242269999999 meters."
+  },
+  "138": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 4,
+    "distance_m": 688.7741879,
+    "text": "Distance between turbine 6 and turbine 4 is 688.7741879 meters."
+  },
+  "139": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 5,
+    "distance_m": 344.4171229,
+    "text": "Distance between turbine 6 and turbine 5 is 344.4171229 meters."
+  },
+  "140": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 6,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 6 and turbine 6 is 0.0 meters."
+  },
+  "141": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 7,
+    "distance_m": 358.5975517,
+    "text": "Distance between turbine 6 and turbine 7 is 358.5975517 meters."
+  },
+  "142": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 8,
+    "distance_m": 669.9767001,
+    "text": "Distance between turbine 6 and turbine 8 is 669.9767001 meters."
+  },
+  "143": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 9,
+    "distance_m": 1028.525457,
+    "text": "Distance between turbine 6 and turbine 9 is 1028.525457 meters."
+  },
+  "144": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 10,
+    "distance_m": 1650.4546289999998,
+    "text": "Distance between turbine 6 and turbine 10 is 1650.4546289999998 meters."
+  },
+  "145": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 11,
+    "distance_m": 1333.452066,
+    "text": "Distance between turbine 6 and turbine 11 is 1333.452066 meters."
+  },
+  "146": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 12,
+    "distance_m": 1039.343518,
+    "text": "Distance between turbine 6 and turbine 12 is 1039.343518 meters."
+  },
+  "147": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 13,
+    "distance_m": 806.225195,
+    "text": "Distance between turbine 6 and turbine 13 is 806.225195 meters."
+  },
+  "148": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 14,
+    "distance_m": 618.8473091999999,
+    "text": "Distance between turbine 6 and turbine 14 is 618.8473091999999 meters."
+  },
+  "149": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 15,
+    "distance_m": 594.3974291000001,
+    "text": "Distance between turbine 6 and turbine 15 is 594.3974291000001 meters."
+  },
+  "150": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 16,
+    "distance_m": 738.5763682999999,
+    "text": "Distance between turbine 6 and turbine 16 is 738.5763682999999 meters."
+  },
+  "151": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 17,
+    "distance_m": 983.6125466,
+    "text": "Distance between turbine 6 and turbine 17 is 983.6125466 meters."
+  },
+  "152": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 18,
+    "distance_m": 1257.935456,
+    "text": "Distance between turbine 6 and turbine 18 is 1257.935456 meters."
+  },
+  "153": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 19,
+    "distance_m": 1546.858718,
+    "text": "Distance between turbine 6 and turbine 19 is 1546.858718 meters."
+  },
+  "154": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 20,
+    "distance_m": 1337.817008,
+    "text": "Distance between turbine 6 and turbine 20 is 1337.817008 meters."
+  },
+  "155": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 21,
+    "distance_m": 1191.821846,
+    "text": "Distance between turbine 6 and turbine 21 is 1191.821846 meters."
+  },
+  "156": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 22,
+    "distance_m": 1134.934022,
+    "text": "Distance between turbine 6 and turbine 22 is 1134.934022 meters."
+  },
+  "157": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 23,
+    "distance_m": 1165.789454,
+    "text": "Distance between turbine 6 and turbine 23 is 1165.789454 meters."
+  },
+  "158": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 24,
+    "distance_m": 1312.033761,
+    "text": "Distance between turbine 6 and turbine 24 is 1312.033761 meters."
+  },
+  "159": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 25,
+    "distance_m": 1491.824386,
+    "text": "Distance between turbine 6 and turbine 25 is 1491.824386 meters."
+  },
+  "160": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 26,
+    "distance_m": 1734.968651,
+    "text": "Distance between turbine 6 and turbine 26 is 1734.968651 meters."
+  },
+  "161": {
+    "type": "turbine_distance",
+    "turbine_a": 6,
+    "turbine_b": 27,
+    "distance_m": 1990.107567,
+    "text": "Distance between turbine 6 and turbine 27 is 1990.107567 meters."
+  },
+  "162": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 1,
+    "distance_m": 2061.3461169999996,
+    "text": "Distance between turbine 7 and turbine 1 is 2061.3461169999996 meters."
+  },
+  "163": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 2,
+    "distance_m": 1736.085849,
+    "text": "Distance between turbine 7 and turbine 2 is 1736.085849 meters."
+  },
+  "164": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 3,
+    "distance_m": 1372.714074,
+    "text": "Distance between turbine 7 and turbine 3 is 1372.714074 meters."
+  },
+  "165": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 4,
+    "distance_m": 1047.256545,
+    "text": "Distance between turbine 7 and turbine 4 is 1047.256545 meters."
+  },
+  "166": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 5,
+    "distance_m": 702.9294110999999,
+    "text": "Distance between turbine 7 and turbine 5 is 702.9294110999999 meters."
+  },
+  "167": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 6,
+    "distance_m": 358.5975517,
+    "text": "Distance between turbine 7 and turbine 6 is 358.5975517 meters."
+  },
+  "168": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 7,
+    "distance_m": 0.1342587859,
+    "text": "Distance between turbine 7 and turbine 7 is 0.1342587859 meters."
+  },
+  "169": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 8,
+    "distance_m": 311.38722740000003,
+    "text": "Distance between turbine 7 and turbine 8 is 311.38722740000003 meters."
+  },
+  "170": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 9,
+    "distance_m": 669.9305975999999,
+    "text": "Distance between turbine 7 and turbine 9 is 669.9305975999999 meters."
+  },
+  "171": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 10,
+    "distance_m": 1986.853228,
+    "text": "Distance between turbine 7 and turbine 10 is 1986.853228 meters."
+  },
+  "172": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 11,
+    "distance_m": 1659.77829,
+    "text": "Distance between turbine 7 and turbine 11 is 1659.77829 meters."
+  },
+  "173": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 12,
+    "distance_m": 1349.1955010000001,
+    "text": "Distance between turbine 7 and turbine 12 is 1349.1955010000001 meters."
+  },
+  "174": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 13,
+    "distance_m": 1080.197739,
+    "text": "Distance between turbine 7 and turbine 13 is 1080.197739 meters."
+  },
+  "175": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 14,
+    "distance_m": 808.0081529,
+    "text": "Distance between turbine 7 and turbine 14 is 808.0081529 meters."
+  },
+  "176": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 15,
+    "distance_m": 613.4881293999999,
+    "text": "Distance between turbine 7 and turbine 15 is 613.4881293999999 meters."
+  },
+  "177": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 16,
+    "distance_m": 587.5557098,
+    "text": "Distance between turbine 7 and turbine 16 is 587.5557098 meters."
+  },
+  "178": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 17,
+    "distance_m": 721.3343125,
+    "text": "Distance between turbine 7 and turbine 17 is 721.3343125 meters."
+  },
+  "179": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 18,
+    "distance_m": 947.8980455,
+    "text": "Distance between turbine 7 and turbine 18 is 947.8980455 meters."
+  },
+  "180": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 19,
+    "distance_m": 1800.118431,
+    "text": "Distance between turbine 7 and turbine 19 is 1800.118431 meters."
+  },
+  "181": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 20,
+    "distance_m": 1549.448294,
+    "text": "Distance between turbine 7 and turbine 20 is 1549.448294 meters."
+  },
+  "182": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 21,
+    "distance_m": 1335.8958030000001,
+    "text": "Distance between turbine 7 and turbine 21 is 1335.8958030000001 meters."
+  },
+  "183": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 22,
+    "distance_m": 1185.4859840000001,
+    "text": "Distance between turbine 7 and turbine 22 is 1185.4859840000001 meters."
+  },
+  "184": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 23,
+    "distance_m": 1113.4293049999999,
+    "text": "Distance between turbine 7 and turbine 23 is 1113.4293049999999 meters."
+  },
+  "185": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 24,
+    "distance_m": 1169.845595,
+    "text": "Distance between turbine 7 and turbine 24 is 1169.845595 meters."
+  },
+  "186": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 25,
+    "distance_m": 1279.058089,
+    "text": "Distance between turbine 7 and turbine 25 is 1279.058089 meters."
+  },
+  "187": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 26,
+    "distance_m": 1474.321028,
+    "text": "Distance between turbine 7 and turbine 26 is 1474.321028 meters."
+  },
+  "188": {
+    "type": "turbine_distance",
+    "turbine_a": 7,
+    "turbine_b": 27,
+    "distance_m": 1699.234895,
+    "text": "Distance between turbine 7 and turbine 27 is 1699.234895 meters."
+  },
+  "189": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 1,
+    "distance_m": 2372.654365,
+    "text": "Distance between turbine 8 and turbine 1 is 2372.654365 meters."
+  },
+  "190": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 2,
+    "distance_m": 2047.313785,
+    "text": "Distance between turbine 8 and turbine 2 is 2047.313785 meters."
+  },
+  "191": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 3,
+    "distance_m": 1684.070884,
+    "text": "Distance between turbine 8 and turbine 3 is 1684.070884 meters."
+  },
+  "192": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 4,
+    "distance_m": 1358.532874,
+    "text": "Distance between turbine 8 and turbine 4 is 1358.532874 meters."
+  },
+  "193": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 5,
+    "distance_m": 1014.2486269999999,
+    "text": "Distance between turbine 8 and turbine 5 is 1014.2486269999999 meters."
+  },
+  "194": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 6,
+    "distance_m": 669.9767001,
+    "text": "Distance between turbine 8 and turbine 6 is 669.9767001 meters."
+  },
+  "195": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 7,
+    "distance_m": 311.38722740000003,
+    "text": "Distance between turbine 8 and turbine 7 is 311.38722740000003 meters."
+  },
+  "196": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 8,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 8 and turbine 8 is 0.0 meters."
+  },
+  "197": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 9,
+    "distance_m": 358.5507757,
+    "text": "Distance between turbine 8 and turbine 9 is 358.5507757 meters."
+  },
+  "198": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 10,
+    "distance_m": 2283.595363,
+    "text": "Distance between turbine 8 and turbine 10 is 2283.595363 meters."
+  },
+  "199": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 11,
+    "distance_m": 1951.369043,
+    "text": "Distance between turbine 8 and turbine 11 is 1951.369043 meters."
+  },
+  "200": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 12,
+    "distance_m": 1633.380368,
+    "text": "Distance between turbine 8 and turbine 12 is 1633.380368 meters."
+  },
+  "201": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 13,
+    "distance_m": 1349.277015,
+    "text": "Distance between turbine 8 and turbine 13 is 1349.277015 meters."
+  },
+  "202": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 14,
+    "distance_m": 1045.112609,
+    "text": "Distance between turbine 8 and turbine 14 is 1045.112609 meters."
+  },
+  "203": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 15,
+    "distance_m": 775.5509297,
+    "text": "Distance between turbine 8 and turbine 15 is 775.5509297 meters."
+  },
+  "204": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 16,
+    "distance_m": 613.5090122,
+    "text": "Distance between turbine 8 and turbine 16 is 613.5090122 meters."
+  },
+  "205": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 17,
+    "distance_m": 580.6703358000001,
+    "text": "Distance between turbine 8 and turbine 17 is 580.6703358000001 meters."
+  },
+  "206": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 18,
+    "distance_m": 714.1090667999999,
+    "text": "Distance between turbine 8 and turbine 18 is 714.1090667999999 meters."
+  },
+  "207": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 19,
+    "distance_m": 2043.978364,
+    "text": "Distance between turbine 8 and turbine 19 is 2043.978364 meters."
+  },
+  "208": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 20,
+    "distance_m": 1769.996027,
+    "text": "Distance between turbine 8 and turbine 20 is 1769.996027 meters."
+  },
+  "209": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 21,
+    "distance_m": 1517.376608,
+    "text": "Distance between turbine 8 and turbine 21 is 1517.376608 meters."
+  },
+  "210": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 22,
+    "distance_m": 1307.246521,
+    "text": "Distance between turbine 8 and turbine 22 is 1307.246521 meters."
+  },
+  "211": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 23,
+    "distance_m": 1156.674257,
+    "text": "Distance between turbine 8 and turbine 23 is 1156.674257 meters."
+  },
+  "212": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 24,
+    "distance_m": 1124.201104,
+    "text": "Distance between turbine 8 and turbine 24 is 1124.201104 meters."
+  },
+  "213": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 25,
+    "distance_m": 1151.4860840000001,
+    "text": "Distance between turbine 8 and turbine 25 is 1151.4860840000001 meters."
+  },
+  "214": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 26,
+    "distance_m": 1284.2104219999999,
+    "text": "Distance between turbine 8 and turbine 26 is 1284.2104219999999 meters."
+  },
+  "215": {
+    "type": "turbine_distance",
+    "turbine_a": 8,
+    "turbine_b": 27,
+    "distance_m": 1468.88829,
+    "text": "Distance between turbine 8 and turbine 27 is 1468.88829 meters."
+  },
+  "216": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 1,
+    "distance_m": 2731.184334,
+    "text": "Distance between turbine 9 and turbine 1 is 2731.184334 meters."
+  },
+  "217": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 2,
+    "distance_m": 2405.80341,
+    "text": "Distance between turbine 9 and turbine 2 is 2405.80341 meters."
+  },
+  "218": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 3,
+    "distance_m": 2042.6201580000002,
+    "text": "Distance between turbine 9 and turbine 3 is 2042.6201580000002 meters."
+  },
+  "219": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 4,
+    "distance_m": 1717.055853,
+    "text": "Distance between turbine 9 and turbine 4 is 1717.055853 meters."
+  },
+  "220": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 5,
+    "distance_m": 1372.790994,
+    "text": "Distance between turbine 9 and turbine 5 is 1372.790994 meters."
+  },
+  "221": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 6,
+    "distance_m": 1028.525457,
+    "text": "Distance between turbine 9 and turbine 6 is 1028.525457 meters."
+  },
+  "222": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 7,
+    "distance_m": 669.9305975999999,
+    "text": "Distance between turbine 9 and turbine 7 is 669.9305975999999 meters."
+  },
+  "223": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 8,
+    "distance_m": 358.5507757,
+    "text": "Distance between turbine 9 and turbine 8 is 358.5507757 meters."
+  },
+  "224": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 9,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 9 and turbine 9 is 0.0 meters."
+  },
+  "225": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 10,
+    "distance_m": 2630.2984610000003,
+    "text": "Distance between turbine 9 and turbine 10 is 2630.2984610000003 meters."
+  },
+  "226": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 11,
+    "distance_m": 2294.498423,
+    "text": "Distance between turbine 9 and turbine 11 is 2294.498423 meters."
+  },
+  "227": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 12,
+    "distance_m": 1971.845469,
+    "text": "Distance between turbine 9 and turbine 12 is 1971.845469 meters."
+  },
+  "228": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 13,
+    "distance_m": 1678.557226,
+    "text": "Distance between turbine 9 and turbine 13 is 1678.557226 meters."
+  },
+  "229": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 14,
+    "distance_m": 1357.342537,
+    "text": "Distance between turbine 9 and turbine 14 is 1357.342537 meters."
+  },
+  "230": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 15,
+    "distance_m": 1051.088593,
+    "text": "Distance between turbine 9 and turbine 15 is 1051.088593 meters."
+  },
+  "231": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 16,
+    "distance_m": 810.1831953000001,
+    "text": "Distance between turbine 9 and turbine 16 is 810.1831953000001 meters."
+  },
+  "232": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 17,
+    "distance_m": 608.5390517,
+    "text": "Distance between turbine 9 and turbine 17 is 608.5390517 meters."
+  },
+  "233": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 18,
+    "distance_m": 553.5433736000001,
+    "text": "Distance between turbine 9 and turbine 18 is 553.5433736000001 meters."
+  },
+  "234": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 19,
+    "distance_m": 2346.3730570000002,
+    "text": "Distance between turbine 9 and turbine 19 is 2346.3730570000002 meters."
+  },
+  "235": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 20,
+    "distance_m": 2055.2185550000004,
+    "text": "Distance between turbine 9 and turbine 20 is 2055.2185550000004 meters."
+  },
+  "236": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 21,
+    "distance_m": 1773.879116,
+    "text": "Distance between turbine 9 and turbine 21 is 1773.879116 meters."
+  },
+  "237": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 22,
+    "distance_m": 1518.640093,
+    "text": "Distance between turbine 9 and turbine 22 is 1518.640093 meters."
+  },
+  "238": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 23,
+    "distance_m": 1303.32834,
+    "text": "Distance between turbine 9 and turbine 23 is 1303.32834 meters."
+  },
+  "239": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 24,
+    "distance_m": 1179.436439,
+    "text": "Distance between turbine 9 and turbine 24 is 1179.436439 meters."
+  },
+  "240": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 25,
+    "distance_m": 1102.9701089999999,
+    "text": "Distance between turbine 9 and turbine 25 is 1102.9701089999999 meters."
+  },
+  "241": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 26,
+    "distance_m": 1137.0625679999998,
+    "text": "Distance between turbine 9 and turbine 26 is 1137.0625679999998 meters."
+  },
+  "242": {
+    "type": "turbine_distance",
+    "turbine_a": 9,
+    "turbine_b": 27,
+    "distance_m": 1250.899551,
+    "text": "Distance between turbine 9 and turbine 27 is 1250.899551 meters."
+  },
+  "243": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 1,
+    "distance_m": 622.6743017,
+    "text": "Distance between turbine 10 and turbine 1 is 622.6743017 meters."
+  },
+  "244": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 2,
+    "distance_m": 602.5806685,
+    "text": "Distance between turbine 10 and turbine 2 is 602.5806685 meters."
+  },
+  "245": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 3,
+    "distance_m": 803.8431526999999,
+    "text": "Distance between turbine 10 and turbine 3 is 803.8431526999999 meters."
+  },
+  "246": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 4,
+    "distance_m": 1034.0445750000001,
+    "text": "Distance between turbine 10 and turbine 4 is 1034.0445750000001 meters."
+  },
+  "247": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 5,
+    "distance_m": 1333.412749,
+    "text": "Distance between turbine 10 and turbine 5 is 1333.412749 meters."
+  },
+  "248": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 6,
+    "distance_m": 1650.4546289999998,
+    "text": "Distance between turbine 10 and turbine 6 is 1650.4546289999998 meters."
+  },
+  "249": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 7,
+    "distance_m": 1986.853228,
+    "text": "Distance between turbine 10 and turbine 7 is 1986.853228 meters."
+  },
+  "250": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 8,
+    "distance_m": 2283.595363,
+    "text": "Distance between turbine 10 and turbine 8 is 2283.595363 meters."
+  },
+  "251": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 9,
+    "distance_m": 2630.2984610000003,
+    "text": "Distance between turbine 10 and turbine 9 is 2630.2984610000003 meters."
+  },
+  "252": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 10,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 10 and turbine 10 is 0.0 meters."
+  },
+  "253": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 11,
+    "distance_m": 344.3114272,
+    "text": "Distance between turbine 10 and turbine 11 is 344.3114272 meters."
+  },
+  "254": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 12,
+    "distance_m": 674.9263018,
+    "text": "Distance between turbine 10 and turbine 12 is 674.9263018 meters."
+  },
+  "255": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 13,
+    "distance_m": 985.8848373,
+    "text": "Distance between turbine 10 and turbine 13 is 985.8848373 meters."
+  },
+  "256": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 14,
+    "distance_m": 1330.3443479999999,
+    "text": "Distance between turbine 10 and turbine 14 is 1330.3443479999999 meters."
+  },
+  "257": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 15,
+    "distance_m": 1674.694148,
+    "text": "Distance between turbine 10 and turbine 15 is 1674.694148 meters."
+  },
+  "258": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 16,
+    "distance_m": 1985.892842,
+    "text": "Distance between turbine 10 and turbine 16 is 1985.892842 meters."
+  },
+  "259": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 17,
+    "distance_m": 2330.304567,
+    "text": "Distance between turbine 10 and turbine 17 is 2330.304567 meters."
+  },
+  "260": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 18,
+    "distance_m": 2660.83768,
+    "text": "Distance between turbine 10 and turbine 18 is 2660.83768 meters."
+  },
+  "261": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 19,
+    "distance_m": 760.5490046,
+    "text": "Distance between turbine 10 and turbine 19 is 760.5490046 meters."
+  },
+  "262": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 20,
+    "distance_m": 1004.92148,
+    "text": "Distance between turbine 10 and turbine 20 is 1004.92148 meters."
+  },
+  "263": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 21,
+    "distance_m": 1305.770889,
+    "text": "Distance between turbine 10 and turbine 21 is 1305.770889 meters."
+  },
+  "264": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 22,
+    "distance_m": 1623.9965599999998,
+    "text": "Distance between turbine 10 and turbine 22 is 1623.9965599999998 meters."
+  },
+  "265": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 23,
+    "distance_m": 1934.6328740000001,
+    "text": "Distance between turbine 10 and turbine 23 is 1934.6328740000001 meters."
+  },
+  "266": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 24,
+    "distance_m": 2254.354359,
+    "text": "Distance between turbine 10 and turbine 24 is 2254.354359 meters."
+  },
+  "267": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 25,
+    "distance_m": 2573.065888,
+    "text": "Distance between turbine 10 and turbine 25 is 2573.065888 meters."
+  },
+  "268": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 26,
+    "distance_m": 2910.3324939999998,
+    "text": "Distance between turbine 10 and turbine 26 is 2910.3324939999998 meters."
+  },
+  "269": {
+    "type": "turbine_distance",
+    "turbine_a": 10,
+    "turbine_b": 27,
+    "distance_m": 3233.38622,
+    "text": "Distance between turbine 10 and turbine 27 is 3233.38622 meters."
+  },
+  "270": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 1,
+    "distance_m": 783.7610284,
+    "text": "Distance between turbine 11 and turbine 1 is 783.7610284 meters."
+  },
+  "271": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 2,
+    "distance_m": 604.86672,
+    "text": "Distance between turbine 11 and turbine 2 is 604.86672 meters."
+  },
+  "272": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 3,
+    "distance_m": 631.19524,
+    "text": "Distance between turbine 11 and turbine 3 is 631.19524 meters."
+  },
+  "273": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 4,
+    "distance_m": 773.0768144,
+    "text": "Distance between turbine 11 and turbine 4 is 773.0768144 meters."
+  },
+  "274": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 5,
+    "distance_m": 1034.048837,
+    "text": "Distance between turbine 11 and turbine 5 is 1034.048837 meters."
+  },
+  "275": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 6,
+    "distance_m": 1333.452066,
+    "text": "Distance between turbine 11 and turbine 6 is 1333.452066 meters."
+  },
+  "276": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 7,
+    "distance_m": 1659.77829,
+    "text": "Distance between turbine 11 and turbine 7 is 1659.77829 meters."
+  },
+  "277": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 8,
+    "distance_m": 1951.369043,
+    "text": "Distance between turbine 11 and turbine 8 is 1951.369043 meters."
+  },
+  "278": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 9,
+    "distance_m": 2294.498423,
+    "text": "Distance between turbine 11 and turbine 9 is 2294.498423 meters."
+  },
+  "279": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 10,
+    "distance_m": 344.3114272,
+    "text": "Distance between turbine 11 and turbine 10 is 344.3114272 meters."
+  },
+  "280": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 11,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 11 and turbine 11 is 0.0 meters."
+  },
+  "281": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 12,
+    "distance_m": 330.71244859999996,
+    "text": "Distance between turbine 11 and turbine 12 is 330.71244859999996 meters."
+  },
+  "282": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 13,
+    "distance_m": 641.5741628000001,
+    "text": "Distance between turbine 11 and turbine 13 is 641.5741628000001 meters."
+  },
+  "283": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 14,
+    "distance_m": 986.0332973,
+    "text": "Distance between turbine 11 and turbine 14 is 986.0332973 meters."
+  },
+  "284": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 15,
+    "distance_m": 1330.3829739999999,
+    "text": "Distance between turbine 11 and turbine 15 is 1330.3829739999999 meters."
+  },
+  "285": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 16,
+    "distance_m": 1641.592875,
+    "text": "Distance between turbine 11 and turbine 16 is 1641.592875 meters."
+  },
+  "286": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 17,
+    "distance_m": 1986.001435,
+    "text": "Distance between turbine 11 and turbine 17 is 1986.001435 meters."
+  },
+  "287": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 18,
+    "distance_m": 2316.5266610000003,
+    "text": "Distance between turbine 11 and turbine 18 is 2316.5266610000003 meters."
+  },
+  "288": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 19,
+    "distance_m": 590.0628203,
+    "text": "Distance between turbine 11 and turbine 19 is 590.0628203 meters."
+  },
+  "289": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 20,
+    "distance_m": 743.0070206,
+    "text": "Distance between turbine 11 and turbine 20 is 743.0070206 meters."
+  },
+  "290": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 21,
+    "distance_m": 1005.0332040000001,
+    "text": "Distance between turbine 11 and turbine 21 is 1005.0332040000001 meters."
+  },
+  "291": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 22,
+    "distance_m": 1305.856166,
+    "text": "Distance between turbine 11 and turbine 22 is 1305.856166 meters."
+  },
+  "292": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 23,
+    "distance_m": 1607.212553,
+    "text": "Distance between turbine 11 and turbine 23 is 1607.212553 meters."
+  },
+  "293": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 24,
+    "distance_m": 1923.175957,
+    "text": "Distance between turbine 11 and turbine 24 is 1923.175957 meters."
+  },
+  "294": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 25,
+    "distance_m": 2238.209065,
+    "text": "Distance between turbine 11 and turbine 25 is 2238.209065 meters."
+  },
+  "295": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 26,
+    "distance_m": 2573.2717310000003,
+    "text": "Distance between turbine 11 and turbine 26 is 2573.2717310000003 meters."
+  },
+  "296": {
+    "type": "turbine_distance",
+    "turbine_a": 11,
+    "turbine_b": 27,
+    "distance_m": 2894.636241,
+    "text": "Distance between turbine 11 and turbine 27 is 2894.636241 meters."
+  },
+  "297": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 1,
+    "distance_m": 1020.4817799999998,
+    "text": "Distance between turbine 12 and turbine 1 is 1020.4817799999998 meters."
+  },
+  "298": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 2,
+    "distance_m": 760.7035994,
+    "text": "Distance between turbine 12 and turbine 2 is 760.7035994 meters."
+  },
+  "299": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 3,
+    "distance_m": 608.4327037,
+    "text": "Distance between turbine 12 and turbine 3 is 608.4327037 meters."
+  },
+  "300": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 4,
+    "distance_m": 595.896713,
+    "text": "Distance between turbine 12 and turbine 4 is 595.896713 meters."
+  },
+  "301": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 5,
+    "distance_m": 773.9954154999999,
+    "text": "Distance between turbine 12 and turbine 5 is 773.9954154999999 meters."
+  },
+  "302": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 6,
+    "distance_m": 1039.343518,
+    "text": "Distance between turbine 12 and turbine 6 is 1039.343518 meters."
+  },
+  "303": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 7,
+    "distance_m": 1349.1955010000001,
+    "text": "Distance between turbine 12 and turbine 7 is 1349.1955010000001 meters."
+  },
+  "304": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 8,
+    "distance_m": 1633.380368,
+    "text": "Distance between turbine 12 and turbine 8 is 1633.380368 meters."
+  },
+  "305": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 9,
+    "distance_m": 1971.845469,
+    "text": "Distance between turbine 12 and turbine 9 is 1971.845469 meters."
+  },
+  "306": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 10,
+    "distance_m": 674.9263018,
+    "text": "Distance between turbine 12 and turbine 10 is 674.9263018 meters."
+  },
+  "307": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 11,
+    "distance_m": 330.71244859999996,
+    "text": "Distance between turbine 12 and turbine 11 is 330.71244859999996 meters."
+  },
+  "308": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 12,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 12 and turbine 12 is 0.0 meters."
+  },
+  "309": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 13,
+    "distance_m": 311.3191733,
+    "text": "Distance between turbine 12 and turbine 13 is 311.3191733 meters."
+  },
+  "310": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 14,
+    "distance_m": 655.638743,
+    "text": "Distance between turbine 12 and turbine 14 is 655.638743 meters."
+  },
+  "311": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 15,
+    "distance_m": 999.945982,
+    "text": "Distance between turbine 12 and turbine 15 is 999.945982 meters."
+  },
+  "312": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 16,
+    "distance_m": 1311.263019,
+    "text": "Distance between turbine 12 and turbine 16 is 1311.263019 meters."
+  },
+  "313": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 17,
+    "distance_m": 1655.6312010000001,
+    "text": "Distance between turbine 12 and turbine 17 is 1655.6312010000001 meters."
+  },
+  "314": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 18,
+    "distance_m": 1986.059688,
+    "text": "Distance between turbine 12 and turbine 18 is 1986.059688 meters."
+  },
+  "315": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 19,
+    "distance_m": 602.553409,
+    "text": "Distance between turbine 12 and turbine 19 is 602.553409 meters."
+  },
+  "316": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 20,
+    "distance_m": 590.1457303,
+    "text": "Distance between turbine 12 and turbine 20 is 590.1457303 meters."
+  },
+  "317": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 21,
+    "distance_m": 760.7014075000001,
+    "text": "Distance between turbine 12 and turbine 21 is 760.7014075000001 meters."
+  },
+  "318": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 22,
+    "distance_m": 1022.827315,
+    "text": "Distance between turbine 12 and turbine 22 is 1022.827315 meters."
+  },
+  "319": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 23,
+    "distance_m": 1305.888856,
+    "text": "Distance between turbine 12 and turbine 23 is 1305.888856 meters."
+  },
+  "320": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 24,
+    "distance_m": 1614.4634819999999,
+    "text": "Distance between turbine 12 and turbine 24 is 1614.4634819999999 meters."
+  },
+  "321": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 25,
+    "distance_m": 1923.21434,
+    "text": "Distance between turbine 12 and turbine 25 is 1923.21434 meters."
+  },
+  "322": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 26,
+    "distance_m": 2254.592276,
+    "text": "Distance between turbine 12 and turbine 26 is 2254.592276 meters."
+  },
+  "323": {
+    "type": "turbine_distance",
+    "turbine_a": 12,
+    "turbine_b": 27,
+    "distance_m": 2573.263517,
+    "text": "Distance between turbine 12 and turbine 27 is 2573.263517 meters."
+  },
+  "324": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 1,
+    "distance_m": 1292.662199,
+    "text": "Distance between turbine 13 and turbine 1 is 1292.662199 meters."
+  },
+  "325": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 2,
+    "distance_m": 1002.7285539999999,
+    "text": "Distance between turbine 13 and turbine 2 is 1002.7285539999999 meters."
+  },
+  "326": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 3,
+    "distance_m": 755.8366567,
+    "text": "Distance between turbine 13 and turbine 3 is 755.8366567 meters."
+  },
+  "327": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 4,
+    "distance_m": 594.4320296,
+    "text": "Distance between turbine 13 and turbine 4 is 594.4320296 meters."
+  },
+  "328": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 5,
+    "distance_m": 618.9497564000001,
+    "text": "Distance between turbine 13 and turbine 5 is 618.9497564000001 meters."
+  },
+  "329": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 6,
+    "distance_m": 806.225195,
+    "text": "Distance between turbine 13 and turbine 6 is 806.225195 meters."
+  },
+  "330": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 7,
+    "distance_m": 1080.197739,
+    "text": "Distance between turbine 13 and turbine 7 is 1080.197739 meters."
+  },
+  "331": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 8,
+    "distance_m": 1349.277015,
+    "text": "Distance between turbine 13 and turbine 8 is 1349.277015 meters."
+  },
+  "332": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 9,
+    "distance_m": 1678.557226,
+    "text": "Distance between turbine 13 and turbine 9 is 1678.557226 meters."
+  },
+  "333": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 10,
+    "distance_m": 985.8848373,
+    "text": "Distance between turbine 13 and turbine 10 is 985.8848373 meters."
+  },
+  "334": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 11,
+    "distance_m": 641.5741628000001,
+    "text": "Distance between turbine 13 and turbine 11 is 641.5741628000001 meters."
+  },
+  "335": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 12,
+    "distance_m": 311.3191733,
+    "text": "Distance between turbine 13 and turbine 12 is 311.3191733 meters."
+  },
+  "336": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 13,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 13 and turbine 13 is 0.0 meters."
+  },
+  "337": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 14,
+    "distance_m": 344.4598265,
+    "text": "Distance between turbine 13 and turbine 14 is 344.4598265 meters."
+  },
+  "338": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 15,
+    "distance_m": 688.8097588999999,
+    "text": "Distance between turbine 13 and turbine 15 is 688.8097588999999 meters."
+  },
+  "339": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 16,
+    "distance_m": 1000.040021,
+    "text": "Distance between turbine 13 and turbine 16 is 1000.040021 meters."
+  },
+  "340": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 17,
+    "distance_m": 1344.438689,
+    "text": "Distance between turbine 13 and turbine 17 is 1344.438689 meters."
+  },
+  "341": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 18,
+    "distance_m": 1674.952891,
+    "text": "Distance between turbine 13 and turbine 18 is 1674.952891 meters."
+  },
+  "342": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 19,
+    "distance_m": 741.4411038,
+    "text": "Distance between turbine 13 and turbine 19 is 741.4411038 meters."
+  },
+  "343": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 20,
+    "distance_m": 574.1586675,
+    "text": "Distance between turbine 13 and turbine 20 is 574.1586675 meters."
+  },
+  "344": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 21,
+    "distance_m": 588.0639504000001,
+    "text": "Distance between turbine 13 and turbine 21 is 588.0639504000001 meters."
+  },
+  "345": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 22,
+    "distance_m": 774.0017616,
+    "text": "Distance between turbine 13 and turbine 22 is 774.0017616 meters."
+  },
+  "346": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 23,
+    "distance_m": 1026.133495,
+    "text": "Distance between turbine 13 and turbine 23 is 1026.133495 meters."
+  },
+  "347": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 24,
+    "distance_m": 1323.351357,
+    "text": "Distance between turbine 13 and turbine 24 is 1323.351357 meters."
+  },
+  "348": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 25,
+    "distance_m": 1624.25621,
+    "text": "Distance between turbine 13 and turbine 25 is 1624.25621 meters."
+  },
+  "349": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 26,
+    "distance_m": 1951.494976,
+    "text": "Distance between turbine 13 and turbine 26 is 1951.494976 meters."
+  },
+  "350": {
+    "type": "turbine_distance",
+    "turbine_a": 13,
+    "turbine_b": 27,
+    "distance_m": 2267.496029,
+    "text": "Distance between turbine 13 and turbine 27 is 2267.496029 meters."
+  },
+  "351": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 1,
+    "distance_m": 1605.278691,
+    "text": "Distance between turbine 14 and turbine 1 is 1605.278691 meters."
+  },
+  "352": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 2,
+    "distance_m": 1299.043009,
+    "text": "Distance between turbine 14 and turbine 2 is 1299.043009 meters."
+  },
+  "353": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 3,
+    "distance_m": 1001.356229,
+    "text": "Distance between turbine 14 and turbine 3 is 1001.356229 meters."
+  },
+  "354": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 4,
+    "distance_m": 748.8874692,
+    "text": "Distance between turbine 14 and turbine 4 is 748.8874692 meters."
+  },
+  "355": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 5,
+    "distance_m": 594.4303618,
+    "text": "Distance between turbine 14 and turbine 5 is 594.4303618 meters."
+  },
+  "356": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 6,
+    "distance_m": 618.8473091999999,
+    "text": "Distance between turbine 14 and turbine 6 is 618.8473091999999 meters."
+  },
+  "357": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 7,
+    "distance_m": 808.0081529,
+    "text": "Distance between turbine 14 and turbine 7 is 808.0081529 meters."
+  },
+  "358": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 8,
+    "distance_m": 1045.112609,
+    "text": "Distance between turbine 14 and turbine 8 is 1045.112609 meters."
+  },
+  "359": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 9,
+    "distance_m": 1357.342537,
+    "text": "Distance between turbine 14 and turbine 9 is 1357.342537 meters."
+  },
+  "360": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 10,
+    "distance_m": 1330.3443479999999,
+    "text": "Distance between turbine 14 and turbine 10 is 1330.3443479999999 meters."
+  },
+  "361": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 11,
+    "distance_m": 986.0332973,
+    "text": "Distance between turbine 14 and turbine 11 is 986.0332973 meters."
+  },
+  "362": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 12,
+    "distance_m": 655.638743,
+    "text": "Distance between turbine 14 and turbine 12 is 655.638743 meters."
+  },
+  "363": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 13,
+    "distance_m": 344.4598265,
+    "text": "Distance between turbine 14 and turbine 13 is 344.4598265 meters."
+  },
+  "364": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 14,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 14 and turbine 14 is 0.0 meters."
+  },
+  "365": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 15,
+    "distance_m": 344.3499169,
+    "text": "Distance between turbine 14 and turbine 15 is 344.3499169 meters."
+  },
+  "366": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 16,
+    "distance_m": 655.6242747,
+    "text": "Distance between turbine 14 and turbine 16 is 655.6242747 meters."
+  },
+  "367": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 17,
+    "distance_m": 1000.00092,
+    "text": "Distance between turbine 14 and turbine 17 is 1000.00092 meters."
+  },
+  "368": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 18,
+    "distance_m": 1330.493367,
+    "text": "Distance between turbine 14 and turbine 18 is 1330.493367 meters."
+  },
+  "369": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 19,
+    "distance_m": 999.2900206999999,
+    "text": "Distance between turbine 14 and turbine 19 is 999.2900206999999 meters."
+  },
+  "370": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 20,
+    "distance_m": 742.1990598,
+    "text": "Distance between turbine 14 and turbine 20 is 742.1990598 meters."
+  },
+  "371": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 21,
+    "distance_m": 574.2648574,
+    "text": "Distance between turbine 14 and turbine 21 is 574.2648574 meters."
+  },
+  "372": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 22,
+    "distance_m": 588.0295883,
+    "text": "Distance between turbine 14 and turbine 22 is 588.0295883 meters."
+  },
+  "373": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 23,
+    "distance_m": 756.2969379,
+    "text": "Distance between turbine 14 and turbine 23 is 756.2969379 meters."
+  },
+  "374": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 24,
+    "distance_m": 1022.91744,
+    "text": "Distance between turbine 14 and turbine 24 is 1022.91744 meters."
+  },
+  "375": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 25,
+    "distance_m": 1305.99838,
+    "text": "Distance between turbine 14 and turbine 25 is 1305.99838 meters."
+  },
+  "376": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 26,
+    "distance_m": 1624.325805,
+    "text": "Distance between turbine 14 and turbine 26 is 1624.325805 meters."
+  },
+  "377": {
+    "type": "turbine_distance",
+    "turbine_a": 14,
+    "turbine_b": 27,
+    "distance_m": 1934.93746,
+    "text": "Distance between turbine 14 and turbine 27 is 1934.93746 meters."
+  },
+  "378": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 1,
+    "distance_m": 1928.692941,
+    "text": "Distance between turbine 15 and turbine 1 is 1928.692941 meters."
+  },
+  "379": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 2,
+    "distance_m": 1614.503475,
+    "text": "Distance between turbine 15 and turbine 2 is 1614.503475 meters."
+  },
+  "380": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 3,
+    "distance_m": 1292.7813589999998,
+    "text": "Distance between turbine 15 and turbine 3 is 1292.7813589999998 meters."
+  },
+  "381": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 4,
+    "distance_m": 1002.759913,
+    "text": "Distance between turbine 15 and turbine 4 is 1002.759913 meters."
+  },
+  "382": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 5,
+    "distance_m": 748.9217554999999,
+    "text": "Distance between turbine 15 and turbine 5 is 748.9217554999999 meters."
+  },
+  "383": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 6,
+    "distance_m": 594.3974291000001,
+    "text": "Distance between turbine 15 and turbine 6 is 594.3974291000001 meters."
+  },
+  "384": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 7,
+    "distance_m": 613.4881293999999,
+    "text": "Distance between turbine 15 and turbine 7 is 613.4881293999999 meters."
+  },
+  "385": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 8,
+    "distance_m": 775.5509297,
+    "text": "Distance between turbine 15 and turbine 8 is 775.5509297 meters."
+  },
+  "386": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 9,
+    "distance_m": 1051.088593,
+    "text": "Distance between turbine 15 and turbine 9 is 1051.088593 meters."
+  },
+  "387": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 10,
+    "distance_m": 1674.694148,
+    "text": "Distance between turbine 15 and turbine 10 is 1674.694148 meters."
+  },
+  "388": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 11,
+    "distance_m": 1330.3829739999999,
+    "text": "Distance between turbine 15 and turbine 11 is 1330.3829739999999 meters."
+  },
+  "389": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 12,
+    "distance_m": 999.945982,
+    "text": "Distance between turbine 15 and turbine 12 is 999.945982 meters."
+  },
+  "390": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 13,
+    "distance_m": 688.8097588999999,
+    "text": "Distance between turbine 15 and turbine 13 is 688.8097588999999 meters."
+  },
+  "391": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 14,
+    "distance_m": 344.3499169,
+    "text": "Distance between turbine 15 and turbine 14 is 344.3499169 meters."
+  },
+  "392": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 15,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 15 and turbine 15 is 0.0 meters."
+  },
+  "393": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 16,
+    "distance_m": 311.4128126,
+    "text": "Distance between turbine 15 and turbine 16 is 311.4128126 meters."
+  },
+  "394": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 17,
+    "distance_m": 655.6947368,
+    "text": "Distance between turbine 15 and turbine 17 is 655.6947368 meters."
+  },
+  "395": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 18,
+    "distance_m": 986.1438164,
+    "text": "Distance between turbine 15 and turbine 18 is 986.1438164 meters."
+  },
+  "396": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 19,
+    "distance_m": 1297.840555,
+    "text": "Distance between turbine 15 and turbine 19 is 1297.840555 meters."
+  },
+  "397": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 20,
+    "distance_m": 1004.539176,
+    "text": "Distance between turbine 15 and turbine 20 is 1004.539176 meters."
+  },
+  "398": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 21,
+    "distance_m": 742.1960482,
+    "text": "Distance between turbine 15 and turbine 21 is 742.1960482 meters."
+  },
+  "399": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 22,
+    "distance_m": 574.1676620000001,
+    "text": "Distance between turbine 15 and turbine 22 is 574.1676620000001 meters."
+  },
+  "400": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 23,
+    "distance_m": 572.9608483000001,
+    "text": "Distance between turbine 15 and turbine 23 is 572.9608483000001 meters."
+  },
+  "401": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 24,
+    "distance_m": 760.7845693,
+    "text": "Distance between turbine 15 and turbine 24 is 760.7845693 meters."
+  },
+  "402": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 25,
+    "distance_m": 1005.217086,
+    "text": "Distance between turbine 15 and turbine 25 is 1005.217086 meters."
+  },
+  "403": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 26,
+    "distance_m": 1306.1461700000002,
+    "text": "Distance between turbine 15 and turbine 26 is 1306.1461700000002 meters."
+  },
+  "404": {
+    "type": "turbine_distance",
+    "turbine_a": 15,
+    "turbine_b": 27,
+    "distance_m": 1607.4774650000002,
+    "text": "Distance between turbine 15 and turbine 27 is 1607.4774650000002 meters."
+  },
+  "405": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 1,
+    "distance_m": 2229.8412120000003,
+    "text": "Distance between turbine 16 and turbine 1 is 2229.8412120000003 meters."
+  },
+  "406": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 2,
+    "distance_m": 1912.0926330000002,
+    "text": "Distance between turbine 16 and turbine 2 is 1912.0926330000002 meters."
+  },
+  "407": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 3,
+    "distance_m": 1579.5554590000002,
+    "text": "Distance between turbine 16 and turbine 3 is 1579.5554590000002 meters."
+  },
+  "408": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 4,
+    "distance_m": 1275.278941,
+    "text": "Distance between turbine 16 and turbine 4 is 1275.278941 meters."
+  },
+  "409": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 5,
+    "distance_m": 983.5655628999999,
+    "text": "Distance between turbine 16 and turbine 5 is 983.5655628999999 meters."
+  },
+  "410": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 6,
+    "distance_m": 738.5763682999999,
+    "text": "Distance between turbine 16 and turbine 6 is 738.5763682999999 meters."
+  },
+  "411": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 7,
+    "distance_m": 587.5557098,
+    "text": "Distance between turbine 16 and turbine 7 is 587.5557098 meters."
+  },
+  "412": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 8,
+    "distance_m": 613.5090122,
+    "text": "Distance between turbine 16 and turbine 8 is 613.5090122 meters."
+  },
+  "413": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 9,
+    "distance_m": 810.1831953000001,
+    "text": "Distance between turbine 16 and turbine 9 is 810.1831953000001 meters."
+  },
+  "414": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 10,
+    "distance_m": 1985.892842,
+    "text": "Distance between turbine 16 and turbine 10 is 1985.892842 meters."
+  },
+  "415": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 11,
+    "distance_m": 1641.592875,
+    "text": "Distance between turbine 16 and turbine 11 is 1641.592875 meters."
+  },
+  "416": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 12,
+    "distance_m": 1311.263019,
+    "text": "Distance between turbine 16 and turbine 12 is 1311.263019 meters."
+  },
+  "417": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 13,
+    "distance_m": 1000.040021,
+    "text": "Distance between turbine 16 and turbine 13 is 1000.040021 meters."
+  },
+  "418": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 14,
+    "distance_m": 655.6242747,
+    "text": "Distance between turbine 16 and turbine 14 is 655.6242747 meters."
+  },
+  "419": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 15,
+    "distance_m": 311.4128126,
+    "text": "Distance between turbine 16 and turbine 15 is 311.4128126 meters."
+  },
+  "420": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 16,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 16 and turbine 16 is 0.0 meters."
+  },
+  "421": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 17,
+    "distance_m": 344.4185621,
+    "text": "Distance between turbine 16 and turbine 17 is 344.4185621 meters."
+  },
+  "422": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 18,
+    "distance_m": 675.0844836,
+    "text": "Distance between turbine 16 and turbine 18 is 675.0844836 meters."
+  },
+  "423": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 19,
+    "distance_m": 1579.1446700000001,
+    "text": "Distance between turbine 16 and turbine 19 is 1579.1446700000001 meters."
+  },
+  "424": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 20,
+    "distance_m": 1270.0654060000002,
+    "text": "Distance between turbine 16 and turbine 20 is 1270.0654060000002 meters."
+  },
+  "425": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 21,
+    "distance_m": 969.8059973,
+    "text": "Distance between turbine 16 and turbine 21 is 969.8059973 meters."
+  },
+  "426": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 22,
+    "distance_m": 710.6495288,
+    "text": "Distance between turbine 16 and turbine 22 is 710.6495288 meters."
+  },
+  "427": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 23,
+    "distance_m": 546.1475131999999,
+    "text": "Distance between turbine 16 and turbine 23 is 546.1475131999999 meters."
+  },
+  "428": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 24,
+    "distance_m": 588.1221559,
+    "text": "Distance between turbine 16 and turbine 24 is 588.1221559 meters."
+  },
+  "429": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 25,
+    "distance_m": 756.4269757999999,
+    "text": "Distance between turbine 16 and turbine 25 is 756.4269757999999 meters."
+  },
+  "430": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 26,
+    "distance_m": 1026.335598,
+    "text": "Distance between turbine 16 and turbine 26 is 1026.335598 meters."
+  },
+  "431": {
+    "type": "turbine_distance",
+    "turbine_a": 16,
+    "turbine_b": 27,
+    "distance_m": 1313.7637069999998,
+    "text": "Distance between turbine 16 and turbine 27 is 1313.7637069999998 meters."
+  },
+  "432": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 1,
+    "distance_m": 2562.621514,
+    "text": "Distance between turbine 17 and turbine 1 is 2562.621514 meters."
+  },
+  "433": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 2,
+    "distance_m": 2242.110224,
+    "text": "Distance between turbine 17 and turbine 2 is 2242.110224 meters."
+  },
+  "434": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 3,
+    "distance_m": 1901.41283,
+    "text": "Distance between turbine 17 and turbine 3 is 1901.41283 meters."
+  },
+  "435": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 4,
+    "distance_m": 1588.3287349999998,
+    "text": "Distance between turbine 17 and turbine 4 is 1588.3287349999998 meters."
+  },
+  "436": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 5,
+    "distance_m": 1275.400757,
+    "text": "Distance between turbine 17 and turbine 5 is 1275.400757 meters."
+  },
+  "437": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 6,
+    "distance_m": 983.6125466,
+    "text": "Distance between turbine 17 and turbine 6 is 983.6125466 meters."
+  },
+  "438": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 7,
+    "distance_m": 721.3343125,
+    "text": "Distance between turbine 17 and turbine 7 is 721.3343125 meters."
+  },
+  "439": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 8,
+    "distance_m": 580.6703358000001,
+    "text": "Distance between turbine 17 and turbine 8 is 580.6703358000001 meters."
+  },
+  "440": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 9,
+    "distance_m": 608.5390517,
+    "text": "Distance between turbine 17 and turbine 9 is 608.5390517 meters."
+  },
+  "441": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 10,
+    "distance_m": 2330.304567,
+    "text": "Distance between turbine 17 and turbine 10 is 2330.304567 meters."
+  },
+  "442": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 11,
+    "distance_m": 1986.001435,
+    "text": "Distance between turbine 17 and turbine 11 is 1986.001435 meters."
+  },
+  "443": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 12,
+    "distance_m": 1655.6312010000001,
+    "text": "Distance between turbine 17 and turbine 12 is 1655.6312010000001 meters."
+  },
+  "444": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 13,
+    "distance_m": 1344.438689,
+    "text": "Distance between turbine 17 and turbine 13 is 1344.438689 meters."
+  },
+  "445": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 14,
+    "distance_m": 1000.00092,
+    "text": "Distance between turbine 17 and turbine 14 is 1000.00092 meters."
+  },
+  "446": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 15,
+    "distance_m": 655.6947368,
+    "text": "Distance between turbine 17 and turbine 15 is 655.6947368 meters."
+  },
+  "447": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 16,
+    "distance_m": 344.4185621,
+    "text": "Distance between turbine 17 and turbine 16 is 344.4185621 meters."
+  },
+  "448": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 17,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 17 and turbine 17 is 0.0 meters."
+  },
+  "449": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 18,
+    "distance_m": 330.7642241,
+    "text": "Distance between turbine 17 and turbine 18 is 330.7642241 meters."
+  },
+  "450": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 19,
+    "distance_m": 1905.543209,
+    "text": "Distance between turbine 17 and turbine 19 is 1905.543209 meters."
+  },
+  "451": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 20,
+    "distance_m": 1588.3481669999999,
+    "text": "Distance between turbine 17 and turbine 20 is 1588.3481669999999 meters."
+  },
+  "452": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 21,
+    "distance_m": 1270.076969,
+    "text": "Distance between turbine 17 and turbine 21 is 1270.076969 meters."
+  },
+  "453": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 22,
+    "distance_m": 969.7227536,
+    "text": "Distance between turbine 17 and turbine 22 is 969.7227536 meters."
+  },
+  "454": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 23,
+    "distance_m": 711.3246008,
+    "text": "Distance between turbine 17 and turbine 23 is 711.3246008 meters."
+  },
+  "455": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 24,
+    "distance_m": 574.1760127,
+    "text": "Distance between turbine 17 and turbine 24 is 574.1760127 meters."
+  },
+  "456": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 25,
+    "distance_m": 572.9969476,
+    "text": "Distance between turbine 17 and turbine 25 is 572.9969476 meters."
+  },
+  "457": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 26,
+    "distance_m": 756.4489822,
+    "text": "Distance between turbine 17 and turbine 26 is 756.4489822 meters."
+  },
+  "458": {
+    "type": "turbine_distance",
+    "turbine_a": 17,
+    "turbine_b": 27,
+    "distance_m": 1008.563077,
+    "text": "Distance between turbine 17 and turbine 27 is 1008.563077 meters."
+  },
+  "459": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 1,
+    "distance_m": 2882.204029,
+    "text": "Distance between turbine 18 and turbine 1 is 2882.204029 meters."
+  },
+  "460": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 2,
+    "distance_m": 2559.841637,
+    "text": "Distance between turbine 18 and turbine 2 is 2559.841637 meters."
+  },
+  "461": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 3,
+    "distance_m": 2213.6043929999996,
+    "text": "Distance between turbine 18 and turbine 3 is 2213.6043929999996 meters."
+  },
+  "462": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 4,
+    "distance_m": 1895.5419849999998,
+    "text": "Distance between turbine 18 and turbine 4 is 1895.5419849999998 meters."
+  },
+  "463": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 5,
+    "distance_m": 1571.3897670000001,
+    "text": "Distance between turbine 18 and turbine 5 is 1571.3897670000001 meters."
+  },
+  "464": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 6,
+    "distance_m": 1257.935456,
+    "text": "Distance between turbine 18 and turbine 6 is 1257.935456 meters."
+  },
+  "465": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 7,
+    "distance_m": 947.8980455,
+    "text": "Distance between turbine 18 and turbine 7 is 947.8980455 meters."
+  },
+  "466": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 8,
+    "distance_m": 714.1090667999999,
+    "text": "Distance between turbine 18 and turbine 8 is 714.1090667999999 meters."
+  },
+  "467": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 9,
+    "distance_m": 553.5433736000001,
+    "text": "Distance between turbine 18 and turbine 9 is 553.5433736000001 meters."
+  },
+  "468": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 10,
+    "distance_m": 2660.83768,
+    "text": "Distance between turbine 18 and turbine 10 is 2660.83768 meters."
+  },
+  "469": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 11,
+    "distance_m": 2316.5266610000003,
+    "text": "Distance between turbine 18 and turbine 11 is 2316.5266610000003 meters."
+  },
+  "470": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 12,
+    "distance_m": 1986.059688,
+    "text": "Distance between turbine 18 and turbine 12 is 1986.059688 meters."
+  },
+  "471": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 13,
+    "distance_m": 1674.952891,
+    "text": "Distance between turbine 18 and turbine 13 is 1674.952891 meters."
+  },
+  "472": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 14,
+    "distance_m": 1330.493367,
+    "text": "Distance between turbine 18 and turbine 14 is 1330.493367 meters."
+  },
+  "473": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 15,
+    "distance_m": 986.1438164,
+    "text": "Distance between turbine 18 and turbine 15 is 986.1438164 meters."
+  },
+  "474": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 16,
+    "distance_m": 675.0844836,
+    "text": "Distance between turbine 18 and turbine 16 is 675.0844836 meters."
+  },
+  "475": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 17,
+    "distance_m": 330.7642241,
+    "text": "Distance between turbine 18 and turbine 17 is 330.7642241 meters."
+  },
+  "476": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 18,
+    "distance_m": 0.09493529797,
+    "text": "Distance between turbine 18 and turbine 18 is 0.09493529797 meters."
+  },
+  "477": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 19,
+    "distance_m": 2226.773106,
+    "text": "Distance between turbine 18 and turbine 19 is 2226.773106 meters."
+  },
+  "478": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 20,
+    "distance_m": 1905.663998,
+    "text": "Distance between turbine 18 and turbine 20 is 1905.663998 meters."
+  },
+  "479": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 21,
+    "distance_m": 1579.279549,
+    "text": "Distance between turbine 18 and turbine 21 is 1579.279549 meters."
+  },
+  "480": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 22,
+    "distance_m": 1262.415062,
+    "text": "Distance between turbine 18 and turbine 22 is 1262.415062 meters."
+  },
+  "481": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 23,
+    "distance_m": 969.8330359,
+    "text": "Distance between turbine 18 and turbine 23 is 969.8330359 meters."
+  },
+  "482": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 24,
+    "distance_m": 741.5523684000001,
+    "text": "Distance between turbine 18 and turbine 24 is 741.5523684000001 meters."
+  },
+  "483": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 25,
+    "distance_m": 574.2822073,
+    "text": "Distance between turbine 18 and turbine 25 is 574.2822073 meters."
+  },
+  "484": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 26,
+    "distance_m": 588.1629025,
+    "text": "Distance between turbine 18 and turbine 26 is 588.1629025 meters."
+  },
+  "485": {
+    "type": "turbine_distance",
+    "turbine_a": 18,
+    "turbine_b": 27,
+    "distance_m": 756.4343868,
+    "text": "Distance between turbine 18 and turbine 27 is 756.4343868 meters."
+  },
+  "486": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 1,
+    "distance_m": 1344.912728,
+    "text": "Distance between turbine 19 and turbine 1 is 1344.912728 meters."
+  },
+  "487": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 2,
+    "distance_m": 1194.886305,
+    "text": "Distance between turbine 19 and turbine 2 is 1194.886305 meters."
+  },
+  "488": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 3,
+    "distance_m": 1170.263977,
+    "text": "Distance between turbine 19 and turbine 3 is 1170.263977 meters."
+  },
+  "489": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 4,
+    "distance_m": 1198.335969,
+    "text": "Distance between turbine 19 and turbine 4 is 1198.335969 meters."
+  },
+  "490": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 5,
+    "distance_m": 1340.0840309999999,
+    "text": "Distance between turbine 19 and turbine 5 is 1340.0840309999999 meters."
+  },
+  "491": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 6,
+    "distance_m": 1546.858718,
+    "text": "Distance between turbine 19 and turbine 6 is 1546.858718 meters."
+  },
+  "492": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 7,
+    "distance_m": 1800.118431,
+    "text": "Distance between turbine 19 and turbine 7 is 1800.118431 meters."
+  },
+  "493": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 8,
+    "distance_m": 2043.978364,
+    "text": "Distance between turbine 19 and turbine 8 is 2043.978364 meters."
+  },
+  "494": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 9,
+    "distance_m": 2346.3730570000002,
+    "text": "Distance between turbine 19 and turbine 9 is 2346.3730570000002 meters."
+  },
+  "495": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 10,
+    "distance_m": 760.5490046,
+    "text": "Distance between turbine 19 and turbine 10 is 760.5490046 meters."
+  },
+  "496": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 11,
+    "distance_m": 590.0628203,
+    "text": "Distance between turbine 19 and turbine 11 is 590.0628203 meters."
+  },
+  "497": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 12,
+    "distance_m": 602.553409,
+    "text": "Distance between turbine 19 and turbine 12 is 602.553409 meters."
+  },
+  "498": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 13,
+    "distance_m": 741.4411038,
+    "text": "Distance between turbine 19 and turbine 13 is 741.4411038 meters."
+  },
+  "499": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 14,
+    "distance_m": 999.2900206999999,
+    "text": "Distance between turbine 19 and turbine 14 is 999.2900206999999 meters."
+  },
+  "500": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 15,
+    "distance_m": 1297.840555,
+    "text": "Distance between turbine 19 and turbine 15 is 1297.840555 meters."
+  },
+  "501": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 16,
+    "distance_m": 1579.1446700000001,
+    "text": "Distance between turbine 19 and turbine 16 is 1579.1446700000001 meters."
+  },
+  "502": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 17,
+    "distance_m": 1905.543209,
+    "text": "Distance between turbine 19 and turbine 17 is 1905.543209 meters."
+  },
+  "503": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 18,
+    "distance_m": 2226.773106,
+    "text": "Distance between turbine 19 and turbine 18 is 2226.773106 meters."
+  },
+  "504": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 19,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 19 and turbine 19 is 0.0 meters."
+  },
+  "505": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 20,
+    "distance_m": 330.62551559999997,
+    "text": "Distance between turbine 19 and turbine 20 is 330.62551559999997 meters."
+  },
+  "506": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 21,
+    "distance_m": 674.8935713000001,
+    "text": "Distance between turbine 19 and turbine 21 is 674.8935713000001 meters."
+  },
+  "507": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 22,
+    "distance_m": 1019.258462,
+    "text": "Distance between turbine 19 and turbine 22 is 1019.258462 meters."
+  },
+  "508": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 23,
+    "distance_m": 1349.84706,
+    "text": "Distance between turbine 19 and turbine 23 is 1349.84706 meters."
+  },
+  "509": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 24,
+    "distance_m": 1674.716485,
+    "text": "Distance between turbine 19 and turbine 24 is 1674.716485 meters."
+  },
+  "510": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 25,
+    "distance_m": 2005.2211610000002,
+    "text": "Distance between turbine 19 and turbine 25 is 2005.2211610000002 meters."
+  },
+  "511": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 26,
+    "distance_m": 2349.701663,
+    "text": "Distance between turbine 19 and turbine 26 is 2349.701663 meters."
+  },
+  "512": {
+    "type": "turbine_distance",
+    "turbine_a": 19,
+    "turbine_b": 27,
+    "distance_m": 2680.214098,
+    "text": "Distance between turbine 19 and turbine 27 is 2680.214098 meters."
+  },
+  "513": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 1,
+    "distance_m": 1526.582998,
+    "text": "Distance between turbine 20 and turbine 1 is 1526.582998 meters."
+  },
+  "514": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 2,
+    "distance_m": 1317.2593,
+    "text": "Distance between turbine 20 and turbine 2 is 1317.2593 meters."
+  },
+  "515": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 3,
+    "distance_m": 1198.3234579999998,
+    "text": "Distance between turbine 20 and turbine 3 is 1198.3234579999998 meters."
+  },
+  "516": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 4,
+    "distance_m": 1134.980834,
+    "text": "Distance between turbine 20 and turbine 4 is 1134.980834 meters."
+  },
+  "517": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 5,
+    "distance_m": 1191.814466,
+    "text": "Distance between turbine 20 and turbine 5 is 1191.814466 meters."
+  },
+  "518": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 6,
+    "distance_m": 1337.817008,
+    "text": "Distance between turbine 20 and turbine 6 is 1337.817008 meters."
+  },
+  "519": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 7,
+    "distance_m": 1549.448294,
+    "text": "Distance between turbine 20 and turbine 7 is 1549.448294 meters."
+  },
+  "520": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 8,
+    "distance_m": 1769.996027,
+    "text": "Distance between turbine 20 and turbine 8 is 1769.996027 meters."
+  },
+  "521": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 9,
+    "distance_m": 2055.2185550000004,
+    "text": "Distance between turbine 20 and turbine 9 is 2055.2185550000004 meters."
+  },
+  "522": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 10,
+    "distance_m": 1004.92148,
+    "text": "Distance between turbine 20 and turbine 10 is 1004.92148 meters."
+  },
+  "523": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 11,
+    "distance_m": 743.0070206,
+    "text": "Distance between turbine 20 and turbine 11 is 743.0070206 meters."
+  },
+  "524": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 12,
+    "distance_m": 590.1457303,
+    "text": "Distance between turbine 20 and turbine 12 is 590.1457303 meters."
+  },
+  "525": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 13,
+    "distance_m": 574.1586675,
+    "text": "Distance between turbine 20 and turbine 13 is 574.1586675 meters."
+  },
+  "526": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 14,
+    "distance_m": 742.1990598,
+    "text": "Distance between turbine 20 and turbine 14 is 742.1990598 meters."
+  },
+  "527": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 15,
+    "distance_m": 1004.539176,
+    "text": "Distance between turbine 20 and turbine 15 is 1004.539176 meters."
+  },
+  "528": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 16,
+    "distance_m": 1270.0654060000002,
+    "text": "Distance between turbine 20 and turbine 16 is 1270.0654060000002 meters."
+  },
+  "529": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 17,
+    "distance_m": 1588.3481669999999,
+    "text": "Distance between turbine 20 and turbine 17 is 1588.3481669999999 meters."
+  },
+  "530": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 18,
+    "distance_m": 1905.663998,
+    "text": "Distance between turbine 20 and turbine 18 is 1905.663998 meters."
+  },
+  "531": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 19,
+    "distance_m": 330.62551559999997,
+    "text": "Distance between turbine 20 and turbine 19 is 330.62551559999997 meters."
+  },
+  "532": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 20,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 20 and turbine 20 is 0.0 meters."
+  },
+  "533": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 21,
+    "distance_m": 344.3657905,
+    "text": "Distance between turbine 20 and turbine 21 is 344.3657905 meters."
+  },
+  "534": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 22,
+    "distance_m": 688.7612858,
+    "text": "Distance between turbine 20 and turbine 22 is 688.7612858 meters."
+  },
+  "535": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 23,
+    "distance_m": 1019.2874780000001,
+    "text": "Distance between turbine 20 and turbine 23 is 1019.2874780000001 meters."
+  },
+  "536": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 24,
+    "distance_m": 1344.342612,
+    "text": "Distance between turbine 20 and turbine 24 is 1344.342612 meters."
+  },
+  "537": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 25,
+    "distance_m": 1674.765094,
+    "text": "Distance between turbine 20 and turbine 25 is 1674.765094 meters."
+  },
+  "538": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 26,
+    "distance_m": 2019.2490689999997,
+    "text": "Distance between turbine 20 and turbine 26 is 2019.2490689999997 meters."
+  },
+  "539": {
+    "type": "turbine_distance",
+    "turbine_a": 20,
+    "turbine_b": 27,
+    "distance_m": 2349.719388,
+    "text": "Distance between turbine 20 and turbine 27 is 2349.719388 meters."
+  },
+  "540": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 1,
+    "distance_m": 1770.25297,
+    "text": "Distance between turbine 21 and turbine 1 is 1770.25297 meters."
+  },
+  "541": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 2,
+    "distance_m": 1521.404986,
+    "text": "Distance between turbine 21 and turbine 2 is 1521.404986 meters."
+  },
+  "542": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 3,
+    "distance_m": 1328.506591,
+    "text": "Distance between turbine 21 and turbine 3 is 1328.506591 meters."
+  },
+  "543": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 4,
+    "distance_m": 1180.35884,
+    "text": "Distance between turbine 21 and turbine 4 is 1180.35884 meters."
+  },
+  "544": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 5,
+    "distance_m": 1135.04081,
+    "text": "Distance between turbine 21 and turbine 5 is 1135.04081 meters."
+  },
+  "545": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 6,
+    "distance_m": 1191.821846,
+    "text": "Distance between turbine 21 and turbine 6 is 1191.821846 meters."
+  },
+  "546": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 7,
+    "distance_m": 1335.8958030000001,
+    "text": "Distance between turbine 21 and turbine 7 is 1335.8958030000001 meters."
+  },
+  "547": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 8,
+    "distance_m": 1517.376608,
+    "text": "Distance between turbine 21 and turbine 8 is 1517.376608 meters."
+  },
+  "548": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 9,
+    "distance_m": 1773.879116,
+    "text": "Distance between turbine 21 and turbine 9 is 1773.879116 meters."
+  },
+  "549": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 10,
+    "distance_m": 1305.770889,
+    "text": "Distance between turbine 21 and turbine 10 is 1305.770889 meters."
+  },
+  "550": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 11,
+    "distance_m": 1005.0332040000001,
+    "text": "Distance between turbine 21 and turbine 11 is 1005.0332040000001 meters."
+  },
+  "551": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 12,
+    "distance_m": 760.7014075000001,
+    "text": "Distance between turbine 21 and turbine 12 is 760.7014075000001 meters."
+  },
+  "552": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 13,
+    "distance_m": 588.0639504000001,
+    "text": "Distance between turbine 21 and turbine 13 is 588.0639504000001 meters."
+  },
+  "553": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 14,
+    "distance_m": 574.2648574,
+    "text": "Distance between turbine 21 and turbine 14 is 574.2648574 meters."
+  },
+  "554": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 15,
+    "distance_m": 742.1960482,
+    "text": "Distance between turbine 21 and turbine 15 is 742.1960482 meters."
+  },
+  "555": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 16,
+    "distance_m": 969.8059973,
+    "text": "Distance between turbine 21 and turbine 16 is 969.8059973 meters."
+  },
+  "556": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 17,
+    "distance_m": 1270.076969,
+    "text": "Distance between turbine 21 and turbine 17 is 1270.076969 meters."
+  },
+  "557": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 18,
+    "distance_m": 1579.279549,
+    "text": "Distance between turbine 21 and turbine 18 is 1579.279549 meters."
+  },
+  "558": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 19,
+    "distance_m": 674.8935713000001,
+    "text": "Distance between turbine 21 and turbine 19 is 674.8935713000001 meters."
+  },
+  "559": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 20,
+    "distance_m": 344.3657905,
+    "text": "Distance between turbine 21 and turbine 20 is 344.3657905 meters."
+  },
+  "560": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 21,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 21 and turbine 21 is 0.0 meters."
+  },
+  "561": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 22,
+    "distance_m": 344.39550749999995,
+    "text": "Distance between turbine 21 and turbine 22 is 344.39550749999995 meters."
+  },
+  "562": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 23,
+    "distance_m": 674.9534891999999,
+    "text": "Distance between turbine 21 and turbine 23 is 674.9534891999999 meters."
+  },
+  "563": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 24,
+    "distance_m": 999.9977705,
+    "text": "Distance between turbine 21 and turbine 24 is 999.9977705 meters."
+  },
+  "564": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 25,
+    "distance_m": 1330.399527,
+    "text": "Distance between turbine 21 and turbine 25 is 1330.399527 meters."
+  },
+  "565": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 26,
+    "distance_m": 1674.883434,
+    "text": "Distance between turbine 21 and turbine 26 is 1674.883434 meters."
+  },
+  "566": {
+    "type": "turbine_distance",
+    "turbine_a": 21,
+    "turbine_b": 27,
+    "distance_m": 2005.356828,
+    "text": "Distance between turbine 21 and turbine 27 is 2005.356828 meters."
+  },
+  "567": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 1,
+    "distance_m": 2043.081728,
+    "text": "Distance between turbine 22 and turbine 1 is 2043.081728 meters."
+  },
+  "568": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 2,
+    "distance_m": 1769.521703,
+    "text": "Distance between turbine 22 and turbine 2 is 1769.521703 meters."
+  },
+  "569": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 3,
+    "distance_m": 1526.724232,
+    "text": "Distance between turbine 22 and turbine 3 is 1526.724232 meters."
+  },
+  "570": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 4,
+    "distance_m": 1317.309519,
+    "text": "Distance between turbine 22 and turbine 4 is 1317.309519 meters."
+  },
+  "571": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 5,
+    "distance_m": 1180.33257,
+    "text": "Distance between turbine 22 and turbine 5 is 1180.33257 meters."
+  },
+  "572": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 6,
+    "distance_m": 1134.934022,
+    "text": "Distance between turbine 22 and turbine 6 is 1134.934022 meters."
+  },
+  "573": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 7,
+    "distance_m": 1185.4859840000001,
+    "text": "Distance between turbine 22 and turbine 7 is 1185.4859840000001 meters."
+  },
+  "574": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 8,
+    "distance_m": 1307.246521,
+    "text": "Distance between turbine 22 and turbine 8 is 1307.246521 meters."
+  },
+  "575": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 9,
+    "distance_m": 1518.640093,
+    "text": "Distance between turbine 22 and turbine 9 is 1518.640093 meters."
+  },
+  "576": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 10,
+    "distance_m": 1623.9965599999998,
+    "text": "Distance between turbine 22 and turbine 10 is 1623.9965599999998 meters."
+  },
+  "577": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 11,
+    "distance_m": 1305.856166,
+    "text": "Distance between turbine 22 and turbine 11 is 1305.856166 meters."
+  },
+  "578": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 12,
+    "distance_m": 1022.827315,
+    "text": "Distance between turbine 22 and turbine 12 is 1022.827315 meters."
+  },
+  "579": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 13,
+    "distance_m": 774.0017616,
+    "text": "Distance between turbine 22 and turbine 13 is 774.0017616 meters."
+  },
+  "580": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 14,
+    "distance_m": 588.0295883,
+    "text": "Distance between turbine 22 and turbine 14 is 588.0295883 meters."
+  },
+  "581": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 15,
+    "distance_m": 574.1676620000001,
+    "text": "Distance between turbine 22 and turbine 15 is 574.1676620000001 meters."
+  },
+  "582": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 16,
+    "distance_m": 710.6495288,
+    "text": "Distance between turbine 22 and turbine 16 is 710.6495288 meters."
+  },
+  "583": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 17,
+    "distance_m": 969.7227536,
+    "text": "Distance between turbine 22 and turbine 17 is 969.7227536 meters."
+  },
+  "584": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 18,
+    "distance_m": 1262.415062,
+    "text": "Distance between turbine 22 and turbine 18 is 1262.415062 meters."
+  },
+  "585": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 19,
+    "distance_m": 1019.258462,
+    "text": "Distance between turbine 22 and turbine 19 is 1019.258462 meters."
+  },
+  "586": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 20,
+    "distance_m": 688.7612858,
+    "text": "Distance between turbine 22 and turbine 20 is 688.7612858 meters."
+  },
+  "587": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 21,
+    "distance_m": 344.39550749999995,
+    "text": "Distance between turbine 22 and turbine 21 is 344.39550749999995 meters."
+  },
+  "588": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 22,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 22 and turbine 22 is 0.0 meters."
+  },
+  "589": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 23,
+    "distance_m": 330.6526923,
+    "text": "Distance between turbine 22 and turbine 23 is 330.6526923 meters."
+  },
+  "590": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 24,
+    "distance_m": 655.6471419999999,
+    "text": "Distance between turbine 22 and turbine 24 is 655.6471419999999 meters."
+  },
+  "591": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 25,
+    "distance_m": 986.0045686999999,
+    "text": "Distance between turbine 22 and turbine 25 is 986.0045686999999 meters."
+  },
+  "592": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 26,
+    "distance_m": 1330.488303,
+    "text": "Distance between turbine 22 and turbine 26 is 1330.488303 meters."
+  },
+  "593": {
+    "type": "turbine_distance",
+    "turbine_a": 22,
+    "turbine_b": 27,
+    "distance_m": 1660.96534,
+    "text": "Distance between turbine 22 and turbine 27 is 1660.96534 meters."
+  },
+  "594": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 1,
+    "distance_m": 2317.3176999999996,
+    "text": "Distance between turbine 23 and turbine 1 is 2317.3176999999996 meters."
+  },
+  "595": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 2,
+    "distance_m": 2027.9831210000002,
+    "text": "Distance between turbine 23 and turbine 2 is 2027.9831210000002 meters."
+  },
+  "596": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 3,
+    "distance_m": 1752.546727,
+    "text": "Distance between turbine 23 and turbine 3 is 1752.546727 meters."
+  },
+  "597": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 4,
+    "distance_m": 1503.836869,
+    "text": "Distance between turbine 23 and turbine 4 is 1503.836869 meters."
+  },
+  "598": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 5,
+    "distance_m": 1300.695753,
+    "text": "Distance between turbine 23 and turbine 5 is 1300.695753 meters."
+  },
+  "599": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 6,
+    "distance_m": 1165.789454,
+    "text": "Distance between turbine 23 and turbine 6 is 1165.789454 meters."
+  },
+  "600": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 7,
+    "distance_m": 1113.4293049999999,
+    "text": "Distance between turbine 23 and turbine 7 is 1113.4293049999999 meters."
+  },
+  "601": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 8,
+    "distance_m": 1156.674257,
+    "text": "Distance between turbine 23 and turbine 8 is 1156.674257 meters."
+  },
+  "602": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 9,
+    "distance_m": 1303.32834,
+    "text": "Distance between turbine 23 and turbine 9 is 1303.32834 meters."
+  },
+  "603": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 10,
+    "distance_m": 1934.6328740000001,
+    "text": "Distance between turbine 23 and turbine 10 is 1934.6328740000001 meters."
+  },
+  "604": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 11,
+    "distance_m": 1607.212553,
+    "text": "Distance between turbine 23 and turbine 11 is 1607.212553 meters."
+  },
+  "605": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 12,
+    "distance_m": 1305.888856,
+    "text": "Distance between turbine 23 and turbine 12 is 1305.888856 meters."
+  },
+  "606": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 13,
+    "distance_m": 1026.133495,
+    "text": "Distance between turbine 23 and turbine 13 is 1026.133495 meters."
+  },
+  "607": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 14,
+    "distance_m": 756.2969379,
+    "text": "Distance between turbine 23 and turbine 14 is 756.2969379 meters."
+  },
+  "608": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 15,
+    "distance_m": 572.9608483000001,
+    "text": "Distance between turbine 23 and turbine 15 is 572.9608483000001 meters."
+  },
+  "609": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 16,
+    "distance_m": 546.1475131999999,
+    "text": "Distance between turbine 23 and turbine 16 is 546.1475131999999 meters."
+  },
+  "610": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 17,
+    "distance_m": 711.3246008,
+    "text": "Distance between turbine 23 and turbine 17 is 711.3246008 meters."
+  },
+  "611": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 18,
+    "distance_m": 969.8330359,
+    "text": "Distance between turbine 23 and turbine 18 is 969.8330359 meters."
+  },
+  "612": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 19,
+    "distance_m": 1349.84706,
+    "text": "Distance between turbine 23 and turbine 19 is 1349.84706 meters."
+  },
+  "613": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 20,
+    "distance_m": 1019.2874780000001,
+    "text": "Distance between turbine 23 and turbine 20 is 1019.2874780000001 meters."
+  },
+  "614": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 21,
+    "distance_m": 674.9534891999999,
+    "text": "Distance between turbine 23 and turbine 21 is 674.9534891999999 meters."
+  },
+  "615": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 22,
+    "distance_m": 330.6526923,
+    "text": "Distance between turbine 23 and turbine 22 is 330.6526923 meters."
+  },
+  "616": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 23,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 23 and turbine 23 is 0.0 meters."
+  },
+  "617": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 24,
+    "distance_m": 325.94564599999995,
+    "text": "Distance between turbine 23 and turbine 24 is 325.94564599999995 meters."
+  },
+  "618": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 25,
+    "distance_m": 655.6667439,
+    "text": "Distance between turbine 23 and turbine 25 is 655.6667439 meters."
+  },
+  "619": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 26,
+    "distance_m": 1000.107531,
+    "text": "Distance between turbine 23 and turbine 26 is 1000.107531 meters."
+  },
+  "620": {
+    "type": "turbine_distance",
+    "turbine_a": 23,
+    "turbine_b": 27,
+    "distance_m": 1330.476794,
+    "text": "Distance between turbine 23 and turbine 27 is 1330.476794 meters."
+  },
+  "621": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 1,
+    "distance_m": 2615.409244,
+    "text": "Distance between turbine 24 and turbine 1 is 2615.409244 meters."
+  },
+  "622": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 2,
+    "distance_m": 2317.4738220000004,
+    "text": "Distance between turbine 24 and turbine 2 is 2317.4738220000004 meters."
+  },
+  "623": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 3,
+    "distance_m": 2023.3757529999998,
+    "text": "Distance between turbine 24 and turbine 3 is 2023.3757529999998 meters."
+  },
+  "624": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 4,
+    "distance_m": 1752.618512,
+    "text": "Distance between turbine 24 and turbine 4 is 1752.618512 meters."
+  },
+  "625": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 5,
+    "distance_m": 1509.3334830000001,
+    "text": "Distance between turbine 24 and turbine 5 is 1509.3334830000001 meters."
+  },
+  "626": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 6,
+    "distance_m": 1312.033761,
+    "text": "Distance between turbine 24 and turbine 6 is 1312.033761 meters."
+  },
+  "627": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 7,
+    "distance_m": 1169.845595,
+    "text": "Distance between turbine 24 and turbine 7 is 1169.845595 meters."
+  },
+  "628": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 8,
+    "distance_m": 1124.201104,
+    "text": "Distance between turbine 24 and turbine 8 is 1124.201104 meters."
+  },
+  "629": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 9,
+    "distance_m": 1179.436439,
+    "text": "Distance between turbine 24 and turbine 9 is 1179.436439 meters."
+  },
+  "630": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 10,
+    "distance_m": 2254.354359,
+    "text": "Distance between turbine 24 and turbine 10 is 2254.354359 meters."
+  },
+  "631": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 11,
+    "distance_m": 1923.175957,
+    "text": "Distance between turbine 24 and turbine 11 is 1923.175957 meters."
+  },
+  "632": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 12,
+    "distance_m": 1614.4634819999999,
+    "text": "Distance between turbine 24 and turbine 12 is 1614.4634819999999 meters."
+  },
+  "633": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 13,
+    "distance_m": 1323.351357,
+    "text": "Distance between turbine 24 and turbine 13 is 1323.351357 meters."
+  },
+  "634": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 14,
+    "distance_m": 1022.91744,
+    "text": "Distance between turbine 24 and turbine 14 is 1022.91744 meters."
+  },
+  "635": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 15,
+    "distance_m": 760.7845693,
+    "text": "Distance between turbine 24 and turbine 15 is 760.7845693 meters."
+  },
+  "636": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 16,
+    "distance_m": 588.1221559,
+    "text": "Distance between turbine 24 and turbine 16 is 588.1221559 meters."
+  },
+  "637": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 17,
+    "distance_m": 574.1760127,
+    "text": "Distance between turbine 24 and turbine 17 is 574.1760127 meters."
+  },
+  "638": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 18,
+    "distance_m": 741.5523684000001,
+    "text": "Distance between turbine 24 and turbine 18 is 741.5523684000001 meters."
+  },
+  "639": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 19,
+    "distance_m": 1674.716485,
+    "text": "Distance between turbine 24 and turbine 19 is 1674.716485 meters."
+  },
+  "640": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 20,
+    "distance_m": 1344.342612,
+    "text": "Distance between turbine 24 and turbine 20 is 1344.342612 meters."
+  },
+  "641": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 21,
+    "distance_m": 999.9977705,
+    "text": "Distance between turbine 24 and turbine 21 is 999.9977705 meters."
+  },
+  "642": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 22,
+    "distance_m": 655.6471419999999,
+    "text": "Distance between turbine 24 and turbine 22 is 655.6471419999999 meters."
+  },
+  "643": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 23,
+    "distance_m": 325.94564599999995,
+    "text": "Distance between turbine 24 and turbine 23 is 325.94564599999995 meters."
+  },
+  "644": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 24,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 24 and turbine 24 is 0.0 meters."
+  },
+  "645": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 25,
+    "distance_m": 330.669496,
+    "text": "Distance between turbine 24 and turbine 25 is 330.669496 meters."
+  },
+  "646": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 26,
+    "distance_m": 675.0572748,
+    "text": "Distance between turbine 24 and turbine 26 is 675.0572748 meters."
+  },
+  "647": {
+    "type": "turbine_distance",
+    "turbine_a": 24,
+    "turbine_b": 27,
+    "distance_m": 1005.663365,
+    "text": "Distance between turbine 24 and turbine 27 is 1005.663365 meters."
+  },
+  "648": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 1,
+    "distance_m": 2910.210846,
+    "text": "Distance between turbine 25 and turbine 1 is 2910.210846 meters."
+  },
+  "649": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 2,
+    "distance_m": 2604.8727679999997,
+    "text": "Distance between turbine 25 and turbine 2 is 2604.8727679999997 meters."
+  },
+  "650": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 3,
+    "distance_m": 2295.155839,
+    "text": "Distance between turbine 25 and turbine 3 is 2295.155839 meters."
+  },
+  "651": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 4,
+    "distance_m": 2007.7439469999997,
+    "text": "Distance between turbine 25 and turbine 4 is 2007.7439469999997 meters."
+  },
+  "652": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 5,
+    "distance_m": 1734.889741,
+    "text": "Distance between turbine 25 and turbine 5 is 1734.889741 meters."
+  },
+  "653": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 6,
+    "distance_m": 1491.824386,
+    "text": "Distance between turbine 25 and turbine 6 is 1491.824386 meters."
+  },
+  "654": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 7,
+    "distance_m": 1279.058089,
+    "text": "Distance between turbine 25 and turbine 7 is 1279.058089 meters."
+  },
+  "655": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 8,
+    "distance_m": 1151.4860840000001,
+    "text": "Distance between turbine 25 and turbine 8 is 1151.4860840000001 meters."
+  },
+  "656": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 9,
+    "distance_m": 1102.9701089999999,
+    "text": "Distance between turbine 25 and turbine 9 is 1102.9701089999999 meters."
+  },
+  "657": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 10,
+    "distance_m": 2573.065888,
+    "text": "Distance between turbine 25 and turbine 10 is 2573.065888 meters."
+  },
+  "658": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 11,
+    "distance_m": 2238.209065,
+    "text": "Distance between turbine 25 and turbine 11 is 2238.209065 meters."
+  },
+  "659": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 12,
+    "distance_m": 1923.21434,
+    "text": "Distance between turbine 25 and turbine 12 is 1923.21434 meters."
+  },
+  "660": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 13,
+    "distance_m": 1624.25621,
+    "text": "Distance between turbine 25 and turbine 13 is 1624.25621 meters."
+  },
+  "661": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 14,
+    "distance_m": 1305.99838,
+    "text": "Distance between turbine 25 and turbine 14 is 1305.99838 meters."
+  },
+  "662": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 15,
+    "distance_m": 1005.217086,
+    "text": "Distance between turbine 25 and turbine 15 is 1005.217086 meters."
+  },
+  "663": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 16,
+    "distance_m": 756.4269757999999,
+    "text": "Distance between turbine 25 and turbine 16 is 756.4269757999999 meters."
+  },
+  "664": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 17,
+    "distance_m": 572.9969476,
+    "text": "Distance between turbine 25 and turbine 17 is 572.9969476 meters."
+  },
+  "665": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 18,
+    "distance_m": 574.2822073,
+    "text": "Distance between turbine 25 and turbine 18 is 574.2822073 meters."
+  },
+  "666": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 19,
+    "distance_m": 2005.2211610000002,
+    "text": "Distance between turbine 25 and turbine 19 is 2005.2211610000002 meters."
+  },
+  "667": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 20,
+    "distance_m": 1674.765094,
+    "text": "Distance between turbine 25 and turbine 20 is 1674.765094 meters."
+  },
+  "668": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 21,
+    "distance_m": 1330.399527,
+    "text": "Distance between turbine 25 and turbine 21 is 1330.399527 meters."
+  },
+  "669": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 22,
+    "distance_m": 986.0045686999999,
+    "text": "Distance between turbine 25 and turbine 22 is 986.0045686999999 meters."
+  },
+  "670": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 23,
+    "distance_m": 655.6667439,
+    "text": "Distance between turbine 25 and turbine 23 is 655.6667439 meters."
+  },
+  "671": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 24,
+    "distance_m": 330.669496,
+    "text": "Distance between turbine 25 and turbine 24 is 330.669496 meters."
+  },
+  "672": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 25,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 25 and turbine 25 is 0.0 meters."
+  },
+  "673": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 26,
+    "distance_m": 344.4840803,
+    "text": "Distance between turbine 25 and turbine 26 is 344.4840803 meters."
+  },
+  "674": {
+    "type": "turbine_distance",
+    "turbine_a": 25,
+    "turbine_b": 27,
+    "distance_m": 675.0269072,
+    "text": "Distance between turbine 25 and turbine 27 is 675.0269072 meters."
+  },
+  "675": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 1,
+    "distance_m": 3229.080924,
+    "text": "Distance between turbine 26 and turbine 1 is 3229.080924 meters."
+  },
+  "676": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 2,
+    "distance_m": 2918.746368,
+    "text": "Distance between turbine 26 and turbine 2 is 2918.746368 meters."
+  },
+  "677": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 3,
+    "distance_m": 2598.234895,
+    "text": "Distance between turbine 26 and turbine 3 is 2598.234895 meters."
+  },
+  "678": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 4,
+    "distance_m": 2300.033799,
+    "text": "Distance between turbine 26 and turbine 4 is 2300.033799 meters."
+  },
+  "679": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 5,
+    "distance_m": 2007.9121209999998,
+    "text": "Distance between turbine 26 and turbine 5 is 2007.9121209999998 meters."
+  },
+  "680": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 6,
+    "distance_m": 1734.968651,
+    "text": "Distance between turbine 26 and turbine 6 is 1734.968651 meters."
+  },
+  "681": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 7,
+    "distance_m": 1474.321028,
+    "text": "Distance between turbine 26 and turbine 7 is 1474.321028 meters."
+  },
+  "682": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 8,
+    "distance_m": 1284.2104219999999,
+    "text": "Distance between turbine 26 and turbine 8 is 1284.2104219999999 meters."
+  },
+  "683": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 9,
+    "distance_m": 1137.0625679999998,
+    "text": "Distance between turbine 26 and turbine 9 is 1137.0625679999998 meters."
+  },
+  "684": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 10,
+    "distance_m": 2910.3324939999998,
+    "text": "Distance between turbine 26 and turbine 10 is 2910.3324939999998 meters."
+  },
+  "685": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 11,
+    "distance_m": 2573.2717310000003,
+    "text": "Distance between turbine 26 and turbine 11 is 2573.2717310000003 meters."
+  },
+  "686": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 12,
+    "distance_m": 2254.592276,
+    "text": "Distance between turbine 26 and turbine 12 is 2254.592276 meters."
+  },
+  "687": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 13,
+    "distance_m": 1951.494976,
+    "text": "Distance between turbine 26 and turbine 13 is 1951.494976 meters."
+  },
+  "688": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 14,
+    "distance_m": 1624.325805,
+    "text": "Distance between turbine 26 and turbine 14 is 1624.325805 meters."
+  },
+  "689": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 15,
+    "distance_m": 1306.1461700000002,
+    "text": "Distance between turbine 26 and turbine 15 is 1306.1461700000002 meters."
+  },
+  "690": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 16,
+    "distance_m": 1026.335598,
+    "text": "Distance between turbine 26 and turbine 16 is 1026.335598 meters."
+  },
+  "691": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 17,
+    "distance_m": 756.4489822,
+    "text": "Distance between turbine 26 and turbine 17 is 756.4489822 meters."
+  },
+  "692": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 18,
+    "distance_m": 588.1629025,
+    "text": "Distance between turbine 26 and turbine 18 is 588.1629025 meters."
+  },
+  "693": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 19,
+    "distance_m": 2349.701663,
+    "text": "Distance between turbine 26 and turbine 19 is 2349.701663 meters."
+  },
+  "694": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 20,
+    "distance_m": 2019.2490689999997,
+    "text": "Distance between turbine 26 and turbine 20 is 2019.2490689999997 meters."
+  },
+  "695": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 21,
+    "distance_m": 1674.883434,
+    "text": "Distance between turbine 26 and turbine 21 is 1674.883434 meters."
+  },
+  "696": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 22,
+    "distance_m": 1330.488303,
+    "text": "Distance between turbine 26 and turbine 22 is 1330.488303 meters."
+  },
+  "697": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 23,
+    "distance_m": 1000.107531,
+    "text": "Distance between turbine 26 and turbine 23 is 1000.107531 meters."
+  },
+  "698": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 24,
+    "distance_m": 675.0572748,
+    "text": "Distance between turbine 26 and turbine 24 is 675.0572748 meters."
+  },
+  "699": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 25,
+    "distance_m": 344.4840803,
+    "text": "Distance between turbine 26 and turbine 25 is 344.4840803 meters."
+  },
+  "700": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 26,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 26 and turbine 26 is 0.0 meters."
+  },
+  "701": {
+    "type": "turbine_distance",
+    "turbine_a": 26,
+    "turbine_b": 27,
+    "distance_m": 330.6389271,
+    "text": "Distance between turbine 26 and turbine 27 is 330.6389271 meters."
+  },
+  "702": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 1,
+    "distance_m": 3535.834782,
+    "text": "Distance between turbine 27 and turbine 1 is 3535.834782 meters."
+  },
+  "703": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 2,
+    "distance_m": 3221.797471,
+    "text": "Distance between turbine 27 and turbine 2 is 3221.797471 meters."
+  },
+  "704": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 3,
+    "distance_m": 2893.226463,
+    "text": "Distance between turbine 27 and turbine 3 is 2893.226463 meters."
+  },
+  "705": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 4,
+    "distance_m": 2587.6210140000003,
+    "text": "Distance between turbine 27 and turbine 4 is 2587.6210140000003 meters."
+  },
+  "706": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 5,
+    "distance_m": 2282.487599,
+    "text": "Distance between turbine 27 and turbine 5 is 2282.487599 meters."
+  },
+  "707": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 6,
+    "distance_m": 1990.107567,
+    "text": "Distance between turbine 27 and turbine 6 is 1990.107567 meters."
+  },
+  "708": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 7,
+    "distance_m": 1699.234895,
+    "text": "Distance between turbine 27 and turbine 7 is 1699.234895 meters."
+  },
+  "709": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 8,
+    "distance_m": 1468.88829,
+    "text": "Distance between turbine 27 and turbine 8 is 1468.88829 meters."
+  },
+  "710": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 9,
+    "distance_m": 1250.899551,
+    "text": "Distance between turbine 27 and turbine 9 is 1250.899551 meters."
+  },
+  "711": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 10,
+    "distance_m": 3233.38622,
+    "text": "Distance between turbine 27 and turbine 10 is 3233.38622 meters."
+  },
+  "712": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 11,
+    "distance_m": 2894.636241,
+    "text": "Distance between turbine 27 and turbine 11 is 2894.636241 meters."
+  },
+  "713": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 12,
+    "distance_m": 2573.263517,
+    "text": "Distance between turbine 27 and turbine 12 is 2573.263517 meters."
+  },
+  "714": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 13,
+    "distance_m": 2267.496029,
+    "text": "Distance between turbine 27 and turbine 13 is 2267.496029 meters."
+  },
+  "715": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 14,
+    "distance_m": 1934.93746,
+    "text": "Distance between turbine 27 and turbine 14 is 1934.93746 meters."
+  },
+  "716": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 15,
+    "distance_m": 1607.4774650000002,
+    "text": "Distance between turbine 27 and turbine 15 is 1607.4774650000002 meters."
+  },
+  "717": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 16,
+    "distance_m": 1313.7637069999998,
+    "text": "Distance between turbine 27 and turbine 16 is 1313.7637069999998 meters."
+  },
+  "718": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 17,
+    "distance_m": 1008.563077,
+    "text": "Distance between turbine 27 and turbine 17 is 1008.563077 meters."
+  },
+  "719": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 18,
+    "distance_m": 756.4343868,
+    "text": "Distance between turbine 27 and turbine 18 is 756.4343868 meters."
+  },
+  "720": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 19,
+    "distance_m": 2680.214098,
+    "text": "Distance between turbine 27 and turbine 19 is 2680.214098 meters."
+  },
+  "721": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 20,
+    "distance_m": 2349.719388,
+    "text": "Distance between turbine 27 and turbine 20 is 2349.719388 meters."
+  },
+  "722": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 21,
+    "distance_m": 2005.356828,
+    "text": "Distance between turbine 27 and turbine 21 is 2005.356828 meters."
+  },
+  "723": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 22,
+    "distance_m": 1660.96534,
+    "text": "Distance between turbine 27 and turbine 22 is 1660.96534 meters."
+  },
+  "724": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 23,
+    "distance_m": 1330.476794,
+    "text": "Distance between turbine 27 and turbine 23 is 1330.476794 meters."
+  },
+  "725": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 24,
+    "distance_m": 1005.663365,
+    "text": "Distance between turbine 27 and turbine 24 is 1005.663365 meters."
+  },
+  "726": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 25,
+    "distance_m": 675.0269072,
+    "text": "Distance between turbine 27 and turbine 25 is 675.0269072 meters."
+  },
+  "727": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 26,
+    "distance_m": 330.6389271,
+    "text": "Distance between turbine 27 and turbine 26 is 330.6389271 meters."
+  },
+  "728": {
+    "type": "turbine_distance",
+    "turbine_a": 27,
+    "turbine_b": 27,
+    "distance_m": 0.0,
+    "text": "Distance between turbine 27 and turbine 27 is 0.0 meters."
+  },
+  "729": {
+    "type": "power_curve",
+    "wind_speed": 4.0,
+    "power_kw": 53.0,
+    "text": "At a wind speed of 4.0 meters per second, the turbine produces 53.0 kilowatts of power."
+  },
+  "730": {
+    "type": "power_curve",
+    "wind_speed": 4.5,
+    "power_kw": 100.0,
+    "text": "At a wind speed of 4.5 meters per second, the turbine produces 100.0 kilowatts of power."
+  },
+  "731": {
+    "type": "power_curve",
+    "wind_speed": 5.0,
+    "power_kw": 163.0,
+    "text": "At a wind speed of 5.0 meters per second, the turbine produces 163.0 kilowatts of power."
+  },
+  "732": {
+    "type": "power_curve",
+    "wind_speed": 5.5,
+    "power_kw": 278.0,
+    "text": "At a wind speed of 5.5 meters per second, the turbine produces 278.0 kilowatts of power."
+  },
+  "733": {
+    "type": "power_curve",
+    "wind_speed": 6.0,
+    "power_kw": 393.0,
+    "text": "At a wind speed of 6.0 meters per second, the turbine produces 393.0 kilowatts of power."
+  },
+  "734": {
+    "type": "power_curve",
+    "wind_speed": 6.5,
+    "power_kw": 537.0,
+    "text": "At a wind speed of 6.5 meters per second, the turbine produces 537.0 kilowatts of power."
+  },
+  "735": {
+    "type": "power_curve",
+    "wind_speed": 7.0,
+    "power_kw": 682.0,
+    "text": "At a wind speed of 7.0 meters per second, the turbine produces 682.0 kilowatts of power."
+  },
+  "736": {
+    "type": "power_curve",
+    "wind_speed": 7.5,
+    "power_kw": 860.0,
+    "text": "At a wind speed of 7.5 meters per second, the turbine produces 860.0 kilowatts of power."
+  },
+  "737": {
+    "type": "power_curve",
+    "wind_speed": 8.0,
+    "power_kw": 1039.0,
+    "text": "At a wind speed of 8.0 meters per second, the turbine produces 1039.0 kilowatts of power."
+  },
+  "738": {
+    "type": "power_curve",
+    "wind_speed": 8.5,
+    "power_kw": 1234.0,
+    "text": "At a wind speed of 8.5 meters per second, the turbine produces 1234.0 kilowatts of power."
+  },
+  "739": {
+    "type": "power_curve",
+    "wind_speed": 9.0,
+    "power_kw": 1430.0,
+    "text": "At a wind speed of 9.0 meters per second, the turbine produces 1430.0 kilowatts of power."
+  },
+  "740": {
+    "type": "power_curve",
+    "wind_speed": 9.5,
+    "power_kw": 1580.0,
+    "text": "At a wind speed of 9.5 meters per second, the turbine produces 1580.0 kilowatts of power."
+  },
+  "741": {
+    "type": "power_curve",
+    "wind_speed": 10.0,
+    "power_kw": 1730.0,
+    "text": "At a wind speed of 10.0 meters per second, the turbine produces 1730.0 kilowatts of power."
+  },
+  "742": {
+    "type": "power_curve",
+    "wind_speed": 10.5,
+    "power_kw": 1885.0,
+    "text": "At a wind speed of 10.5 meters per second, the turbine produces 1885.0 kilowatts of power."
+  },
+  "743": {
+    "type": "power_curve",
+    "wind_speed": 11.0,
+    "power_kw": 2040.0,
+    "text": "At a wind speed of 11.0 meters per second, the turbine produces 2040.0 kilowatts of power."
+  },
+  "744": {
+    "type": "power_curve",
+    "wind_speed": 11.5,
+    "power_kw": 2140.0,
+    "text": "At a wind speed of 11.5 meters per second, the turbine produces 2140.0 kilowatts of power."
+  },
+  "745": {
+    "type": "power_curve",
+    "wind_speed": 12.0,
+    "power_kw": 2241.0,
+    "text": "At a wind speed of 12.0 meters per second, the turbine produces 2241.0 kilowatts of power."
+  },
+  "746": {
+    "type": "power_curve",
+    "wind_speed": 12.5,
+    "power_kw": 2280.0,
+    "text": "At a wind speed of 12.5 meters per second, the turbine produces 2280.0 kilowatts of power."
+  },
+  "747": {
+    "type": "power_curve",
+    "wind_speed": 13.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 13.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "748": {
+    "type": "power_curve",
+    "wind_speed": 13.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 13.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "749": {
+    "type": "power_curve",
+    "wind_speed": 14.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 14.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "750": {
+    "type": "power_curve",
+    "wind_speed": 14.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 14.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "751": {
+    "type": "power_curve",
+    "wind_speed": 15.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 15.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "752": {
+    "type": "power_curve",
+    "wind_speed": 15.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 15.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "753": {
+    "type": "power_curve",
+    "wind_speed": 16.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 16.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "754": {
+    "type": "power_curve",
+    "wind_speed": 16.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 16.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "755": {
+    "type": "power_curve",
+    "wind_speed": 17.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 17.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "756": {
+    "type": "power_curve",
+    "wind_speed": 17.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 17.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "757": {
+    "type": "power_curve",
+    "wind_speed": 18.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 18.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "758": {
+    "type": "power_curve",
+    "wind_speed": 18.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 18.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "759": {
+    "type": "power_curve",
+    "wind_speed": 19.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 19.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "760": {
+    "type": "power_curve",
+    "wind_speed": 19.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 19.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "761": {
+    "type": "power_curve",
+    "wind_speed": 20.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 20.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "762": {
+    "type": "power_curve",
+    "wind_speed": 20.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 20.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "763": {
+    "type": "power_curve",
+    "wind_speed": 21.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 21.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "764": {
+    "type": "power_curve",
+    "wind_speed": 21.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 21.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "765": {
+    "type": "power_curve",
+    "wind_speed": 22.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 22.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "766": {
+    "type": "power_curve",
+    "wind_speed": 22.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 22.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "767": {
+    "type": "power_curve",
+    "wind_speed": 23.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 23.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "768": {
+    "type": "power_curve",
+    "wind_speed": 23.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 23.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "769": {
+    "type": "power_curve",
+    "wind_speed": 24.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 24.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "770": {
+    "type": "power_curve",
+    "wind_speed": 24.5,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 24.5 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "771": {
+    "type": "power_curve",
+    "wind_speed": 25.0,
+    "power_kw": 2300.0,
+    "text": "At a wind speed of 25.0 meters per second, the turbine produces 2300.0 kilowatts of power."
+  },
+  "772": {
+    "type": "distance_from_port",
+    "turbine_id": 1,
+    "distance_km": 7.266325177,
+    "text": "Turbine 1 is 7.266325177 kilometers from the port."
+  },
+  "773": {
+    "type": "distance_from_port",
+    "turbine_id": 2,
+    "distance_km": 7.582714334,
+    "text": "Turbine 2 is 7.582714334 kilometers from the port."
+  },
+  "774": {
+    "type": "distance_from_port",
+    "turbine_id": 3,
+    "distance_km": 7.94565871,
+    "text": "Turbine 3 is 7.94565871 kilometers from the port."
+  },
+  "775": {
+    "type": "distance_from_port",
+    "turbine_id": 4,
+    "distance_km": 8.263179201,
+    "text": "Turbine 4 is 8.263179201 kilometers from the port."
+  },
+  "776": {
+    "type": "distance_from_port",
+    "turbine_id": 5,
+    "distance_km": 8.603836512,
+    "text": "Turbine 5 is 8.603836512 kilometers from the port."
+  },
+  "777": {
+    "type": "distance_from_port",
+    "turbine_id": 6,
+    "distance_km": 8.944827165,
+    "text": "Turbine 6 is 8.944827165 kilometers from the port."
+  },
+  "778": {
+    "type": "distance_from_port",
+    "turbine_id": 7,
+    "distance_km": 9.298476856,
+    "text": "Turbine 7 is 9.298476856 kilometers from the port."
+  },
+  "779": {
+    "type": "distance_from_port",
+    "turbine_id": 8,
+    "distance_km": 9.605369071,
+    "text": "Turbine 8 is 9.605369071 kilometers from the port."
+  },
+  "780": {
+    "type": "distance_from_port",
+    "turbine_id": 9,
+    "distance_km": 9.959617939,
+    "text": "Turbine 9 is 9.959617939 kilometers from the port."
+  },
+  "781": {
+    "type": "distance_from_port",
+    "turbine_id": 10,
+    "distance_km": 7.342992612,
+    "text": "Turbine 10 is 7.342992612 kilometers from the port."
+  },
+  "782": {
+    "type": "distance_from_port",
+    "turbine_id": 11,
+    "distance_km": 7.686002378,
+    "text": "Turbine 11 is 7.686002378 kilometers from the port."
+  },
+  "783": {
+    "type": "distance_from_port",
+    "turbine_id": 12,
+    "distance_km": 8.016302613,
+    "text": "Turbine 12 is 8.016302613 kilometers from the port."
+  },
+  "784": {
+    "type": "distance_from_port",
+    "turbine_id": 13,
+    "distance_km": 8.325304382,
+    "text": "Turbine 13 is 8.325304382 kilometers from the port."
+  },
+  "785": {
+    "type": "distance_from_port",
+    "turbine_id": 14,
+    "distance_km": 8.668748845,
+    "text": "Turbine 14 is 8.668748845 kilometers from the port."
+  },
+  "786": {
+    "type": "distance_from_port",
+    "turbine_id": 15,
+    "distance_km": 9.012155785,
+    "text": "Turbine 15 is 9.012155785 kilometers from the port."
+  },
+  "787": {
+    "type": "distance_from_port",
+    "turbine_id": 16,
+    "distance_km": 9.321623035,
+    "text": "Turbine 16 is 9.321623035 kilometers from the port."
+  },
+  "788": {
+    "type": "distance_from_port",
+    "turbine_id": 17,
+    "distance_km": 9.665249371,
+    "text": "Turbine 17 is 9.665249371 kilometers from the port."
+  },
+  "789": {
+    "type": "distance_from_port",
+    "turbine_id": 18,
+    "distance_km": 9.995844804,
+    "text": "Turbine 18 is 9.995844804 kilometers from the port."
+  },
+  "790": {
+    "type": "distance_from_port",
+    "turbine_id": 19,
+    "distance_km": 7.820932666,
+    "text": "Turbine 19 is 7.820932666 kilometers from the port."
+  },
+  "791": {
+    "type": "distance_from_port",
+    "turbine_id": 20,
+    "distance_km": 8.151475845,
+    "text": "Turbine 20 is 8.151475845 kilometers from the port."
+  },
+  "792": {
+    "type": "distance_from_port",
+    "turbine_id": 21,
+    "distance_km": 8.495817122,
+    "text": "Turbine 21 is 8.495817122 kilometers from the port."
+  },
+  "793": {
+    "type": "distance_from_port",
+    "turbine_id": 22,
+    "distance_km": 8.840191121,
+    "text": "Turbine 22 is 8.840191121 kilometers from the port."
+  },
+  "794": {
+    "type": "distance_from_port",
+    "turbine_id": 23,
+    "distance_km": 9.170762748,
+    "text": "Turbine 23 is 9.170762748 kilometers from the port."
+  },
+  "795": {
+    "type": "distance_from_port",
+    "turbine_id": 24,
+    "distance_km": 9.495546984,
+    "text": "Turbine 24 is 9.495546984 kilometers from the port."
+  },
+  "796": {
+    "type": "distance_from_port",
+    "turbine_id": 25,
+    "distance_km": 9.826120377,
+    "text": "Turbine 25 is 9.826120377 kilometers from the port."
+  },
+  "797": {
+    "type": "distance_from_port",
+    "turbine_id": 26,
+    "distance_km": 10.17058753,
+    "text": "Turbine 26 is 10.17058753 kilometers from the port."
+  },
+  "798": {
+    "type": "distance_from_port",
+    "turbine_id": 27,
+    "distance_km": 10.50113416,
+    "text": "Turbine 27 is 10.50113416 kilometers from the port."
+  }
+}
